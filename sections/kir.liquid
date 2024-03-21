@@ -1,0 +1,161 @@
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+<style>
+  *:focus-visible {
+    box-shadow: none;
+  }
+  swiper-container {
+    width: 100%;
+    height: 100%;
+    padding: 0px 20px;
+  }
+
+  swiper-slide {
+    width: 75px;
+    height: 100%;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  swiper-slide {
+  }
+
+  .circle_menue_item_image {
+    padding: 2px;
+    border-radius: 50%;
+    position: relative;
+    border: 3px solid transparent;
+    background: linear-gradient(white, white) padding-box, linear-gradient(45deg, red, yellow) border-box;
+  }
+
+  .circle_menue_item_image img {
+    background-color: #f1f1f1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
+  .circle_menue {
+    max-width: 1000px;
+    margin: 0px auto;
+    display: flex;
+    items-align: center;
+    justify-content: center;
+  }
+
+  .mySwiper {
+    width: 100% !important;
+    max-width: fit-content !important;
+    margin: 0px auto;
+  }
+
+  .circle_menue_item_text {
+    font-size: 13px;
+  }
+</style>
+
+<div class="circle_menue">
+  <swiper-container
+    class="mySwiper"
+    init="false"
+  >
+    <swiper-slide>
+      <div class="circle_menue_item">
+        <div class="circle_menue_item_image">
+          <img src="https://via.assets.so/furniture.png?id=1&q=95&w=360&h=360&fit=fill">
+        </div>
+        <div class="circle_menue_item_text">Test</div>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="circle_menue_item">
+        <div class="circle_menue_item_image">
+          <img src="https://via.assets.so/furniture.png?id=1&q=95&w=360&h=360&fit=fill">
+        </div>
+        <div class="circle_menue_item_text">Test</div>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="circle_menue_item">
+        <div class="circle_menue_item_image">
+          <img src="https://via.assets.so/furniture.png?id=1&q=95&w=360&h=360&fit=fill">
+        </div>
+        <div class="circle_menue_item_text">Test</div>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="circle_menue_item">
+        <div class="circle_menue_item_image">
+          <img src="https://via.assets.so/furniture.png?id=1&q=95&w=360&h=360&fit=fill">
+        </div>
+        <div class="circle_menue_item_text">Test</div>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="circle_menue_item">
+        <div class="circle_menue_item_image">
+          <img src="https://via.assets.so/furniture.png?id=1&q=95&w=360&h=360&fit=fill">
+        </div>
+        <div class="circle_menue_item_text">Test</div>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+<script>
+  const swiperEl = document.querySelector('swiper-container');
+  Object.assign(swiperEl, {
+    slidesPerView: 'auto',
+    spaceBetween: 10,
+  });
+  swiperEl.initialize();
+</script>
+
+{% schema %}
+{
+  "name": "💫: Circle Menue",
+  "class": "section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.image-with-text.settings.image.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Image with text",
+          "label": "t:sections.image-with-text.blocks.heading.settings.heading.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "💫: Circle Menue",
+      "blocks": [
+        {
+          "type": "heading"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
