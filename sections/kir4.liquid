@@ -1,0 +1,383 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+</style>
+
+<style>
+  /* Unique class for your div */
+  .st_wrapper,
+  .st_wrapper * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    font-family: 'Poppins', sans-serif; /* Example: Resetting to a specific font */
+    font-style: initial;
+    font-weight: initial;
+    color: #000; /* Default text color */
+    background: transparent; /* No background */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    vertical-align: baseline;
+    line-height: 1.5;
+    text-decoration: none;
+    outline: none;
+    letter-spacing: initial;
+  }
+
+  b,
+  strong {
+    font-weight: bolder !important;
+  }
+
+  /* Specific resets for form elements */
+  .st_wrapper input,
+  .st_wrapper textarea,
+  .st_wrapper select,
+  .st_wrapper button {
+    font-family: inherit; /* Ensures form elements use the div's font */
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit; /* Inherits text color from the div */
+  }
+
+  .st_wrapper a {
+    color: inherit; /* Link colors are reset to match the div's text color */
+    text-decoration: none; /* Removes underline from links */
+  }
+
+  /* List styles reset */
+  .st_wrapper ul,
+  .st_wrapper ol {
+    list-style: none; /* Removes bullet points and numbers from lists */
+  }
+
+  /* Table styles reset */
+  .st_wrapper table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  /* Image and video tags */
+  .st_wrapper img,
+  .st_wrapper video {
+    max-width: 100%; /* Ensures media doesn't overflow the div */
+  }
+
+  .st_wrapper p {
+    line-height: 1.6; /* Example line height for paragraphs */
+  }
+
+  .st_wrapper span {
+    font-size: 14px;
+  }
+
+  /* Button reset */
+  .st_wrapper button {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+  }
+</style>
+
+<style>
+  .st_testimonial-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    flex-direction: column;
+  }
+
+  .st_testimonial-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+  .st_testimonial-header h2 {
+    font-size: 52px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .st_testimonial-header h3 {
+    font-size: 22px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .st_testimonial-reviewbox {
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid black;
+    max-width: 400px;
+    display: flex !important;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .st_testimonial-reviewbox-verified-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .st_testimonial-reviewbox-footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .st_testimonial-reviewbox-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .st_testimonial-reviewbox-user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .st_testimonial-reviewbox-user-info-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .st_testimonial-reviewbox-user-info-name {
+    font-weight: 700;
+  }
+
+  .swiper-container,
+  swiper-wrapper {
+    width: 100%;
+    margin-block: 10px;
+    overflow: hidden;
+  }
+</style>
+
+<div class="st_wrapper">
+  <div class="st_testimonial-wrapper">
+    <div class="st_testimonial-header">
+      <h2>Deine Zufriedenheit. Unsere Mission.</h2>
+      <h3>Don’t just take our word for it. Our A-team gets tons of praise</h3>
+      <div class="st_testimonial-header-review">
+        <span>Sehr gut 4.7/5</span>
+      </div>
+    </div>
+    <div class="swiper-container">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide st_testimonial-reviewbox">
+          <p class="st_testimonial-reviewbox-text">
+            “These Crafted chains are legit! I’ve been sporting mine for months now, now it’s still in mint confition.
+            Quality is top-notch. I’ve putthus thung through uits paces - gym workouts, showers and even a few pulls,
+            and it’s held up like a champ-!
+          </p>
+          <div class="st_testimonial-reviewbox-verified-text">
+            <img src="https://via.placeholder.com/10x10" alt="Verified">
+            <span>Verified Buyer</span>
+          </div>
+          <div class="st_testimonial-reviewbox-footer">
+            <div class="st_testimonial-reviewbox-user-info">
+              <img src="https://via.placeholder.com/80x80" alt="User Image">
+              <div class="st_testimonial-reviewbox-user-info-text">
+                <span class="st_testimonial-reviewbox-user-info-name">Ricardo</span>
+                <span class="st_testimonial-reviewbox-user-info-date">vor 3 Tagen</span>
+              </div>
+            </div>
+            <div class="st_testimonial-reviewbox-rating">
+              <img src="https://via.placeholder.com/10x10" alt="Rating">
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide st_testimonial-reviewbox">
+          <p class="st_testimonial-reviewbox-text">
+            “These Crafted chains are legit! I’ve been sporting mine for months now, now it’s still in mint confition.
+            Quality is top-notch. I’ve putthus thung through uits paces - gym workouts, showers and even a few pulls,
+            and it’s held up like a champ-!
+          </p>
+          <div class="st_testimonial-reviewbox-verified-text">
+            <img src="https://via.placeholder.com/10x10" alt="Verified">
+            <span>Verified Buyer</span>
+          </div>
+          <div class="st_testimonial-reviewbox-footer">
+            <div class="st_testimonial-reviewbox-user-info">
+              <img src="https://via.placeholder.com/80x80" alt="User Image">
+              <div class="st_testimonial-reviewbox-user-info-text">
+                <span class="st_testimonial-reviewbox-user-info-name">Ricardo</span>
+                <span class="st_testimonial-reviewbox-user-info-date">vor 3 Tagen</span>
+              </div>
+            </div>
+            <div class="st_testimonial-reviewbox-rating">
+              <img src="https://via.placeholder.com/10x10" alt="Rating">
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide st_testimonial-reviewbox">
+          <p class="st_testimonial-reviewbox-text">
+            “These Crafted chains are legit! I’ve been sporting mine for months now, now it’s still in mint confition.
+            Quality is top-notch. I’ve putthus thung through uits paces - gym workouts, showers and even a few pulls,
+            and it’s held up like a champ-!
+          </p>
+          <div class="st_testimonial-reviewbox-verified-text">
+            <img src="https://via.placeholder.com/10x10" alt="Verified">
+            <span>Verified Buyer</span>
+          </div>
+          <div class="st_testimonial-reviewbox-footer">
+            <div class="st_testimonial-reviewbox-user-info">
+              <img src="https://via.placeholder.com/80x80" alt="User Image">
+              <div class="st_testimonial-reviewbox-user-info-text">
+                <span class="st_testimonial-reviewbox-user-info-name">Ricardo</span>
+                <span class="st_testimonial-reviewbox-user-info-date">vor 3 Tagen</span>
+              </div>
+            </div>
+            <div class="st_testimonial-reviewbox-rating">
+              <img src="https://via.placeholder.com/10x10" alt="Rating">
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide st_testimonial-reviewbox">
+          <p class="st_testimonial-reviewbox-text">
+            “These Crafted chains are legit! I’ve been sporting mine for months now, now it’s still in mint confition.
+            Quality is top-notch. I’ve putthus thung through uits paces - gym workouts, showers and even a few pulls,
+            and it’s held up like a champ-!
+          </p>
+          <div class="st_testimonial-reviewbox-verified-text">
+            <img src="https://via.placeholder.com/10x10" alt="Verified">
+            <span>Verified Buyer</span>
+          </div>
+          <div class="st_testimonial-reviewbox-footer">
+            <div class="st_testimonial-reviewbox-user-info">
+              <img src="https://via.placeholder.com/80x80" alt="User Image">
+              <div class="st_testimonial-reviewbox-user-info-text">
+                <span class="st_testimonial-reviewbox-user-info-name">Ricardo</span>
+                <span class="st_testimonial-reviewbox-user-info-date">vor 3 Tagen</span>
+              </div>
+            </div>
+            <div class="st_testimonial-reviewbox-rating">
+              <img src="https://via.placeholder.com/10x10" alt="Rating">
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide st_testimonial-reviewbox">
+          <p class="st_testimonial-reviewbox-text">
+            “These Crafted chains are legit! I’ve been sporting mine for months now, now it’s still in mint confition.
+            Quality is top-notch. I’ve putthus thung through uits paces - gym workouts, showers and even a few pulls,
+            and it’s held up like a champ-!
+          </p>
+          <div class="st_testimonial-reviewbox-verified-text">
+            <img src="https://via.placeholder.com/10x10" alt="Verified">
+            <span>Verified Buyer</span>
+          </div>
+          <div class="st_testimonial-reviewbox-footer">
+            <div class="st_testimonial-reviewbox-user-info">
+              <img src="https://via.placeholder.com/80x80" alt="User Image">
+              <div class="st_testimonial-reviewbox-user-info-text">
+                <span class="st_testimonial-reviewbox-user-info-name">Ricardo</span>
+                <span class="st_testimonial-reviewbox-user-info-date">vor 3 Tagen</span>
+              </div>
+            </div>
+            <div class="st_testimonial-reviewbox-rating">
+              <img src="https://via.placeholder.com/10x10" alt="Rating">
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide st_testimonial-reviewbox">
+          <p class="st_testimonial-reviewbox-text">
+            “These Crafted chains are legit! I’ve been sporting mine for months now, now it’s still in mint confition.
+            Quality is top-notch. I’ve putthus thung through uits paces - gym workouts, showers and even a few pulls,
+            and it’s held up like a champ-!
+          </p>
+          <div class="st_testimonial-reviewbox-verified-text">
+            <img src="https://via.placeholder.com/10x10" alt="Verified">
+            <span>Verified Buyer</span>
+          </div>
+          <div class="st_testimonial-reviewbox-footer">
+            <div class="st_testimonial-reviewbox-user-info">
+              <img src="https://via.placeholder.com/80x80" alt="User Image">
+              <div class="st_testimonial-reviewbox-user-info-text">
+                <span class="st_testimonial-reviewbox-user-info-name">Ricardo</span>
+                <span class="st_testimonial-reviewbox-user-info-date">vor 3 Tagen</span>
+              </div>
+            </div>
+            <div class="st_testimonial-reviewbox-rating">
+              <img src="https://via.placeholder.com/10x10" alt="Rating">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+      <!-- If we need scrollbar -->
+      <div class="swiper-scrollbar"></div>
+    </div>
+  </div>
+</div>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  const swiper = new Swiper('.swiper-container', {
+    spaceBetween: 20,
+    centeredSlides: true,
+    loopFillGroupWithBlank: true,
+    loop: true,
+    slidesPerView: 'auto',
+    grabCursor: true,
+  });
+</script>
+
+{% schema %}
+{
+  "name": "💫: Testimonial Slider",
+  "class": "section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.image-with-text.settings.image.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Image with text",
+          "label": "t:sections.image-with-text.blocks.heading.settings.heading.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "💫: Testimonial Slider",
+      "blocks": [
+        {
+          "type": "heading"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
