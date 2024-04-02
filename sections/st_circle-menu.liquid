@@ -1,0 +1,241 @@
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+<style>
+  *:focus-visible {
+    box-shadow: none;
+  }
+
+  swiper-container {
+    width: 100%;
+    padding: 0px 20px;
+  }
+
+  swiper-slide {
+    max-width: 75px;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  swiper-slide {
+  }
+
+  .swiper-autoheight .swiper-wrapper {
+    align-items: baseline !important;
+  }
+
+  .circle_menue_item_image {
+    padding: 4px;
+    border-radius: 50%;
+    position: relative;
+    border: 3px solid transparent;
+    background: linear-gradient(white, white) padding-box, {{ section.settings.ring_farbe }} border-box;
+  }
+
+  .circle_menue_item_image img,
+  .circle_menue_item_image svg {
+    background-color: #f1f1f1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
+  .circle_menue {
+    max-width: 1000px;
+    margin: 0px auto;
+    display: flex;
+    items-align: center;
+    justify-content: center;
+    padding-left: 10px;
+  }
+
+  .mySwiper {
+    width: 100% !important;
+    max-width: fit-content !important;
+    margin: 0px auto;
+  }
+
+  .circle_menue_item_text {
+    font-size: 13px;
+    width: inherit;
+    color: {{ section.settings.titel_farbe }};
+    word-wrap: break-word;
+  }
+
+  .circle_menue_item {
+    position: relative;
+    width: 75px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 15px;
+  }
+
+  .circle_menue_item_badge {
+    position: absolute;
+    width: max-content;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: {{ section.settings.badge_hintergrund }};
+    color: {{ section.settings.badge_text }};
+    padding: 4px 5px;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+</style>
+
+<div class="st_wrapper circle_menue">
+  <swiper-container
+    class="mySwiper"
+    init="false"
+  >
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'slide' -%}
+          {%- assign bild = block.settings.bild -%}
+          <swiper-slide>
+            <a href="{{ block.settings.bild_link }}" class="circle_menue_item">
+              <div class="circle_menue_item_image">
+                {%- if bild -%}
+                  <img src="{{ bild | image_url: width: bild.width }}">
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag }}
+                {%- endif -%}
+
+                {%- if block.settings.badge_text.size > 0 -%}
+                  <div class="circle_menue_item_badge">
+                    {{ block.settings.badge_text }}
+                  </div>
+                {%- endif -%}
+              </div>
+              <div class="circle_menue_item_text">{{ block.settings.bild_text }}</div>
+            </a>
+          </swiper-slide>
+      {%- endcase -%}
+    {%- endfor -%}
+  </swiper-container>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+<script>
+  function swiperInit() {
+    const swiperEl = document.querySelector('swiper-container');
+    Object.assign(swiperEl, {
+      slidesPerView: 'auto',
+      spaceBetween: 10,
+      autoHeight: true,
+    });
+    swiperEl.initialize();
+  }
+
+  document.addEventListener('shopify:section:load', function () {
+    swiperInit();
+  });
+
+  swiperInit();
+</script>
+
+{% schema %}
+{
+  "name": "💫: Circle Menue",
+  "class": "section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_background",
+      "id": "ring_farbe",
+      "label": "Ring Farbe",
+      "default": "linear-gradient(45deg, red, yellow)"
+    },
+    {
+      "type": "color",
+      "id": "titel_farbe",
+      "label": "Titel Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "badge_hintergrund",
+      "label": "Badge Hintergrund",
+      "default": "#db5a3d"
+    },
+    {
+      "type": "color",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Slide",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "bild",
+          "label": "Bild",
+          "info": "Wähle ein Bild für den Slide"
+        },
+        {
+          "type": "url",
+          "id": "bild_link",
+          "label": "Bild Link"
+        },
+        {
+          "type": "text",
+          "id": "bild_text",
+          "label": "Bild Text",
+          "default": "Beispiel",
+          "placeholder": "Collection oder Produkt Text eingeben"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "info": "Optional: Der Badge Text wird oberhalb des Bildes angezeigt.",
+          "default": "10% Rabatt"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "💫: Circle Menue",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
