@@ -6,8 +6,11 @@
   .st_testimonial-wrapper {
     display: flex;
     justify-content: center;
-    padding-top: 100px;
+    padding-block: 100px;
     flex-direction: column;
+    background: {{ section.settings.background_gradient }};
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
   }
 
   .st_testimonial-header {
@@ -23,12 +26,14 @@
     font-size: 48px;
     font-weight: 700;
     text-align: center;
+    color: {{ section.settings.titel_farbe }};
   }
 
   .st_testimonial-header h3 {
     font-size: 22px;
     font-weight: 400;
     text-align: center;
+    color: {{ section.settings.subtitel_farbe }};
   }
 
   @media screen and (max-width: 1024px) {
@@ -55,18 +60,19 @@
     }
 
     .st_testimonial-wrapper {
-      padding: 10px;
+      padding: 20px;
     }
   }
 
   .st_testimonial-reviewbox {
     padding: 30px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid #bfedde;
     max-width: 400px;
     display: flex !important;
     flex-direction: column;
     gap: 10px;
+    background: {{ section.settings.box_hintergrund }};
   }
 
   .st_testimonial-reviewbox-verified-text {
@@ -118,9 +124,14 @@
     flex-direction: column;
   }
 
+  .st_testimonial-reviewbox-user-info-text span {
+    color: {{ section.settings.box_text }};
+  }
+
   .st_testimonial-reviewbox-user-info-name {
     font-weight: 700;
   }
+
 
   .swiper-container,
   swiper-wrapper {
@@ -148,6 +159,7 @@
   .st_testimonial-reviewbox-rating svg {
     width: 20px;
     height: 20px;
+    fill: {{ section.settings.star_color }};
   }
 
   .st_testimonial-button {
@@ -164,11 +176,22 @@
 
   .st_testimonial-button span {
     color: white;
+    font-size: 16px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .st_testimonial-button span {
+      font-size: 12px;
+    }
   }
 
   .st_testimonial-button img {
     max-height: 20px;
     object-fit: contain;
+  }
+
+  .st_testimonial-reviewbox p {
+    color: {{ section.settings.box_text }};
   }
 </style>
 
@@ -211,9 +234,7 @@
           {%- case block.type -%}
             {%- when 'bewertung' -%}
               <div class="swiper-slide st_testimonial-reviewbox">
-                <p class="st_testimonial-reviewbox-text">
-                  {{ block.settings.bewertung_text }}
-                </p>
+                {{ block.settings.bewertung_text }}
                 {%- if block.settings.verifizierte_bewertung -%}
                   <div class="st_testimonial-reviewbox-verified-text">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
@@ -265,9 +286,8 @@
       <!-- If we need pagination -->
       <div class="swiper-pagination"></div>
 
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
 
       <!-- If we need scrollbar -->
       <div class="swiper-scrollbar"></div>
@@ -324,9 +344,100 @@
   "tag": "section",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "t:sections.image-with-text.settings.image.label"
+      "type": "header",
+      "content": "Abstände"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Abstand nach oben",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Abstand nach unten",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Farben Einstellungen"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Hintergrunds Farbe",
+      "default": "linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(164, 255, 208, 0.3) 100%)"
+    },
+    {
+      "type": "color",
+      "id": "titel_farbe",
+      "label": "Titel Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitel_farbe",
+      "label": "Sub-Titel Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "box_hintergrund",
+      "label": "Box Hintergrund",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "box_text",
+      "label": "Box Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Sterne Farben",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Größen"
+    },
+    {
+      "type": "range",
+      "id": "bild_size",
+      "label": "Bild Größe",
+      "min": 50,
+      "max": 150,
+      "step": 10,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "badge_size",
+      "label": "Badge Text Größe",
+      "min": 8,
+      "max": 15,
+      "step": 1,
+      "default": 9,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "link_size",
+      "label": "Link Text Größe",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
     }
   ],
   "blocks": [
@@ -349,7 +460,7 @@
           "type": "text",
           "id": "nutzer_name",
           "label": "Nutzer Name",
-          "default": "Max Mustermann",
+          "default": "Max M.",
           "placeholder": "Max Mustermann"
         },
         {

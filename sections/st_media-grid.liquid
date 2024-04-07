@@ -1,0 +1,497 @@
+<style>
+  /*-_- -_- -_- Desktop -_- -_- -_- */
+  .st_Gallery {
+    --Padding: 0px;
+    --gap: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap);
+    padding-inline: 10px;
+  }
+  .st_Gallery-Box {
+    --Boxes: 2;
+    position: relative;
+    width: calc((100% - (var(--gap) * (var(--Boxes) - 1))) / var(--Boxes));
+    aspect-ratio: 1.555;
+    border-radius: 29px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 51px 42px;
+    overflow: hidden;
+  }
+  [data-st_Gallery-Shadow='0'] {
+    --Shadow: 0;
+  }
+  [data-st_Gallery-Shadow='0.1'] {
+    --Shadow: 0.1;
+  }
+  [data-st_Gallery-Shadow='0.2'] {
+    --Shadow: 0.2;
+  }
+  [data-st_Gallery-Shadow='0.3'] {
+    --Shadow: 0.3;
+  }
+  [data-st_Gallery-Shadow='0.4'] {
+    --Shadow: 0.4;
+  }
+  [data-st_Gallery-Shadow='0.5'] {
+    --Shadow: 0.5;
+  }
+  [data-st_Gallery-Shadow='0.6'] {
+    --Shadow: 0.6;
+  }
+  [data-st_Gallery-Shadow='0.7'] {
+    --Shadow: 0.7;
+  }
+  [data-st_Gallery-Shadow='0.8'] {
+    --Shadow: 0.8;
+  }
+  [data-st_Gallery-Shadow='0.9'] {
+    --Shadow: 0.9;
+  }
+  [data-st_Gallery-Shadow='1'] {
+    --Shadow: 1;
+  }
+  .st_Gallery-Box:nth-child(5n + 1) {
+    --Boxes: 2;
+    aspect-ratio: 1.555;
+  }
+  .st_Gallery-Box:nth-child(5n + 2) {
+    --Boxes: 2;
+    aspect-ratio: 1.555;
+  }
+  .st_Gallery-Box:nth-child(5n + 3) {
+    --Boxes: 3;
+    aspect-ratio: 1.022;
+  }
+  .st_Gallery-Box:nth-child(5n + 4) {
+    --Boxes: 3;
+    aspect-ratio: 1.022;
+  }
+  .st_Gallery-Box:nth-child(5n + 5) {
+    --Boxes: 3;
+    aspect-ratio: 1.022;
+  }
+  .st_Gallery-Image {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    border-radius: inherit;
+    object-fit: cover;
+    transition: all 1s ease-in-out 0s;
+  }
+  .st_Gallery-Box:hover .st_Gallery-Image {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  .st_Gallery-Shadow {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    border-radius: 29px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 47.44%, hsl(0, 0%, 0%) 100%);
+    opacity: 0;
+    opacity: var(--Shadow);
+  }
+  .st_Gallery-Title {
+    position: relative;
+    color: hsl(0, 0%, 100%);
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 39px;
+    line-height: 100%;
+  }
+  .st_Gallery-Text {
+    position: relative;
+    color: hsl(0, 0%, 100%);
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+  }
+  .st_Gallery-Btn {
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background: hsl(0, 0%, 100%);
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .st_Btn {
+    cursor: pointer;
+  }
+  .st_Btn:hover {
+    scale: 1.1;
+  }
+  .st_Btn:active {
+    scale: 0.9;
+    opacity: 0.3;
+    transition: none;
+  }
+
+  /*-_- -_- -_- Labtop -_- -_- -_-*/
+  @media (max-width: 1024px) {
+    .st_Gallery {
+      --gap: 20px;
+      padding-block: 24px;
+    }
+    .st_Gallery-Box:nth-child(5n + 1) {
+      --Boxes: 2;
+      aspect-ratio: 1.555;
+    }
+    .st_Gallery-Box:nth-child(5n + 2) {
+      --Boxes: 2;
+      aspect-ratio: 1.555;
+    }
+    .st_Gallery-Box:nth-child(5n + 3) {
+      --Boxes: 3;
+      aspect-ratio: 1.022;
+    }
+    .st_Gallery-Box:nth-child(5n + 4) {
+      --Boxes: 3;
+      aspect-ratio: 1.022;
+    }
+    .st_Gallery-Box:nth-child(5n + 5) {
+      --Boxes: 3;
+      aspect-ratio: 1.022;
+    }
+    .st_Gallery-Box {
+      border-radius: 29px;
+      gap: 8px;
+      padding: 27px 23px;
+    }
+    .st_Gallery-Title {
+      font-size: 25px;
+    }
+    .st_Gallery-Text {
+      font-size: 12px;
+    }
+    .st_Gallery-Btn {
+      font-size: 11px;
+    }
+  }
+
+  /*-_- -_- -_- Tablet -_- -_- -_-*/
+  @media (max-width: 768px) {
+    .st_Gallery {
+      --gap: 20px;
+      padding-block: 24px;
+    }
+    .st_Gallery-Box:nth-child(5n + 1) {
+      --Boxes: 1;
+      aspect-ratio: 1.555;
+    }
+    .st_Gallery-Box:nth-child(5n + 2) {
+      --Boxes: 2;
+      aspect-ratio: 1.022;
+    }
+    .st_Gallery-Box:nth-child(5n + 3) {
+      --Boxes: 2;
+      aspect-ratio: 1.022;
+    }
+    .st_Gallery-Box:nth-child(5n + 4) {
+      --Boxes: 2;
+      aspect-ratio: 1.022;
+    }
+    .st_Gallery-Box:nth-child(5n + 5) {
+      --Boxes: 2;
+      aspect-ratio: 1.022;
+    }
+    .st_Gallery-Box {
+      border-radius: 29px;
+      gap: 8px;
+      padding: 27px 23px;
+    }
+    .st_Gallery-Title {
+      font-size: 25px;
+    }
+    .st_Gallery-Text {
+      font-size: 12px;
+    }
+    .st_Gallery-Btn {
+      font-size: 11px;
+    }
+  }
+
+  /*-_- -_- -_- Mobile -_- -_- -_-*/
+  @media (max-width: 480px) {
+    .st_Gallery {
+      --gap: 20px;
+      padding-block: 24px;
+    }
+    .st_Gallery-Box:nth-child(5n + 1),
+    .st_Gallery-Box:nth-child(5n + 2),
+    .st_Gallery-Box:nth-child(5n + 3),
+    .st_Gallery-Box:nth-child(5n + 4),
+    .st_Gallery-Box:nth-child(5n + 5) {
+      --Boxes: 1;
+      aspect-ratio: 1.555;
+    }
+    .st_Gallery-Box {
+      border-radius: 29px;
+      gap: 8px;
+      padding: 27px 23px;
+    }
+    .st_Gallery-Title {
+      font-size: 25px;
+    }
+    .st_Gallery-Text {
+      font-size: 12px;
+    }
+    .st_Gallery-Btn {
+      font-size: 11px;
+    }
+  }
+</style>
+
+<div class="st_wrapper st_Gallery">
+  <div class="st_Gallery-Box" data-st_Gallery-Shadow="1">
+    <img class="st_Gallery-Image" src="https://picsum.photos/200/301">
+    <div class="st_Gallery-Shadow"></div>
+    <div class="st_Gallery-Title">Endliche Eier</div>
+    <div class="st_Gallery-Text">Deine neue Eier Kollektion</div>
+    <div class="st_Gallery-Btn st_Btn">Jetzt entdecken</div>
+  </div>
+  <div class="st_Gallery-Box" data-st_Gallery-Shadow="1">
+    <img class="st_Gallery-Image" src="https://picsum.photos/200/302">
+    <div class="st_Gallery-Shadow"></div>
+    <div class="st_Gallery-Title">Endliche Eier</div>
+    <div class="st_Gallery-Text">Deine neue Eier Kollektion</div>
+    <div class="st_Gallery-Btn st_Btn">Jetzt entdecken</div>
+  </div>
+  <div class="st_Gallery-Box" data-st_Gallery-Shadow="1">
+    <img class="st_Gallery-Image" src="https://picsum.photos/200/303">
+    <div class="st_Gallery-Shadow"></div>
+    <div class="st_Gallery-Title">Endliche Eier</div>
+    <div class="st_Gallery-Text">Deine neue Eier Kollektion</div>
+    <div class="st_Gallery-Btn st_Btn">Jetzt entdecken</div>
+  </div>
+  <div class="st_Gallery-Box" data-st_Gallery-Shadow="1">
+    <img class="st_Gallery-Image" src="https://picsum.photos/200/304">
+    <div class="st_Gallery-Shadow"></div>
+    <div class="st_Gallery-Title">Endliche Eier</div>
+    <div class="st_Gallery-Text">Deine neue Eier Kollektion</div>
+    <div class="st_Gallery-Btn st_Btn">Jetzt entdecken</div>
+  </div>
+  <div class="st_Gallery-Box" data-st_Gallery-Shadow="0.6">
+    <img class="st_Gallery-Image" src="https://picsum.photos/200/305">
+    <div class="st_Gallery-Shadow"></div>
+    <div class="st_Gallery-Title">Endliche Eier</div>
+    <div class="st_Gallery-Text">Deine neue Eier Kollektion</div>
+    <div class="st_Gallery-Btn st_Btn">Jetzt entdecken</div>
+  </div>
+  <div class="st_Gallery-Box" data-st_Gallery-Shadow="0.5">
+    <img class="st_Gallery-Image" src="https://picsum.photos/200/306">
+    <div class="st_Gallery-Shadow"></div>
+    <div class="st_Gallery-Title">Endliche Eier</div>
+    <div class="st_Gallery-Text">Deine neue Eier Kollektion</div>
+    <div class="st_Gallery-Btn st_Btn">Jetzt entdecken</div>
+  </div>
+  <div class="st_Gallery-Box" data-st_Gallery-Shadow="0.4">
+    <img class="st_Gallery-Image" src="https://picsum.photos/200/307">
+    <div class="st_Gallery-Shadow"></div>
+    <div class="st_Gallery-Title">Endliche Eier</div>
+    <div class="st_Gallery-Text">Deine neue Eier Kollektion</div>
+    <div class="st_Gallery-Btn st_Btn">Jetzt entdecken</div>
+  </div>
+  <div class="st_Gallery-Box" data-st_Gallery-Shadow="0.3">
+    <img class="st_Gallery-Image" src="https://picsum.photos/200/308">
+    <div class="st_Gallery-Shadow"></div>
+    <div class="st_Gallery-Title">Endliche Eier</div>
+    <div class="st_Gallery-Text">Deine neue Eier Kollektion</div>
+    <div class="st_Gallery-Btn st_Btn">Jetzt entdecken</div>
+  </div>
+  <div class="st_Gallery-Box" data-st_Gallery-Shadow="0.2">
+    <img class="st_Gallery-Image" src="https://picsum.photos/200/309">
+    <div class="st_Gallery-Shadow"></div>
+    <div class="st_Gallery-Title">Endliche Eier</div>
+    <div class="st_Gallery-Text">Deine neue Eier Kollektion</div>
+    <div class="st_Gallery-Btn st_Btn">Jetzt entdecken</div>
+  </div>
+  <div class="st_Gallery-Box" data-st_Gallery-Shadow="0.1">
+    <img class="st_Gallery-Image" src="https://picsum.photos/200/300">
+    <div class="st_Gallery-Shadow"></div>
+    <div class="st_Gallery-Title">Endliche Eier</div>
+    <div class="st_Gallery-Text">Deine neue Eier Kollektion</div>
+    <div class="st_Gallery-Btn st_Btn">Jetzt entdecken</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "💫: Media Grid",
+  "class": "section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Abstände"
+    },
+    {
+      "type": "range",
+      "id": "space_between",
+      "label": "Abstand zwischen der einzelnen Slides",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 10,
+      "info": "Speichere um die Änderungen zu sehen"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Abstand nach oben",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Abstand nach unten",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Farben Einstellungen"
+    },
+    {
+      "type": "color_background",
+      "id": "ring_farbe",
+      "label": "Ring Farbe",
+      "default": "linear-gradient(45deg, red, yellow)"
+    },
+    {
+      "type": "color",
+      "id": "titel_farbe",
+      "label": "Titel Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "badge_hintergrund",
+      "label": "Badge Hintergrund",
+      "default": "#db5a3d"
+    },
+    {
+      "type": "color",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Größen"
+    },
+    {
+      "type": "range",
+      "id": "bild_size",
+      "label": "Bild Größe",
+      "min": 50,
+      "max": 150,
+      "step": 10,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "badge_size",
+      "label": "Badge Text Größe",
+      "min": 8,
+      "max": 15,
+      "step": 1,
+      "default": 9,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "link_size",
+      "label": "Link Text Größe",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Slide",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "bild",
+          "label": "Bild",
+          "info": "Wähle ein Bild für den Slide"
+        },
+        {
+          "type": "url",
+          "id": "bild_link",
+          "label": "Bild Link"
+        },
+        {
+          "type": "text",
+          "id": "bild_text",
+          "label": "Bild Text",
+          "default": "Beispiel",
+          "placeholder": "Collection oder Produkt Text eingeben"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "info": "Optional: Der Badge Text wird oberhalb des Bildes angezeigt.",
+          "default": "10% Rabatt"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "💫: Circle Menue",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

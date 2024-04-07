@@ -6,6 +6,11 @@
     box-shadow: none;
   }
 
+  .st_wrapper.circle_menue{
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+
   swiper-container {
     width: 100%;
     padding: 0px 20px;
@@ -155,6 +160,10 @@
   "tag": "section",
   "settings": [
     {
+      "type": "header",
+      "content": "Abstände"
+    },
+    {
       "type": "range",
       "id": "space_between",
       "label": "Abstand zwischen der einzelnen Slides",
@@ -163,6 +172,24 @@
       "step": 1,
       "default": 10,
       "info": "Speichere um die Änderungen zu sehen"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Abstand nach oben",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Abstand nach unten",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 0
     },
     {
       "type": "header",
