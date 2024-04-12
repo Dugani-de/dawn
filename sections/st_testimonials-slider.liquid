@@ -286,8 +286,10 @@
       <!-- If we need pagination -->
       <div class="swiper-pagination"></div>
 
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
+      {% comment %}
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      {% endcomment %}
 
       <!-- If we need scrollbar -->
       <div class="swiper-scrollbar"></div>
@@ -404,40 +406,6 @@
       "id": "star_color",
       "label": "Sterne Farben",
       "default": "#000000"
-    },
-    {
-      "type": "header",
-      "content": "Größen"
-    },
-    {
-      "type": "range",
-      "id": "bild_size",
-      "label": "Bild Größe",
-      "min": 50,
-      "max": 150,
-      "step": 10,
-      "default": 80,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "badge_size",
-      "label": "Badge Text Größe",
-      "min": 8,
-      "max": 15,
-      "step": 1,
-      "default": 9,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "link_size",
-      "label": "Link Text Größe",
-      "min": 8,
-      "max": 20,
-      "step": 1,
-      "default": 12,
-      "unit": "px"
     }
   ],
   "blocks": [
@@ -492,6 +460,9 @@
     {
       "name": "💫: Testimonial Slider",
       "blocks": [
+        {
+          "type": "bewertung"
+        },
         {
           "type": "bewertung"
         },
