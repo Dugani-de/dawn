@@ -198,31 +198,19 @@
 <div class="st_wrapper">
   <div class="st_testimonial-wrapper">
     <div class="st_testimonial-header">
-      <h2>Deine Zufriedenheit. Unsere Mission.</h2>
-      <h3>Siehe was andere Kunden sagen</h3>
+      <h2>{{ section.settings.header }}</h2>
+      <h3>{{ section.settings.subheader }}</h3>
       <div class="st_testimonial-header-review">
-        <span>Sehr gut 4.7/5</span>
+        <span>{{ section.settings.bewertung_text }}</span>
         <div class="st_testimonial-header-review-stars">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot_star.svg?v=1711989446"
-            alt="Trustpilot Star"
-          >
-          <img
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot_star.svg?v=1711989446"
-            alt="Trustpilot Star"
-          >
-          <img
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot_star.svg?v=1711989446"
-            alt="Trustpilot Star"
-          >
-          <img
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot_star.svg?v=1711989446"
-            alt="Trustpilot Star"
-          >
-          <img
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot_star.svg?v=1711989446"
-            alt="Trustpilot Star"
-          >
+          <div class="st_testimonial-reviewbox-rating">
+          {% assign num_trustpilot_sterne = section.settings.anzahl_der_bewertungen %}
+          {% for i in (1..num_trustpilot_sterne) %}
+            <img
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot_star.svg?v=1711989446"
+              alt="Trustpilot Star"
+            >
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -295,8 +283,8 @@
       <div class="swiper-scrollbar"></div>
     </div>
 
-    <a href="#" class="st_testimonial-button">
-      <span> basiert auf 169,778 Bewertungen </span>
+    <a href="{{ section.settings.button_link }}" class="st_testimonial-button">
+      <span> {{ section.settings.button_text }} </span>
       <img
         src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot-logo-white.png?v=1711992252"
         alt="arrow-right"
@@ -354,7 +342,7 @@
       "id": "margin_top",
       "label": "Abstand nach oben",
       "min": 0,
-      "max": 20,
+      "max": 100,
       "step": 1,
       "default": 0
     },
@@ -363,7 +351,7 @@
       "id": "margin_bottom",
       "label": "Abstand nach unten",
       "min": 0,
-      "max": 20,
+      "max": 100,
       "step": 1,
       "default": 0
     },
@@ -406,6 +394,52 @@
       "id": "star_color",
       "label": "Sterne Farben",
       "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Texte"
+    },
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Header",
+      "default": "Deine Zufriedenheit. Unsere Mission.",
+      "placeholder": "Header Text eingeben"
+    },
+    {
+      "type": "text",
+      "id": "subheader",
+      "label": "Sub Header",
+      "default": "Siehe was andere Kunden sagen",
+      "placeholder": "Sub Header Text eingeben"
+    },
+    {
+      "type": "text",
+      "id": "bewertung_text",
+      "label": "Bewertungs Text",
+      "default": "Sehr gut 4.7/5",
+      "placeholder": "Bewertungs Text"
+    },
+    {
+      "type": "range",
+      "id": "anzahl_der_bewertungen",
+      "label": "Anzahl der Bewertungen",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "basiert auf 778 Bewertungen",
+      "placeholder": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
     }
   ],
   "blocks": [

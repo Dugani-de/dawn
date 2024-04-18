@@ -39,6 +39,7 @@
     position: relative;
     border: 3px solid transparent;
     background: linear-gradient(white, white) padding-box, {{ section.settings.ring_farbe }} border-box;
+    aspect-ratio: 1 / 1;
   }
 
   .circle_menue_item_image img,
@@ -47,7 +48,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 50%;
   }
 
