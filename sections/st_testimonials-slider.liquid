@@ -1,14 +1,73 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 </style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+{% case section.settings.still %}
+  {% when 'standard' %}
+    {% assign background_gradient = 'linear-gradient(180deg, rgb(255 255 255 / 50%), rgb(230 230 230 / 99%) 150%)' %}
+  {% when 'trustpilot' %}
+    {% assign background_gradient = 'linear-gradient(180deg, rgb(255 255 255 / 50%), rgb(0 182 122 / 20%) 150%)' %}
+  {% when 'google' %}
+    {% assign background_gradient = 'linear-gradient(180deg, rgb(255 255 255 / 50%), rgb(255 252 240 / 99%) 150%)' %}
+{% endcase %}
 
 <style>
+  .swiper-button-next-sternify.swiper-button-disabled, .swiper-button-prev-sternify.swiper-button-disabled {
+    opacity: .35;
+    cursor: auto;
+    pointer-events: none;
+  }
+  .swiper-button-next-sternify, .swiper-button-prev-sternify {
+    position: absolute;
+    top: var(--swiper-navigation-top-offset,50%);
+    width: 50px;
+    height: 50px;
+    margin-top: -20px;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid #21212117;
+  }
+
+  .swiper-slide {
+    opacity: .7;
+    scale: 0.9;
+    transition: opacity 0.3s ease-in-out, scale 0.5s ease-in-out;
+  }
+
+  .swiper-slide-active {
+    opacity: 1;
+    scale: 1;
+    transition: opacity 0.3s ease-in-out, scale 0.5s ease-in-out;
+  }
+
+  .swiper-button-next-sternify svg, .swiper-button-prev-sternify svg {
+    width: 50px;
+  }
+
+  .swiper-button-next-sternify {
+    right: 10px;
+    left: auto
+  }
+  .swiper-button-prev-sternify {
+    left: 10px;
+    right: auto
+  }
+  .swiper-scrollbar {
+    display: block !important;
+  }
   .st_testimonial-wrapper {
     display: flex;
     justify-content: center;
     padding-block: 100px;
     flex-direction: column;
-    background: {{ section.settings.background_gradient }};
+    background: {{ background_gradient }};
     margin-top: {{ section.settings.margin_top }}px;
     margin-bottom: {{ section.settings.margin_bottom }}px;
   }
@@ -17,7 +76,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
     gap: 10px;
     padding-inline: 10px;
   }
@@ -38,28 +96,29 @@
 
   @media screen and (max-width: 1024px) {
     .st_testimonial-header h2 {
-      font-size: 32px;
+      font-size: 36px;
     }
 
     .st_testimonial-header h3 {
       font-size: 16px;
     }
 
-    .st_testimonial-wrapper {
+    .st_testimonial-header {
       padding: 20px;
     }
   }
 
   @media screen and (max-width: 650px) {
     .st_testimonial-header h2 {
-      font-size: 26px;
+      font-size: 32px;
+      line-height: 1.2;
     }
 
     .st_testimonial-header h3 {
       font-size: 14px;
     }
 
-    .st_testimonial-wrapper {
+    .st_testimonial-header {
       padding: 20px;
     }
   }
@@ -67,12 +126,18 @@
   .st_testimonial-reviewbox {
     padding: 30px;
     border-radius: 10px;
-    border: 1px solid #bfedde;
     max-width: 400px;
     display: flex !important;
     flex-direction: column;
     gap: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     background: {{ section.settings.box_hintergrund }};
+  }
+
+  @media screen and (max-width: 650px) {
+    .st_testimonial-reviewbox {
+      max-width: 300px;
+    }
   }
 
   .st_testimonial-reviewbox-verified-text {
@@ -136,7 +201,7 @@
   .swiper-container,
   swiper-wrapper {
     width: 100%;
-    margin-block: 10px;
+    padding-block: 20px;
     overflow: hidden;
   }
 
@@ -159,7 +224,6 @@
   .st_testimonial-reviewbox-rating svg {
     width: 20px;
     height: 20px;
-    fill: {{ section.settings.star_color }};
   }
 
   .st_testimonial-button {
@@ -204,17 +268,33 @@
         <span>{{ section.settings.bewertung_text }}</span>
         <div class="st_testimonial-header-review-stars">
           <div class="st_testimonial-reviewbox-rating">
-          {% assign num_trustpilot_sterne = section.settings.anzahl_der_bewertungen %}
-          {% for i in (1..num_trustpilot_sterne) %}
-            <img
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot_star.svg?v=1711989446"
-              alt="Trustpilot Star"
-            >
-          {% endfor %}
+            {% assign num_trustpilot_sterne = section.settings.anzahl_der_bewertungen %}
+            {% case section.settings.still %}
+              {% when 'standard' %}
+                {% for i in (1..num_trustpilot_sterne) %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fdd663" viewBox="0 0 256 256">
+                    <path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"></path>
+                  </svg>
+                {% endfor %}
+              {% when 'trustpilot' %}
+                {% for i in (1..num_trustpilot_sterne) %}
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot_star.svg?v=1711989446"
+                    alt="Trustpilot Star"
+                  >
+                {% endfor %}
+              {% when 'google' %}
+                {% for i in (1..num_trustpilot_sterne) %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fdd663" viewBox="0 0 256 256">
+                    <path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"></path>
+                  </svg>
+                {% endfor %}
+            {% endcase %}
+          </div>
         </div>
       </div>
     </div>
-    <div class="swiper-container">
+    <div class="swiper swiper-container">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
@@ -274,43 +354,57 @@
       <!-- If we need pagination -->
       <div class="swiper-pagination"></div>
 
-      {% comment %}
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      {% endcomment %}
+      <div class="swiper-button-next-sternify">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
+          <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path>
+        </svg>
+      </div>
+      <div class="swiper-button-prev-sternify">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
+          <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path>
+        </svg>
+      </div>
 
       <!-- If we need scrollbar -->
-      <div class="swiper-scrollbar"></div>
+      {% comment %} <div class="swiper-scrollbar"></div> {% endcomment %}
     </div>
-
     <a href="{{ section.settings.button_link }}" class="st_testimonial-button">
       <span> {{ section.settings.button_text }} </span>
-      <img
-        src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot-logo-white.png?v=1711992252"
-        alt="arrow-right"
-      >
+      {% case section.settings.still %}
+        {% when 'standard' %}
+
+        {% when 'trustpilot' %}
+          <img
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot-logo-white.png?v=1711992252"
+            alt="trustpilot-logo"
+          >
+        {% when 'google' %}
+          <img
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Google_2015_logo_1.png?v=1714586033"
+            alt="google-logo"
+          >
+      {% endcase %}
     </a>
   </div>
 </div>
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@7/swiper-bundle.min.css"
->
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@7/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8.4.7/swiper-bundle.min.js"></script>
 
 <script>
   function swiperInit() {
     const swiper = new Swiper('.swiper-container', {
-      spaceBetween: 20,
+      {% comment %} spaceBetween: 20, {% endcomment %}
       centeredSlides: true,
       slidesPerView: 'auto',
       grabCursor: true,
+      navigation: {
+        nextEl: ".swiper-button-next-sternify",
+        prevEl: ".swiper-button-prev-sternify",
+      },
+      loop: true,
       autoplay: {
         delay: 3000,
       },
-      loop: true,
     });
   }
 
@@ -333,6 +427,27 @@
   "class": "section",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "still",
+      "label": "Still",
+      "options": [
+        {
+          "value": "standard",
+          "label": "standard"
+        },
+        {
+          "value": "trustpilot",
+          "label": "trustpilot"
+        },
+        {
+          "value": "google",
+          "label": "google"
+        }
+      ],
+      "default": "trustpilot",
+      "info": "Still auswählen"
+    },
     {
       "type": "header",
       "content": "Abstände"
@@ -358,12 +473,6 @@
     {
       "type": "header",
       "content": "Farben Einstellungen"
-    },
-    {
-      "type": "color_background",
-      "id": "background_gradient",
-      "label": "Hintergrunds Farbe",
-      "default": "linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(164, 255, 208, 0.3) 100%)"
     },
     {
       "type": "color",
