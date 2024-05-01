@@ -3,7 +3,7 @@
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-{% case section.settings.still %}
+{% case section.settings.stil %}
   {% when 'standard' %}
     {% assign background_gradient = 'linear-gradient(180deg, rgb(255 255 255 / 50%), rgb(230 230 230 / 99%) 150%)' %}
   {% when 'trustpilot' %}
@@ -269,7 +269,7 @@
         <div class="st_testimonial-header-review-stars">
           <div class="st_testimonial-reviewbox-rating">
             {% assign num_trustpilot_sterne = section.settings.anzahl_der_bewertungen %}
-            {% case section.settings.still %}
+            {% case section.settings.stil %}
               {% when 'standard' %}
                 {% for i in (1..num_trustpilot_sterne) %}
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fdd663" viewBox="0 0 256 256">
@@ -370,7 +370,7 @@
     </div>
     <a href="{{ section.settings.button_link }}" class="st_testimonial-button">
       <span> {{ section.settings.button_text }} </span>
-      {% case section.settings.still %}
+      {% case section.settings.stil %}
         {% when 'standard' %}
 
         {% when 'trustpilot' %}
@@ -429,8 +429,8 @@
   "settings": [
     {
       "type": "select",
-      "id": "still",
-      "label": "Still",
+      "id": "stil",
+      "label": "stil",
       "options": [
         {
           "value": "standard",
@@ -446,7 +446,7 @@
         }
       ],
       "default": "trustpilot",
-      "info": "Still auswählen"
+      "info": "stil auswählen"
     },
     {
       "type": "header",
