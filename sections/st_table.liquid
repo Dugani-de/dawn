@@ -113,7 +113,7 @@
   }
   .st_Table-Row:nth-child(1) .st_Table-Box:nth-child(2) {
     --Main-Color: hsl(0, 0%, 100%);
-    --Back-Color: hsl(0deg 0% 0%);
+    --Back-Color: {{ section.settings.highlighted_color }};
   }
   .st_Table-Row:nth-child(1) .st_Table-Box:nth-child(3) {
     --Main-Color: hsl(0deg 0% 0%);
@@ -127,7 +127,7 @@
   /*._. Active-Column ._.*/
   .st_Table-Row .st_Table-Box:nth-child(2) {
     --Main-Color: hsl(0, 0%, 100%);
-    --Back-Color: hsl(0deg 0% 0%);
+    --Back-Color: {{ section.settings.highlighted_color }};
     padding-top: calc(var(--Padding) + 1px);
     margin-top: -1px;
     {% comment %} z-index: 10; {% endcomment %}
