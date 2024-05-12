@@ -1,3 +1,16 @@
+{% comment %} Version: 1.0.0 {% endcomment %}
+
+{% comment %}
+  ---------------------------------------------------------
+  Copyright © 2024 Sternify. All rights reserved.
+  Any unauthorized reproduction, alteration, or distribution
+  of this code, in part or in whole, is expressly forbidden.
+  Violators will be subject to legal prosecution to the maximum
+  extent permitted by law. For permissions or inquiries,
+  please contact us in our discord server: https://discord.gg/NHHCEPhsG8
+  ---------------------------------------------------------
+{% endcomment %}
+
 {%- assign font_picker = section.settings.font_picker -%}
 {% style %}
   {{ font_picker | font_face }}
@@ -7,7 +20,7 @@
 {% endstyle %}
 
 <style>
-  div:empty {
+  .st_table-wrapper div:empty {
     display: unset;
   }
   /*-_- -_- -_- Desktop -_- -_- -_- */
