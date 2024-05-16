@@ -52,7 +52,6 @@
     position: relative;
     border: 3px solid transparent;
     background: linear-gradient(white, white) padding-box, {{ section.settings.ring_farbe }} border-box;
-    aspect-ratio: 1 / 1;
   }
 
   .circle_menue_item_image img,
@@ -63,6 +62,7 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    aspect-ratio: 1;
   }
 
   .circle_menue {
@@ -191,8 +191,8 @@
       "type": "range",
       "id": "margin_top",
       "label": "Abstand nach oben",
-      "min": 0,
-      "max": 20,
+      "min": -50,
+      "max": 50,
       "step": 1,
       "default": 0
     },
@@ -200,8 +200,8 @@
       "type": "range",
       "id": "margin_bottom",
       "label": "Abstand nach unten",
-      "min": 0,
-      "max": 20,
+      "min": -50,
+      "max": 50,
       "step": 1,
       "default": 0
     },
