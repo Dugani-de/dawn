@@ -1,4 +1,4 @@
-{% comment %} Version: 1.0.0 {% endcomment %}
+{% comment %} Version: 1.0.1 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -383,20 +383,27 @@
     </div>
     <a href="{{ section.settings.button_link }}" class="st_testimonial-button">
       <span> {{ section.settings.button_text }} </span>
-      {% case section.settings.stil %}
-        {% when 'standard' %}
+      {% if section.settings.own_logo %}
+        <img
+          src="{{ section.settings.own_logo | image_url: width: "200" }}"
+          alt="Logo"
+        >
+      {% else %}
+        {% case section.settings.stil %}
+          {% when 'standard' %}
 
-        {% when 'trustpilot' %}
-          <img
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot-logo-white.png?v=1711992252"
-            alt="trustpilot-logo"
-          >
-        {% when 'google' %}
-          <img
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Google_2015_logo_1.png?v=1714586033"
-            alt="google-logo"
-          >
-      {% endcase %}
+          {% when 'trustpilot' %}
+            <img
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/trustpilot-logo-white.png?v=1711992252"
+              alt="trustpilot-logo"
+            >
+          {% when 'google' %}
+            <img
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Google_2015_logo_1.png?v=1714586033"
+              alt="google-logo"
+            >
+        {% endcase %}
+      {% endif %}
     </a>
   </div>
 </div>
@@ -443,7 +450,7 @@
     {
       "type": "select",
       "id": "stil",
-      "label": "stil",
+      "label": "Stil",
       "options": [
         {
           "value": "standard",
@@ -459,7 +466,13 @@
         }
       ],
       "default": "trustpilot",
-      "info": "stil auswählen"
+      "info": "Stil auswählen"
+    },
+    {
+      "type": "image_picker",
+      "id": "own_logo",
+      "label": "Optional: Eigenes Logo",
+      "info": "Hier kannst du ein eigenes Logo hochladen, falls du andere Review Anbieter verwendest"
     },
     {
       "type": "header",
