@@ -1,4 +1,4 @@
-{% comment %} Version: 1.0.1 {% endcomment %}
+{% comment %} Version: 1.2.2 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -10,6 +10,17 @@
   please contact us in our discord server: https://discord.gg/NHHCEPhsG8
   ---------------------------------------------------------
 {% endcomment %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if ('sternify' in window) {
+      console.log('Variable exists.');
+    } else {
+      console.log('Variable doesnt exists.');
+      document.querySelector('.st_check-section--{{ section.id }}').style.display = 'none';
+    }
+  });
+</script>
 
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
@@ -62,7 +73,13 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    transition: scale 0.5s ease;
     aspect-ratio: 1;
+  }
+
+  .circle_menue_item_image img:hover, .circle_menue_item_image svg:hover {
+    scale: 0.9;
+    transition: scale 0.5s ease;
   }
 
   .circle_menue {
@@ -115,7 +132,7 @@
   }
 </style>
 
-<div class="st_wrapper circle_menue">
+<div class="st_wrapper circle_menue st_check-section--{{ section.id }}">
   <swiper-container
     class="mySwiper"
     init="false"

@@ -1,4 +1,4 @@
-{% comment %} Version: 1.0.0 {% endcomment %}
+{% comment %} Version: 1.2.0 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -10,6 +10,17 @@
   please contact us in our discord server: https://discord.gg/NHHCEPhsG8
   ---------------------------------------------------------
 {% endcomment %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if ('sternify' in window) {
+      console.log('Variable exists.');
+    } else {
+      console.log('Variable doesnt exists.');
+      document.querySelector('.st_check-section--{{ section.id }}').style.display = 'none';
+    }
+  });
+</script>
 
 {%- assign font_picker = section.settings.font_picker -%}
 {% style %}
@@ -242,7 +253,7 @@
 
 {% assign number_of_columns = section.settings.columns_number %}
 
-<div class="st_table-wrapper">
+<div class="st_table-wrapper st_check-section--{{ section.id }}">
   <div class="st_Table-TopTitle">{{ section.settings.header_text }}</div>
   <div class="st_Table">
     <div class="st_Table-Row">

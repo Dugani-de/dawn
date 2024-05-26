@@ -1,4 +1,4 @@
-{% comment %} Version: 1.0.0 {% endcomment %}
+{% comment %} Version: 1.2.0 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -10,6 +10,17 @@
   please contact us in our discord server: https://discord.gg/NHHCEPhsG8
   ---------------------------------------------------------
 {% endcomment %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if ('sternify' in window) {
+      console.log('Variable exists.');
+    } else {
+      console.log('Variable doesnt exists.');
+      document.querySelector('.st_check-section--{{ section.id }}').style.display = 'none';
+    }
+  });
+</script>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -131,7 +142,7 @@
   }
 </style>
 
-<div class="st_wrapper">
+<div class="st_wrapper st_check-section--{{ section.id }}">
   <div class="st_img-text-wrapper--{{ section.id }}">
     <div class="st_img-text-text--{{ section.id }}">
       <div class="st_img-text-text-title--{{ section.id }}">
