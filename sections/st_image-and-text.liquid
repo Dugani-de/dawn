@@ -1,4 +1,4 @@
-{% comment %} Version: 1.2.0 {% endcomment %}
+{% comment %} Version: 2.0.0 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -11,235 +11,28 @@
   ---------------------------------------------------------
 {% endcomment %}
 
-<script>
-  function check_section () {
-    if ('sternify' in window) {
-      console.log('Variable exists.');
-    } else {
-      console.log('Variable doesnt exists.');
-      document.querySelector('.st_check-section--{{ section.id }}').style.display = 'none';
-      {% if request.design_mode %}
-      document.querySelector('.st_not-found').innerHTML = `<style>
-        .st_not-found-wrapper {
-          display: none;
-          max-width: 130rem;
-          display: flex;
-          margin: 0 auto;
-          gap: 100px;
-          height: 50rem;
-          align-items: center;
-          justify-content: flex-start;
-          background-color: #fbfbfb;
-          border-radius: 30px;
-          /* border: 1px red dashed; */
-          /* padding: 30px; */
-          margin-block: 70px;
-        }
-        .st_not-found-img-wrapper {
-          height: 100%;
-          display: flex;
-        }
-        .st_not-found-img-wrapper img {
-          max-width: 100%;
-          max-height: 100%;
-          object-fit: contain;
-          border-radius: 20px;
-        }
-        .st_not-found-text-wrapper {
-          display: flex;
-          flex-direction: column;
-          max-width: 50%;
-          gap: 10px;
-        }
-        .st_not-found-title {
-          font-size: 30px;
-          font-family: 'Poppins';
-          font-weight: 700;
-          line-height: 1.3;
-        }
-        .st_not-found-steps-wrapper {
-          font-size: 20px;
-        }
-        .st_not-found-steps-title {
-          font-family: 'Poppins';
-          font-weight: 500;
-          font-size: 20px;
-        }
-        .st_not-found-icon {
-          padding: 10px;
-          background-color: #ffeded;
-          width: 50px;
-          height: 50px;
-          border-radius: 10px;
-        }
-        .st_not-found-icon svg {
-          max-height: 100%;
-          max-width: 100%;
-          fill: #ff0000;
-        }
-
-        @media screen and (max-width: 600px) {
-          .st_not-found-wrapper {
-            flex-direction: column;
-            height: unset;
-            gap: 20px;
-            padding: 30px;
-          }
-          .st_not-found-text-wrapper {
-            max-width: 90%;
-          }
-          .st_not-found-img-wrapper {
-            height: fit-content;
-          }
-        }
-      </style>
-
-      <div class="st_not-found-wrapper">
-        <div class="st_not-found-img-wrapper">
-          <img src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Frame_158.png?v=1716736704">
-        </div>
-        <div class="st_not-found-text-wrapper">
-          <div class="st_not-found-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#F3F3F3" viewBox="0 0 256 256">
-              <path d="M240.26,186.1,152.81,34.23h0a28.74,28.74,0,0,0-49.62,0L15.74,186.1a27.45,27.45,0,0,0,0,27.71A28.31,28.31,0,0,0,40.55,228h174.9a28.31,28.31,0,0,0,24.79-14.19A27.45,27.45,0,0,0,240.26,186.1Zm-20.8,15.7a4.46,4.46,0,0,1-4,2.2H40.55a4.46,4.46,0,0,1-4-2.2,3.56,3.56,0,0,1,0-3.73L124,46.2a4.77,4.77,0,0,1,8,0l87.44,151.87A3.56,3.56,0,0,1,219.46,201.8ZM116,136V104a12,12,0,0,1,24,0v32a12,12,0,0,1-24,0Zm28,40a16,16,0,1,1-16-16A16,16,0,0,1,144,176Z"></path>
-            </svg>
-          </div>
-          <div class="st_not-found-title">Oops! Sternify 💫 ist nicht aktiv</div>
-          <div class="st_not-found-steps-wrapper">
-            <div class="st_not-found-steps-title">Gehe wie folgt vor:</div>
-            <div class="st_not-found-steps">
-              <div>1. Klicke auf Einbettungen</div>
-              <div>2. Aktiviere Sternify</div>
-              <div>3. Speichern und Du bist Startklar!</div>
-            </div>
-          </div>
-        </div>
-      </div>`;
-      {% endif %}
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    check_section();
-  });
-
-  document.addEventListener('shopify:section:load', function () {
-    console.log('shopify:section:load');
-    check_section();
-  });
-</script>
+<script
+  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/verifier.js?v=1717092340"
+  data-section-id="{{ section.id }}"
+></script>
 
 <div class="st_not-found"></div>
 
-{% comment %}
-  {% if request.design_mode %}
-    <style>
-      .st_not-found-wrapper {
-        display: none;
-        max-width: 130rem;
-        display: flex;
-        margin: 0 auto;
-        gap: 100px;
-        height: 50rem;
-        align-items: center;
-        justify-content: flex-start;
-        background-color: #fbfbfb;
-        border-radius: 30px;
-        /* border: 1px red dashed; */
-        /* padding: 30px; */
-        margin-block: 70px;
-      }
-      .st_not-found-img-wrapper {
-        height: 100%;
-        display: flex;
-      }
-      .st_not-found-img-wrapper img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-        border-radius: 20px;
-      }
-      .st_not-found-text-wrapper {
-        display: flex;
-        flex-direction: column;
-        max-width: 50%;
-        gap: 10px;
-      }
-      .st_not-found-title {
-        font-size: 30px;
-        font-family: 'Poppins';
-        font-weight: 700;
-        line-height: 1.3;
-      }
-      .st_not-found-steps-wrapper {
-        font-size: 20px;
-      }
-      .st_not-found-steps-title {
-        font-family: 'Poppins';
-        font-weight: 500;
-        font-size: 20px;
-      }
-      .st_not-found-icon {
-        padding: 10px;
-        background-color: #ffeded;
-        width: 50px;
-        height: 50px;
-        border-radius: 10px;
-      }
-      .st_not-found-icon svg {
-        max-height: 100%;
-        max-width: 100%;
-        fill: #ff0000;
-      }
-
-      @media screen and (max-width: 600px) {
-        .st_not-found-wrapper {
-          flex-direction: column;
-          height: unset;
-          gap: 20px;
-          padding: 30px;
-        }
-        .st_not-found-text-wrapper {
-          max-width: 90%;
-        }
-        .st_not-found-img-wrapper {
-          height: fit-content;
-        }
-      }
-    </style>
-
-    <div class="st_not-found-wrapper">
-      <div class="st_not-found-img-wrapper">
-        <img src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Frame_158.png?v=1716736704">
-      </div>
-      <div class="st_not-found-text-wrapper">
-        <div class="st_not-found-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#F3F3F3" viewBox="0 0 256 256">
-            <path d="M240.26,186.1,152.81,34.23h0a28.74,28.74,0,0,0-49.62,0L15.74,186.1a27.45,27.45,0,0,0,0,27.71A28.31,28.31,0,0,0,40.55,228h174.9a28.31,28.31,0,0,0,24.79-14.19A27.45,27.45,0,0,0,240.26,186.1Zm-20.8,15.7a4.46,4.46,0,0,1-4,2.2H40.55a4.46,4.46,0,0,1-4-2.2,3.56,3.56,0,0,1,0-3.73L124,46.2a4.77,4.77,0,0,1,8,0l87.44,151.87A3.56,3.56,0,0,1,219.46,201.8ZM116,136V104a12,12,0,0,1,24,0v32a12,12,0,0,1-24,0Zm28,40a16,16,0,1,1-16-16A16,16,0,0,1,144,176Z"></path>
-          </svg>
-        </div>
-        <div class="st_not-found-title">Oops! Sternify 💫 ist nicht aktiv</div>
-        <div class="st_not-found-steps-wrapper">
-          <div class="st_not-found-steps-title">Gehe wie folgt vor:</div>
-          <div class="st_not-found-steps">
-            <div>1. Klicke auf Einbettungen</div>
-            <div>2. Aktiviere Sternify</div>
-            <div>3. Speichern und Du bist Startklar!</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  {% endif %}
-{% endcomment %}
-
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-</style>
+  {%- assign subtitle_font = section.settings.subtitle_font -%}
+  {%- assign title_font = section.settings.title_font -%}
+  {%- assign text_font = section.settings.text_font -%}
+  {%- assign benefits_font = section.settings.benefits_font -%}
+  {%- assign benefits_font_bolder = section.settings.benefits_font | font_modify: 'weight', '+200' -%}
+  {{ subtitle_font | font_face }}
+  {{ title_font | font_face }}
+  {{ text_font | font_face }}
+  {{ benefits_font | font_face }}
+  {{ benefits_font_bolder | font_face }}
 
-<style>
   .st_img-text-wrapper--{{ section.id }} {
     margin: 0px auto;
-    max-width: 140rem;
+    max-width: {{  section.settings.maximal_width }}rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -252,22 +45,32 @@
   }
 
   .st_img-text-text--{{ section.id }} {
-    width: 40%;
+    width: {{ 100 | minus: section.settings.image_width }}%;
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
 
+  .st_img-text-text--{{ section.id }} p {
+    font-family: {{ text_font.family }}, {{ text_font.fallback_families }};
+    font-size: {{ section.settings.text_fontsize }}px;
+    font-weight: {{ text_font.weight }};
+  }
+
   .st_img-text-text-title--{{ section.id }} h2 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 30px;
+    font-size: {{ section.settings.title_fontsize }}px;
+    font-family: {{ title_font.family }}, {{ title_font.fallback_families }};
+    font-weight: {{ title_font.weight }};
   }
 
   .st_img-text-text-title--{{ section.id }} h3 {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
-    font-size: 20px;
+    font-size: {{ section.settings.subtitle_fontsize }}px;
+    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
+    font-weight: {{ subtitle_font.weight }};
   }
 
   .st_img-text-image--{{ section.id }} {
@@ -322,20 +125,22 @@
     width: 20px;
     height: 20px;
   }
-  .st_img-text-image-usp-item-image--{{ section.id }} img {
-  }
-  .st_img-text-image-usp-item-text--{{ section.id }} {
-    font-size: 16px !important;
+
+  .st_img-text-image-usp-item-text--{{ section.id }} p{
+    color: {{ section.settings.box_text }};
+    font-family: {{ benefits_font.family }}, {{ benefits_font.fallback_families }} !important;
+    font-size: {{ section.settings.benefits_fontsize }}px;
+    font-weight: {{ benefits_font.weight }};
   }
 
-  .st_img-text-image-usp-item-text--{{ section.id }} *{
-    color: {{ section.settings.box_text }};
+  .st_img-text-image-usp-item-text--{{ section.id }} b{
+    font-weight: {{ benefits_font_bolder.weight }} !important;
   }
 
   @media only screen and (max-width: 1024px) {
     .st_img-text-image--{{ section.id }} {
       width: 100%;
-      max-height: 850px;
+      max-height: {{section.settings.image_max_height_mobile}}px;
     }
     .st_img-text-text--{{ section.id }} {
       width: 100%;
@@ -354,8 +159,17 @@
       width: 120px;
       height: 120px;
     }
-    .st_img-text-image-usp-item-text--{{ section.id }} {
-      font-size: 14px !important;
+    .st_img-text-text-title--{{ section.id }} h2 {
+      font-size: {{ section.settings.title_fontsize | minus: 5 }}px;
+    }
+    .st_img-text-text-title--{{ section.id }} h3 {
+      font-size: {{ section.settings.sub_titel | minus: 2 }}px;
+    }
+    .st_img-text-text--{{ section.id }} p {
+      font-size: {{ section.settings.text_fontsize | minus: 1 }}px;
+    }
+    .st_img-text-image-usp-item-text--{{ section.id }} p{
+      font-size: {{ section.settings.benefits_fontsize | minus: 1 }}px;
     }
   }
 </style>
@@ -474,6 +288,10 @@
     },
     {
       "type": "header",
+      "content": "--------------------------------"
+    },
+    {
+      "type": "header",
       "content": "Abstände"
     },
     {
@@ -496,6 +314,56 @@
     },
     {
       "type": "header",
+      "content": "--------------------------------"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Größen Einstellungen"
+    },
+    {
+      "type": "range",
+      "id": "maximal_width",
+      "label": "Maixmale Section Breite - Desktop",
+      "info": "Nur relevant für Desktop",
+      "min": 100,
+      "max": 200,
+      "step": 10,
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Maixmale Bild Breite - Desktop",
+      "min": 0,
+      "max": 70,
+      "step": 10,
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "--------------------------------"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Größen Einstellungen"
+    },
+    {
+      "type": "range",
+      "id": "image_max_height_mobile",
+      "label": "Maximale Bild Höhe - Mobile",
+      "info": "Nur relevant für Mobile",
+      "min": 300,
+      "max": 600,
+      "step": 10,
+      "default": 600
+    },
+    {
+      "type": "header",
+      "content": "--------------------------------"
+    },
+
+    {
+      "type": "header",
       "content": "Farben Einstellungen"
     },
     {
@@ -515,6 +383,70 @@
       "id": "box_text",
       "label": "Vorteil Box Text",
       "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Font Einstellungen"
+    },
+    {
+      "type": "font_picker",
+      "id": "subtitle_font",
+      "label": "Sub-Titel",
+      "default": "poppins_n3"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_fontsize",
+      "label": "Größe",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Titel",
+      "default": "poppins_n6"
+    },
+    {
+      "type": "range",
+      "id": "title_fontsize",
+      "label": "Größe",
+      "min": 10,
+      "max": 45,
+      "step": 1,
+      "default": 30
+    },
+    {
+      "type": "font_picker",
+      "id": "text_font",
+      "label": "Text Block",
+      "default": "poppins_n4"
+    },
+    {
+      "type": "range",
+      "id": "text_fontsize",
+      "label": "Größe",
+      "min": 10,
+      "max": 25,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "font_picker",
+      "id": "benefits_font",
+      "label": "Vorteile Font",
+      "default": "poppins_n4"
+    },
+    {
+      "type": "range",
+      "id": "benefits_fontsize",
+      "label": "Größe",
+      "min": 10,
+      "max": 25,
+      "step": 1,
+      "default": 16
     }
   ],
   "blocks": [
@@ -538,7 +470,7 @@
   ],
   "presets": [
     {
-      "name": "💫: Image and Text V1",
+      "name": "💫: Image and Text",
       "blocks": [
         {
           "type": "vorteil"

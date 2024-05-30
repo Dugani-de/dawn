@@ -1,4 +1,4 @@
-{% comment %} Version: 1.2.1 {% endcomment %}
+{% comment %} Version: 2.0.1 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -11,119 +11,13 @@
   ---------------------------------------------------------
 {% endcomment %}
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    if ('sternify' in window) {
-      console.log('Variable exists.');
-    } else {
-      console.log('Variable doesnt exists.');
-      document.querySelector('.st_check-section--{{ section.id }}').style.display = 'none';
-    }
-  });
-</script>
+<script
+  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/verifier.js?v=1717092340"
+  data-section-id="{{ section.id }}"
+></script>
 
-{% if request.design_mode %}
-  <style>
-    .st_not-found-wrapper {
-      display: none;
-      max-width: 130rem;
-      display: flex;
-      margin: 0 auto;
-      gap: 100px;
-      height: 50rem;
-      align-items: center;
-      justify-content: flex-start;
-      background-color: #fbfbfb;
-      border-radius: 30px;
-      /* border: 1px red dashed; */
-      /* padding: 30px; */
-      margin-block: 70px;
-    }
-    .st_not-found-img-wrapper {
-      height: 100%;
-      display: flex;
-    }
-    .st_not-found-img-wrapper img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 20px;
-    }
-    .st_not-found-text-wrapper {
-      display: flex;
-      flex-direction: column;
-      max-width: 50%;
-      gap: 10px;
-    }
-    .st_not-found-title {
-      font-size: 30px;
-      font-family: 'Poppins';
-      font-weight: 700;
-      line-height: 1.3;
-    }
-    .st_not-found-steps-wrapper {
-      font-size: 20px;
-    }
-    .st_not-found-steps-title {
-      font-family: 'Poppins';
-      font-weight: 500;
-      font-size: 20px;
-    }
-    .st_not-found-icon {
-      padding: 10px;
-      background-color: #ffeded;
-      width: 50px;
-      height: 50px;
-      border-radius: 10px;
-    }
-    .st_not-found-icon svg {
-      max-height: 100%;
-      max-width: 100%;
-      fill: #ff0000;
-    }
+<div class="st_not-found"></div>
 
-    @media screen and (max-width: 600px) {
-      .st_not-found-wrapper {
-        flex-direction: column;
-        height: unset;
-        gap: 20px;
-        padding: 30px;
-      }
-      .st_not-found-text-wrapper {
-        max-width: 90%;
-      }
-      .st_not-found-img-wrapper {
-        height: fit-content;
-      }
-    }
-  </style>
-
-  <div class="st_not-found-wrapper">
-    <div class="st_not-found-img-wrapper">
-      <img src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Frame_158.png?v=1716736704">
-    </div>
-    <div class="st_not-found-text-wrapper">
-      <div class="st_not-found-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#F3F3F3" viewBox="0 0 256 256">
-          <path d="M240.26,186.1,152.81,34.23h0a28.74,28.74,0,0,0-49.62,0L15.74,186.1a27.45,27.45,0,0,0,0,27.71A28.31,28.31,0,0,0,40.55,228h174.9a28.31,28.31,0,0,0,24.79-14.19A27.45,27.45,0,0,0,240.26,186.1Zm-20.8,15.7a4.46,4.46,0,0,1-4,2.2H40.55a4.46,4.46,0,0,1-4-2.2,3.56,3.56,0,0,1,0-3.73L124,46.2a4.77,4.77,0,0,1,8,0l87.44,151.87A3.56,3.56,0,0,1,219.46,201.8ZM116,136V104a12,12,0,0,1,24,0v32a12,12,0,0,1-24,0Zm28,40a16,16,0,1,1-16-16A16,16,0,0,1,144,176Z"></path>
-        </svg>
-      </div>
-      <div class="st_not-found-title">Oops! Sternify 💫 ist nicht aktiv</div>
-      <div class="st_not-found-steps-wrapper">
-        <div class="st_not-found-steps-title">Gehe wie folgt vor:</div>
-        <div class="st_not-found-steps">
-          <div>1. Klicke auf Einbettungen</div>
-          <div>2. Aktiviere Sternify</div>
-          <div>3. Speichern und Du bist Startklar!</div>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endif %}
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-</style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
 {% case section.settings.stil %}
@@ -133,9 +27,25 @@
     {% assign background_gradient = 'linear-gradient(180deg, rgb(255 255 255 / 50%), rgb(0 182 122 / 20%) 150%)' %}
   {% when 'google' %}
     {% assign background_gradient = 'linear-gradient(180deg, rgb(255 255 255 / 50%), rgb(255 252 240 / 99%) 150%)' %}
+  {% when 'custom' %}
+    {% capture background_gradient %} linear-gradient(180deg, rgb(255 255 255 / 50%), {{ section.settings.section_backround_color}} 150%){% endcapture %}
 {% endcase %}
 
 <style>
+  {%- assign header_font = section.settings.header_font -%}
+  {%- assign subtitle_font = section.settings.subtitle_font -%}
+  {%- assign review_font = section.settings.review_font -%}
+  {%- assign review_font_bolder = section.settings.review_font | font_modify: 'weight', '+300' -%}
+  {{ header_font | font_face }}
+  {{ subtitle_font | font_face }}
+  {{ review_font | font_face }}
+  {{ review_font_bolder | font_face }}
+
+  section:has(.st_testimonial-wrapper) {
+    padding-inline: 0 !important;
+    margin-inline: 0 !important;
+  }
+
   .swiper-button-next-sternify.swiper-button-disabled, .swiper-button-prev-sternify.swiper-button-disabled {
     opacity: .35;
     cursor: auto;
@@ -188,7 +98,7 @@
   .st_testimonial-wrapper {
     display: flex;
     justify-content: center;
-    padding-block: 100px;
+    padding-block: {{section.settings.box_padding_block}}px;
     flex-direction: column;
     background: {{ background_gradient }};
     margin-top: {{ section.settings.margin_top }}px;
@@ -208,6 +118,8 @@
     font-weight: 700;
     text-align: center;
     color: {{ section.settings.titel_farbe }};
+    font-family: {{ header_font.family }}, {{ header_font.fallback_families }};
+    font-weight: {{ header_font.weight }} !important;
   }
 
   .st_testimonial-header h3 {
@@ -215,6 +127,8 @@
     font-weight: 400;
     text-align: center;
     color: {{ section.settings.subtitel_farbe }};
+    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
+    font-weight: {{ subtitle_font.weight }} !important;
   }
 
   @media screen and (max-width: 1024px) {
@@ -278,6 +192,7 @@
   .st_testimonial-reviewbox-verified-text span {
     color: #9e9e9e;
     font-size: 16px;
+    font-weight: {{ review_font.weight }} !important;
   }
 
   .st_testimonial-reviewbox-footer {
@@ -316,10 +231,9 @@
     color: {{ section.settings.box_text }};
   }
 
-  .st_testimonial-reviewbox-user-info-name {
-    font-weight: 700;
+  span.st_testimonial-reviewbox-user-info-name {
+    font-weight: {{ review_font_bolder.weight }} !important;
   }
-
 
   .swiper-container,
   swiper-wrapper {
@@ -328,10 +242,16 @@
     overflow: hidden;
   }
 
+  .st_testimonial-wrapper .swiper-wrapper {
+    align-items: center;
+  }
+
   .st_testimonial-header-review {
     display: flex;
     align-items: center;
     gap: 10px;
+    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
+    font-weight: {{ subtitle_font.weight }} !important;
   }
 
   .st_testimonial-header-review-stars {
@@ -349,6 +269,11 @@
     height: 20px;
   }
 
+  .st_testimonial-reviewbox * {
+    font-family: {{ review_font.family }}, {{ review_font.fallback_families }};
+    font-weight: {{ review_font.weight }} !important;
+  }
+
   .st_testimonial-button {
     background: black;
     width: fit-content;
@@ -359,6 +284,8 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    font-family: {{ review_font.family }}, {{ review_font.fallback_families }};
+    font-weight: {{ review_font.weight }} !important;
   }
 
   .st_testimonial-button span {
@@ -379,6 +306,24 @@
 
   .st_testimonial-reviewbox p {
     color: {{ section.settings.box_text }};
+    font-family: {{ review_font.family }}, {{ review_font.fallback_families }};
+    font-weight: {{ review_font.weight }} !important;
+  }
+
+  .st_testimonial-reviewbox b, .st_testimonial-reviewbox strong {
+    color: {{ section.settings.box_text }};
+    font-family: {{ review_font_bolder.family }}, {{ review_font_bolder.fallback_families }};
+    font-weight: {{ review_font_bolder.weight }} !important;
+  }
+
+  .st_testimonial-reviewbox-image {
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .st_testimonial-reviewbox-user-info-date {
+    font-size: 10px !important;
   }
 </style>
 
@@ -412,6 +357,12 @@
                     <path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"></path>
                   </svg>
                 {% endfor %}
+              {% when 'custom' %}
+                {% for i in (1..num_trustpilot_sterne) %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fdd663" viewBox="0 0 256 256">
+                    <path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"></path>
+                  </svg>
+                {% endfor %}
             {% endcase %}
           </div>
         </div>
@@ -425,6 +376,24 @@
           {%- case block.type -%}
             {%- when 'bewertung' -%}
               <div class="swiper-slide st_testimonial-reviewbox">
+                {% if block.settings.review_image %}
+                  <style>
+                    .st_testimonial-reviewbox-image--{{ block.id }} {
+                      height: {{ block.settings.max_image_height }}px;
+                      object-position: {{ block.settings.image_position }};
+                    }
+
+                    @media screen and (min-width: 1024px) {
+                      .st_testimonial-reviewbox-image--{{ block.id }} {
+                        height: {{ block.settings.max_image_height | plus: 80 }}px;
+                      }
+                    }
+                  </style>
+                  <img
+                    class="st_testimonial-reviewbox-image st_testimonial-reviewbox-image--{{ block.id }}"
+                    src="{{ block.settings.review_image | img_url: '400x' }}"
+                  >
+                {% endif %}
                 {{ block.settings.bewertung_text }}
                 {%- if block.settings.verifizierte_bewertung -%}
                   <div class="st_testimonial-reviewbox-verified-text">
@@ -434,7 +403,6 @@
                     <span>Verifizierte Bewertung</span>
                   </div>
                 {%- endif -%}
-
                 <div class="st_testimonial-reviewbox-footer">
                   <div class="st_testimonial-reviewbox-user-info">
                     {%- assign nutzer_profilbild = block.settings.nutzer_profilbild -%}
@@ -573,10 +541,21 @@
         {
           "value": "google",
           "label": "google"
+        },
+        {
+          "value": "custom",
+          "label": "Individuell"
         }
       ],
       "default": "trustpilot",
       "info": "Stil auswählen"
+    },
+    {
+      "type": "color",
+      "id": "section_backround_color",
+      "label": "Box Text",
+      "info": "Diese Einstellung wird nur angewendet, wenn du den Stil 'Individuell' ausgewählt hast.",
+      "default": "#EFEFEF"
     },
     {
       "type": "image_picker",
@@ -605,6 +584,16 @@
       "max": 100,
       "step": 1,
       "default": 0
+    },
+    {
+      "type": "range",
+      "id": "box_padding_block",
+      "label": "Innerhalb der Section Abstand Oben und Unten",
+      "info": "Innerhalb der Section",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "default": 60
     },
     {
       "type": "header",
@@ -685,6 +674,28 @@
       "type": "url",
       "id": "button_link",
       "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Font Einstellungen"
+    },
+    {
+      "type": "font_picker",
+      "id": "header_font",
+      "label": "Header Font",
+      "default": "poppins_n7"
+    },
+    {
+      "type": "font_picker",
+      "id": "subtitle_font",
+      "label": "Subtitel Font",
+      "default": "poppins_n4"
+    },
+    {
+      "type": "font_picker",
+      "id": "review_font",
+      "label": "Bewertung Font",
+      "default": "poppins_n4"
     }
   ],
   "blocks": [
@@ -697,6 +708,42 @@
           "id": "bewertung_text",
           "label": "Bewertung Text",
           "default": "<p>“Sternify ist fantastisch. Es hat meine Conversionrate extrem verbessert und meine Product page auf ein Level mit den experten der Industry gebracht und das ganz ohne Entwickler! Alles im Shopify Thembuilder.”</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "review_image",
+          "label": "Bewertung Bild (Optional)",
+          "info": "Optional"
+        },
+        {
+          "type": "range",
+          "id": "max_image_height",
+          "min": 150,
+          "max": 250,
+          "step": 10,
+          "default": 200,
+          "label": "Maximale Höhe des Bilds"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Bild Position",
+          "info": "Diese Einstellung betrifft nur Bilder, die die maximale Höhe überschreiten",
+          "options": [
+            {
+              "value": "bottom",
+              "label": "Untenbündig"
+            },
+            {
+              "value": "center",
+              "label": "Zentriert"
+            },
+            {
+              "value": "top",
+              "label": "Obenbündig"
+            }
+          ],
+          "default": "center"
         },
         {
           "type": "image_picker",
