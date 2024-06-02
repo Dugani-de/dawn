@@ -1,4 +1,4 @@
-{% comment %} Version: 2.0.1 {% endcomment %}
+{% comment %} Version: 2.0.2 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -14,6 +14,7 @@
 <script
   src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/verifier.js?v=1717092340"
   data-section-id="{{ section.id }}"
+  defer
 ></script>
 
 <div class="st_not-found"></div>
@@ -46,12 +47,12 @@
     margin-inline: 0 !important;
   }
 
-  .swiper-button-next-sternify.swiper-button-disabled, .swiper-button-prev-sternify.swiper-button-disabled {
+  .st_testimonial-wrapper .swiper-button-next-sternify.swiper-button-disabled, .st_testimonial-wrapper .swiper-button-prev-sternify.swiper-button-disabled {
     opacity: .35;
     cursor: auto;
     pointer-events: none;
   }
-  .swiper-button-next-sternify, .swiper-button-prev-sternify {
+  .st_testimonial-wrapper .swiper-button-next-sternify, .st_testimonial-wrapper .swiper-button-prev-sternify {
     position: absolute;
     top: var(--swiper-navigation-top-offset,50%);
     width: 50px;
@@ -68,31 +69,31 @@
     border: 1px solid #21212117;
   }
 
-  .swiper-slide {
+  .st_testimonial-wrapper .swiper-slide {
     opacity: .7;
     scale: 0.9;
     transition: opacity 0.3s ease-in-out, scale 0.5s ease-in-out;
   }
 
-  .swiper-slide-active {
+  .st_testimonial-wrapper .swiper-slide-active {
     opacity: 1;
     scale: 1;
     transition: opacity 0.3s ease-in-out, scale 0.5s ease-in-out;
   }
 
-  .swiper-button-next-sternify svg, .swiper-button-prev-sternify svg {
+  .st_testimonial-wrapper .swiper-button-next-sternify svg, .swiper-button-prev-sternify svg {
     width: 50px;
   }
 
-  .swiper-button-next-sternify {
+  .st_testimonial-wrapper .swiper-button-next-sternify {
     right: 10px;
     left: auto
   }
-  .swiper-button-prev-sternify {
+  .st_testimonial-wrapper .swiper-button-prev-sternify {
     left: 10px;
     right: auto
   }
-  .swiper-scrollbar {
+  .st_testimonial-wrapper .swiper-scrollbar {
     display: block !important;
   }
   .st_testimonial-wrapper {
@@ -235,8 +236,8 @@
     font-weight: {{ review_font_bolder.weight }} !important;
   }
 
-  .swiper-container,
-  swiper-wrapper {
+  .st_testimonial-wrapper .swiper-container,
+  .st_testimonial-wrapper swiper-wrapper {
     width: 100%;
     padding-block: 20px;
     overflow: hidden;
@@ -490,7 +491,7 @@
 
 <script>
   function swiperInit() {
-    const swiper = new Swiper('.swiper-container', {
+    const swiper = new Swiper('.st_testimonial-wrapper .swiper-container', {
       {% comment %} spaceBetween: 20, {% endcomment %}
       centeredSlides: true,
       slidesPerView: 'auto',
