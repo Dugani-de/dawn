@@ -1,0 +1,1605 @@
+{% comment %} Version: 1.0.0 {% endcomment %}
+
+{% comment %}
+  ---------------------------------------------------------
+  Copyright © 2024 Sternify. All rights reserved.
+  Any unauthorized reproduction, alteration, or distribution
+  of this code, in part or in whole, is expressly forbidden.
+  Violators will be subject to legal prosecution to the maximum
+  extent permitted by law. For permissions or inquiries,
+  please contact us in our discord server: https://discord.gg/NHHCEPhsG8
+  ---------------------------------------------------------
+{% endcomment %}
+
+<script
+  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/verifier.js?v=1717092340"
+  data-section-id="{{ section.id }}"
+  defer
+></script>
+
+<div class="st_not-found"></div>
+
+{%- assign font_picker = section.settings.font_picker -%}
+{% style %}
+  {{ font_picker | font_face }}
+  .st_stl-wrapper * {
+    font-family: "{{ font_picker.family }}", {{ font_picker.fallback_families }};
+  }
+{% endstyle %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+  .st_stl-wrapper div:empty {
+    display: unset;
+  }
+
+  /*-_- -_- -_- Page Padding -_- -_- -_-*/
+  .Page-Padding {
+    position: relative;
+    width: 100%;
+    max-width: 120rem;
+    padding-inline: 40px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    .Page-Padding {
+      padding-inline: 53px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .Page-Padding {
+      padding-inline: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .Page-Padding {
+      padding-inline: 0px;
+    }
+  }
+
+  /*-_- -_- -_- Body -_- -_- -_-*/
+  body {
+    background-image: linear-gradient(45deg, hsl(0, 0%, 80%) 25%, transparent 25%),
+      linear-gradient(-45deg, hsl(0, 0%, 80%) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, hsl(0, 0%, 80%) 75%),
+      linear-gradient(-45deg, transparent 75%, hsl(0, 0%, 80%) 75%);
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    background-size: 20px 20px;
+  }
+
+  /*-_- -_- -_- Desktop -_- -_- -_-*/
+  .st_Insta {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 30px;
+    padding-block: 20px;
+  }
+
+  .st_Insta-TopBar {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .st_Insta-TopBar-Left {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .st_Insta-TopBar-Avatar-Container {
+    position: relative;
+    height: 60px;
+    aspect-ratio: 1;
+    border: solid white 2.5px;
+    border-radius: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .st_Insta-TopBar-Avatar-Container::before {
+    content: '';
+    position: absolute;
+    transform: translate(-50%, -50%);
+    height: calc(100% + (3px * 3.5));
+    aspect-ratio: 1;
+    left: 50%;
+    top: 50%;
+    border-radius: 100vh;
+    background: linear-gradient(to bottom, hsl(47, 94%, 59%), hsl(335, 85%, 55%), hsl(260, 69%, 50%));
+    z-index: -1;
+  }
+
+  .st_Insta-TopBar-Avatar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 100vh;
+    object-fit: cover;
+  }
+
+  .st_Insta-TopBar-Name {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .st_Insta-TopBar-NameID {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .st_Insta-TopBar-Name-Text {
+    position: relative;
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 27.779px;
+    line-height: 100%;
+  }
+
+  .st_Insta-TopBar-Name-Check {
+    position: relative;
+  }
+
+  .st_Insta-TopBar-ID {
+    position: relative;
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 19.609px;
+    line-height: 100%;
+  }
+
+  .st_Insta-TopBar-Right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .st_Insta-TopBar-Title {
+    position: relative;
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 28px;
+    line-height: 100%;
+  }
+
+  .st_Insta-TopBar-Text {
+    position: relative;
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 28px;
+    line-height: 100%;
+    margin-top: 5px;
+  }
+
+  .st_Insta-Gallery {
+    --Padding: 0px;
+    --gap: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap);
+  }
+
+  .st_Insta-Gallery-Box {
+    --Boxes: 4;
+    position: relative;
+    width: calc((100% - (var(--gap) * (var(--Boxes) - 1))) / var(--Boxes));
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 9px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .st_Insta-Gallery-Box::after {
+    --Padding: 10px;
+    content: '';
+    position: absolute;
+    transform: translate(-100%, 0%);
+    height: 30px;
+    aspect-ratio: 1;
+    left: calc(100% - var(--Padding));
+    top: var(--Padding);
+    background: url(../img/st_Insta-Box-Icon.svg);
+    object-fit: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+  }
+
+  .st_Insta-Gallery-Image {
+    transform-origin: center center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 1s ease-in-out 0s;
+  }
+
+  .st_Insta-Gallery-Box:hover .st_Insta-Gallery-Image {
+    transform: scale(1.1);
+  }
+
+  /*-_- -_- -_- Popup -_- -_- -_-*/
+  .st_Insta-Popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    max-width: 120rem;
+    width: 100%;
+    max-height: 70rem;
+    height: 100%;
+    padding-inline: 50px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    opacity: 0;
+    z-index: 100;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .st_Show_PopUp .st_Insta-Popup {
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: all;
+    opacity: 1;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .st_Insta-Popup-Content-Wrapper {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 50px 30px;
+    filter: drop-shadow(0px 3.727px 50.317px rgba(0, 0, 0, 0.4));
+    background: hsl(0, 0%, 100%);
+    border-radius: 20px;
+  }
+
+  .st_Insta-Popup-BackBlur {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .st_Show_PopUp .st_Insta-Popup-BackBlur {
+    pointer-events: all;
+    backdrop-filter: blur(10px);
+    opacity: 1;
+  }
+
+  .st_Insta-Popup ::-webkit-scrollbar {
+    width: 6.523px;
+    height: 6.523px;
+    border-radius: 100vh;
+    background: hsl(0, 0%, 100%);
+  }
+
+  .st_Insta-Popup ::-webkit-scrollbar-thumb {
+    border-radius: 100vh;
+    background: hsl(0, 0%, 90%);
+  }
+
+  .st_Insta-Popup ::-webkit-scrollbar-track {
+    border-radius: 1vh;
+    background: transparent;
+  }
+
+  .st_Insta-Popup-TopBar {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .st_Insta-Popup-Close-Btn {
+    position: absolute;
+    transform: translate(-100%, -50%);
+    height: 20px;
+    left: 100%;
+    top: 0%;
+    z-index: 10;
+  }
+
+  .st_Insta-Popup-Close-Img {
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    max-width: unset !important;
+  }
+
+  .st_Insta-Popup-Title {
+    position: relative;
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 30px;
+    line-height: 100%;
+    margin-bottom: 5px;
+  }
+
+  .st_Insta-Popup-Text {
+    position: relative;
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 100%;
+  }
+
+  .st_Insta-Popup-Container {
+    position: relative;
+    display: flex;
+    gap: 40px;
+    max-height: 100%;
+    min-height: 0;
+    flex: 1;
+  }
+
+  .st_Insta-Popup-Carousel {
+    width: 50%;
+  }
+
+  .st_Insta-Popup-Carousel:hover .st_Insta-Popup-Carousel-Image {
+    scale: 0.95;
+  }
+
+  .st_Insta-Popup-Carousel-Image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-fit: cover;
+    opacity: 0;
+  }
+
+  .st_Insta-Popup-Carousel-Active {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+
+  .st_Insta-Popup-Carousel-ActiveAfter {
+    transform: translateX(-100%) scale(0);
+  }
+
+  .st_Insta-Popup-Carousel-ActiveBefore {
+    transform: translateX(100%) scale(0);
+  }
+
+  .st_Insta-Popup-Carousel-Btn {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transform-origin: 0% 0%;
+    height: 40px;
+    aspect-ratio: 1;
+    left: 50%;
+    top: 50%;
+    border-radius: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: hsl(0, 0%, 100%);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .st_Insta-Popup-Carousel-Btn-Left {
+    left: 10%;
+  }
+
+  .st_Insta-Popup-Carousel-Btn-Right {
+    left: 90%;
+  }
+
+  .st_Insta-Popup-Carousel-Btn-Image {
+    position: relative;
+    height: 100%;
+  }
+
+  .st_Insta-Popup-Carousel-Btn-Right .st_Insta-Popup-Carousel-Btn-Image {
+    transform: rotate(180deg);
+    transform-origin: center center;
+  }
+
+  .st_Insta-Popup-Shop {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  .st_Insta-Popup-Shop-Top {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .st_Insta-Popup-Shop-Icon {
+    position: relative;
+    height: 18.079px;
+  }
+
+  .st_Insta-Popup-Shop-Title {
+    position: relative;
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 100%;
+  }
+
+  .st_Insta-Popup-Shop-Gallery {
+    --Padding: 0px;
+    --gap: 25px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap);
+    padding-right: 10px;
+    overflow: auto;
+  }
+
+  .st_Insta-Popup-Shop-Gallery-Box {
+    --Boxes: 2;
+    position: relative;
+    width: calc((100% - (var(--gap) * (var(--Boxes) - 1))) / var(--Boxes));
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .st_Insta-Popup-Shop-Gallery-Image-Continaer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 12.004px;
+    display: flex;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .st_Insta-Popup-Shop-Gallery-Image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 1s ease-in-out 0s;
+  }
+
+  .st_Insta-Popup-Shop-Gallery-Title {
+    position: relative;
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 15.942px;
+    line-height: 100%;
+  }
+
+  .st_Insta-Popup-Shop-Gallery-Text {
+    position: relative;
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14.945px;
+    line-height: 100%;
+  }
+
+  .st_Insta-Popup-Shop-Gallery-Price-Box {
+    position: relative;
+    display: flex;
+    gap: 10px;
+  }
+
+  .st_Insta-Popup-Shop-Gallery-PriceOff {
+    position: relative;
+    color: hsl(0, 0%, 62%);
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14.945px;
+    line-height: 100%;
+    text-decoration: line-through;
+  }
+
+  .st_Insta-Popup-Shop-Gallery-Price {
+    position: relative;
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14.945px;
+    line-height: 100%;
+  }
+
+  .st_Insta-Popup-TopBar-Left {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .st_Insta-Popup-TopBar-Avatar-Container {
+    position: relative;
+    height: 70px;
+    aspect-ratio: 1;
+    border-radius: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .st_Insta-Popup-TopBar-Avatar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 100vh;
+    object-fit: cover;
+  }
+
+  .st_Insta-Popup-TopBar-Name {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .st_Insta-Popup-TopBar-NameID {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .st_Insta-Popup-TopBar-Name-Text {
+    position: relative;
+    color: hsl(0, 0%, 0%);
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 27.779px;
+    line-height: 100%;
+  }
+
+  .st_Insta-Popup-TopBar-Name-Check {
+    position: relative;
+  }
+
+  .st_Insta-Popup-TopBar-ID-Badge {
+    background-color: rgb(241, 241, 241);
+    margin-top: 10px;
+    padding: 5px 12px;
+    font-family: Poppins;
+    color: rgb(27, 27, 27);
+    font-weight: 500;
+    border-radius: 5px;
+  }
+
+  /*-_- -_- -_- Buttons -_- -_- -_-*/
+  .st_Btn {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .st_Btn:hover {
+    scale: 1.1;
+  }
+
+  .st_Btn:active {
+    scale: 0.9;
+    opacity: 0.3;
+    transition: none;
+  }
+
+  /*-_- -_- -_- Swiper -_- -_- -_-*/
+  .st_Insta-Popup-Carousel .swiper-button-next-sternify,
+  .st_Insta-Popup-Carousel .swiper-button-prev-sternify {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: var(--swiper-navigation-top-offset, 50%);
+    border: 1px solid hsla(0, 0%, 13%, 0.09019607843137255);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    background-color: #ffffff9e;
+    z-index: 10;
+  }
+
+  .st_Insta-Popup-Carousel .swiper-button-next-sternify::after,
+  .st_Insta-Popup-Carousel .swiper-button-prev-sternify::after {
+    content: none;
+  }
+
+  .st_Insta-Popup-Carousel .swiper-button-next-sternify {
+    transform: rotate(180deg);
+  }
+
+  .st_Insta-Popup-Carousel .swiper-button-next-sternify:hover,
+  .st_Insta-Popup-Carousel .swiper-button-prev-sternify:hover {
+    scale: 1.1;
+    opacity: 0.5;
+    transition: all 300ms ease-in-out 0s;
+  }
+
+  .st_Insta-Popup-Carousel .swiper-button-next-sternify:active,
+  .st_Insta-Popup-Carousel .swiper-button-prev-sternify:active {
+    scale: 0.9;
+    opacity: 1;
+    transition: 0s;
+  }
+
+  .st_Insta-Popup-Carousel .swiper-button-next-sternify svg,
+  .st_Insta-Popup-Carousel .swiper-button-prev-sternify svg {
+    width: 50px !important;
+    object-fit: contain;
+  }
+
+  .st_Insta-Popup-Carousel .swiper-button-next-sternify {
+    left: auto;
+    right: 10px;
+  }
+
+  .st_Insta-Popup-Carousel .swiper-button-prev-sternify {
+    left: 10px;
+    right: auto;
+  }
+
+  .swiper {
+    width: 100%;
+    max-height: 100%;
+    aspect-ratio: 1;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  /*-_- -_- -_- Media Queries -_- -_- -_-*/
+  /*-_- -_- -_- labtop -_- -_- -_-*/
+  @media (max-width: 1024px) {
+    .st_Insta {
+      position: relative;
+    }
+  }
+
+  /*-_- -_- -_- Tablet -_- -_- -_-*/
+  @media (max-width: 768px) {
+    .st_Insta-Popup-Content-Wrapper {
+      padding: 10px 20px;
+    }
+
+    .st_Insta {
+      --padding-Block: 40px;
+      position: relative;
+      padding-inline: 8px;
+    }
+
+    .st_Insta-TopBar-Avatar-Container {
+      height: 50px;
+      border: solid white 2px;
+    }
+
+    .st_Insta-TopBar-Avatar-Container::before {
+      content: '';
+      position: absolute;
+      height: calc(100% + (2px * 3.5));
+    }
+
+    .st_Insta-TopBar-Name-Text {
+      font-size: 20px;
+    }
+
+    .st_Insta-TopBar-ID {
+      font-size: 15px;
+    }
+
+    .st_Insta-TopBar-Title {
+      font-size: 13.354px;
+    }
+
+    .st_Insta-TopBar-Text {
+      font-size: 13.354px;
+    }
+
+    .st_Insta-Gallery {
+      --gap: 7.75px;
+    }
+
+    .st_Insta-Gallery-Box {
+      --Boxes: 3;
+      gap: 7.75px;
+    }
+
+    .st_Insta-Gallery-Box::after {
+      --Padding: 5px;
+      height: 11px;
+      background-size: 11px;
+    }
+
+    .st_Insta-Popup-BackBlur {
+      display: none;
+    }
+
+    .st_Insta-Popup {
+      position: absolute;
+      transform: translate(-50%, -0%) scale(0);
+      top: 0%;
+      border-radius: 0;
+      padding: 29px 28px;
+      pointer-events: none;
+      filter: none;
+    }
+
+    .st_Insta-Popup-TopBar {
+      position: sticky;
+      width: calc(100% + 2px);
+      left: 0;
+      top: -5px;
+      padding-block: 20px;
+      margin-left: -1px;
+      background: hsl(0, 0%, 100%);
+      z-index: 10;
+    }
+
+    .st_Insta-Popup-Container {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .st_Insta-Popup-Carousel {
+      width: 100%;
+      height: unset;
+      aspect-ratio: 1;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .st_Insta-Popup-Carousel-Btn {
+      height: 24px;
+      padding: 8px;
+    }
+
+    .st_Insta-Popup-Carousel-Btn-Left {
+      left: 7.5%;
+    }
+
+    .st_Insta-Popup-Carousel-Btn-Right {
+      left: 92.5%;
+    }
+
+    .st_Insta-Popup-Shop {
+      width: 100%;
+      height: 100%;
+      gap: 20px;
+    }
+
+    .st_Insta-Popup-Shop-Icon {
+      height: 15px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery {
+      --gap: 17px;
+      height: max-content;
+      padding-right: 0;
+      overflow: visible;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-Box {
+      gap: 5.6px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-Image-Continaer {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .st_Show_PopUp .st_Insta-Popup {
+      transform: translate(-50%, -0%) scale(1);
+      height: unset;
+      padding: 0px;
+    }
+
+    .st_Insta-Popup-Close-Btn {
+      --s: 18px 24px 7px;
+      transform: translate(-50%, -0%);
+      height: 18px;
+      left: calc(100% - 24px);
+      top: 18px;
+      z-index: 10;
+    }
+
+    .st_Insta-Popup-Title {
+      font-size: 18.253px;
+    }
+
+    .st_Insta-Popup-Text {
+      font-size: 13.757px;
+    }
+
+    .st_Insta-Popup-Shop-Title {
+      font-size: 20px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-Title {
+      font-size: 18px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-Text {
+      font-size: 16px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-PriceOff {
+      font-size: 14px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-Price {
+      font-size: 14px;
+    }
+
+    .st_Insta-Popup-Content-Wrapper {
+      padding-bottom: 50px;
+    }
+  }
+
+  /*-_- -_- -_- Mobile -_- -_- -_-*/
+  @media (max-width: 480px) {
+    .st_Insta-Popup-TopBar-Name-Text {
+      font-size: 15px;
+    }
+
+    .st_Insta-Popup-TopBar-ID-Badge {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .st_Insta {
+      --padding-Block: 20px;
+      position: relative;
+      padding-inline: 8px;
+    }
+
+    .st_Insta-TopBar-Avatar-Container {
+      height: 50px;
+      border: solid white 2px;
+    }
+
+    .st_Insta-TopBar-Avatar-Container::before {
+      content: '';
+      position: absolute;
+      height: calc(100% + (2px * 3.5));
+    }
+
+    .st_Insta-TopBar-Name-Text {
+      font-size: 16px;
+    }
+
+    .st_Insta-TopBar-ID {
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .st_Insta-TopBar-Title {
+      font-size: 14px;
+    }
+
+    .st_Insta-TopBar-Text {
+      font-size: 14px;
+    }
+
+    .st_Insta-Gallery {
+      --gap: 7.75px;
+    }
+
+    .st_Insta-Gallery-Box {
+      --Boxes: 3;
+      gap: 7.75px;
+    }
+
+    .st_Insta-Gallery-Box::after {
+      --Padding: 5px;
+      height: 11px;
+      background-size: 11px;
+    }
+
+    .st_Insta-Popup-BackBlur {
+      display: none;
+    }
+
+    .st_Insta-Popup {
+      position: absolute;
+      transform: translate(-50%, -0%) scale(0);
+      top: 0%;
+      border-radius: 0;
+      pointer-events: none;
+      filter: none;
+    }
+
+    .st_Insta-Popup-TopBar {
+      position: sticky;
+      width: calc(100% + 2px);
+      left: 0;
+      top: -5px;
+      padding: 20px 0px 20px;
+      margin-left: -1px;
+      background: hsl(0, 0%, 100%);
+      z-index: 10;
+    }
+
+    .st_Insta-Popup-Container {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .st_Insta-Popup-Carousel-Btn {
+      height: 24px;
+      padding: 8px;
+    }
+
+    .st_Insta-Popup-Carousel-Btn-Left {
+      left: 7.5%;
+    }
+
+    .st_Insta-Popup-Carousel-Btn-Right {
+      left: 92.5%;
+    }
+
+    .st_Insta-Popup-Shop {
+      width: 100%;
+      height: 100%;
+      gap: 20px;
+    }
+
+    .st_Insta-Popup-Shop-Icon {
+      height: 15px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery {
+      --gap: 17px;
+      height: max-content;
+      padding-right: 0;
+      overflow: visible;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-Box {
+      gap: 5.6px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-Image-Continaer {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 8.542px;
+      margin-bottom: 7.12px;
+    }
+
+    .st_Show_PopUp .st_Insta-Popup {
+      transform: translate(-50%, -0%) scale(1);
+      height: unset;
+    }
+
+    .st_Insta-Popup-Close-Btn {
+      --s: 18px 24px 7px;
+      transform: translate(-20%, -0%);
+      height: 11px;
+      left: calc(100% - 24px);
+      top: 18px;
+      z-index: 10;
+    }
+
+    .st_Insta-Popup-Title {
+      font-size: 18.253px;
+    }
+
+    .st_Insta-Popup-Text {
+      font-size: 13.757px;
+    }
+
+    .st_Insta-Popup-Shop-Title {
+      font-size: 15px;
+      margin-block: 10px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-Title {
+      font-size: 14px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-Text {
+      font-size: 10.634px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-PriceOff {
+      font-size: 12px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-Price {
+      font-size: 12px;
+    }
+
+    .st_Insta-Popup-TopBar-Name-Check {
+      height: 15px;
+    }
+
+    .st_Insta-Popup-TopBar-Name {
+      gap: 3px;
+    }
+
+    .st_Insta-Popup-TopBar-Avatar-Container {
+      height: 50px;
+    }
+
+    .st_Insta-Popup-Carousel .swiper-button-next-sternify,
+    .st_Insta-Popup-Carousel .swiper-button-prev-sternify {
+      width: 40px;
+      height: 40px;
+    }
+
+    .st_Insta-Popup-Content-Wrapper {
+      gap: 0px;
+    }
+
+    .st_Insta-Popup-Shop-Gallery-Price-Box {
+      margin-top: 3px;
+    }
+
+    .st_Insta-Popup-Content-Wrapper {
+      padding-bottom: 50px;
+    }
+
+    .st_Insta-TopBar-Name-Check {
+      width: 15px;
+    }
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@8.4.7/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<div class="st_wrapper st_stl-wrapper st_check-section--{{ section.id }}">
+  <div class="st_Insta">
+    <div class="Page-Padding">
+      <div class="st_Insta-TopBar">
+        <div class="st_Insta-TopBar-Left">
+          <div class="st_Insta-TopBar-Avatar-Container">
+            <img
+              class="st_Insta-TopBar-Avatar"
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Frame_165.png?v=1718056325"
+            >
+          </div>
+          <div class="st_Insta-TopBar-NameID">
+            <div class="st_Insta-TopBar-Name">
+              <div class="st_Insta-TopBar-Name-Text">Sternify</div>
+              <img
+                class="st_Insta-TopBar-Name-Check"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_BlueTick.svg?v=1718056593"
+              >
+            </div>
+            <div class="st_Insta-TopBar-ID">@sternify</div>
+          </div>
+        </div>
+        <div class="st_Insta-TopBar-Right">
+          <div class="st_Insta-TopBar-Title">Insipre yourself</div>
+          <div class="st_Insta-TopBar-Text">Shop The Look</div>
+        </div>
+      </div>
+      <div class="st_Insta-Gallery">
+        <div class="st_Insta-Gallery-Box">
+          <img
+            class="st_Insta-Gallery-Image"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/antoine-transon-HjTUwhcSNMY-unsplash.jpg?v=1718055716"
+          >
+        </div>
+        <div class="st_Insta-Gallery-Box">
+          <img
+            class="st_Insta-Gallery-Image"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/josiah-kemp-bAm1LHXe5aE-unsplash.jpg?v=1718055716"
+          >
+        </div>
+        <div class="st_Insta-Gallery-Box">
+          <img
+            class="st_Insta-Gallery-Image"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/dave-goudreau-0uByin_DDOQ-unsplash.jpg?v=1718055716"
+          >
+        </div>
+        <div class="st_Insta-Gallery-Box">
+          <img
+            class="st_Insta-Gallery-Image"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/1millidollars-q6GUaEa29b8-unsplash.jpg?v=1718055716"
+          >
+        </div>
+        <div class="st_Insta-Gallery-Box">
+          <img
+            class="st_Insta-Gallery-Image"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-2UTk-Nip5aM-unsplash.jpg?v=1718055716"
+          >
+        </div>
+        <div class="st_Insta-Gallery-Box">
+          <img
+            class="st_Insta-Gallery-Image"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-nu5CNTmO0h0-unsplash.jpg?v=1718055716"
+          >
+        </div>
+        <div class="st_Insta-Gallery-Box">
+          <img
+            class="st_Insta-Gallery-Image"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-QW9FrzPj70U-unsplash.jpg?v=1718055715"
+          >
+        </div>
+        <div class="st_Insta-Gallery-Box">
+          <img
+            class="st_Insta-Gallery-Image"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/ron-mcclenny-a6eyiM5FTew-unsplash_1.jpg?v=1718056128"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="st_Insta-Popup-BackBlur"></div>
+    <div class="st_Insta-Popup">
+      <div class="st_Insta-Popup-Content-Wrapper">
+        <div class="st_Insta-Popup-TopBar">
+          <div class="st_Insta-Popup-Close-Btn st_Btn">
+            <img
+              class="st_Insta-Popup-Close-Img"
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Close-Icon.svg?v=1718056593"
+            >
+          </div>
+          <div class="st_Insta-Popup-TopBar-Left">
+            <div class="st_Insta-Popup-TopBar-Avatar-Container">
+              <img
+                class="st_Insta-Popup-TopBar-Avatar"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Frame_165.png?v=1718056325"
+              >
+            </div>
+            <div class="st_Insta-Popup-TopBar-NameID">
+              <div class="st_Insta-Popup-TopBar-Name">
+                <div class="st_Insta-Popup-TopBar-Name-Text">Sternify</div>
+                <img
+                  class="st_Insta-Popup-TopBar-Name-Check"
+                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_BlueTick.svg?v=1718056593"
+                >
+              </div>
+              <div class="st_Insta-Popup-TopBar-ID-Badge">Sommer Release 2024</div>
+            </div>
+          </div>
+          <!--
+            <div class="st_Insta-Popup-Title">Pants Collection</div>
+            <div class="st_Insta-Popup-Text">Collection ansehen</div>
+          -->
+        </div>
+        <div class="st_Insta-Popup-Container">
+          <div class="st_Insta-Popup-Carousel">
+            <!-- Slider main container -->
+
+            <div class="swiper">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                  <img
+                    class="st_Insta-Popup-Carousel-Test"
+                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-nu5CNTmO0h0-unsplash.jpg?v=1718055716"
+                  >
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    class="st_Insta-Popup-Carousel-Test"
+                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-rqj6HrzSlmU-unsplash.jpg?v=1718057453"
+                  >
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    class="st_Insta-Popup-Carousel-Test"
+                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-FipmLJsL_xE-unsplash.jpg?v=1718057453"
+                  >
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    class="st_Insta-Popup-Carousel-Test"
+                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-uDfmJ8tijCY-unsplash.jpg?v=1718057453"
+                  >
+                </div>
+              </div>
+
+              <div class="swiper-button-prev-sternify">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="#000000"
+                  viewBox="0 0 256 256"
+                >
+                  <path
+                      d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
+                  </path>
+                </svg>
+              </div>
+              <div class="swiper-button-next-sternify">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="#000000"
+                  viewBox="0 0 256 256"
+                >
+                  <path
+                      d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
+                  </path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="st_Insta-Popup-Shop">
+            <div class="st_Insta-Popup-Shop-Top">
+              <img
+                class="st_Insta-Popup-Shop-Icon"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Cart-Icon.svg?v=1718056592"
+              >
+              <div class="st_Insta-Popup-Shop-Title">Shop The Look:</div>
+            </div>
+            <div class="st_Insta-Popup-Shop-Gallery">
+              <div class="st_Insta-Popup-Shop-Gallery-Box">
+                <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
+                  <img
+                    class="st_Insta-Popup-Shop-Gallery-Image"
+                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/unisex-denim-jacket-black-denim-front-63756428bb9a0.png?v=1718057215"
+                  >
+                </div>
+                <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
+                <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
+                <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
+                  <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
+                  <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
+                </div>
+              </div>
+              <div class="st_Insta-Popup-Shop-Gallery-Box">
+                <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
+                  <img
+                    class="st_Insta-Popup-Shop-Gallery-Image"
+                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Hcc5bc7463ca540e183a688510874af7cv.png?v=1718057215"
+                  >
+                </div>
+                <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
+                <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
+                <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
+                  <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
+                  <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
+                </div>
+              </div>
+              <div class="st_Insta-Popup-Shop-Gallery-Box">
+                <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
+                  <img
+                    class="st_Insta-Popup-Shop-Gallery-Image"
+                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/H21528480064e41d1a20f87d4629e20be2.png?v=1718057214"
+                  >
+                </div>
+                <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
+                <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
+                <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
+                  <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
+                  <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.st_Insta-Gallery-Box').forEach((element) => {
+      element.addEventListener('click', function () {
+        document.querySelector('.st_Insta').classList.add('st_Show_PopUp');
+      });
+    });
+
+    document.querySelectorAll('.st_Insta-Popup-BackBlur').forEach((element) => {
+      element.addEventListener('click', function () {
+        document.querySelector('.st_Insta').classList.remove('st_Show_PopUp');
+      });
+    });
+
+    document.querySelectorAll('.st_Insta-Popup-Close-Btn').forEach((element) => {
+      element.addEventListener('click', function () {
+        document.querySelector('.st_Insta').classList.remove('st_Show_PopUp');
+      });
+    });
+
+    const swiper = new Swiper('.st_Insta-Popup-Carousel .swiper', {
+      loop: true,
+      speed: 500,
+      spaceBetween: 50,
+      grabCursor: true,
+      navigation: {
+        nextEl: '.swiper-button-next-sternify',
+        prevEl: '.swiper-button-prev-sternify',
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "💫: Shop The Look",
+  "class": "section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "columns_number",
+      "label": "Anzahl der Spalten",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 Spalten"
+        },
+        {
+          "value": "3",
+          "label": "3 Spalten"
+        }
+      ],
+      "default": "3",
+      "info": "Anzahl der Spalten auswählen"
+    },
+    {
+      "type": "header",
+      "content": "Abstände"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Abstand nach oben",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Abstand nach unten",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Farben Einstellungen"
+    },
+    {
+      "type": "color",
+      "id": "highlighted_color",
+      "label": "Highlighted Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Allgemeine Einstellungen"
+    },
+    {
+      "type": "font_picker",
+      "id": "font_picker",
+      "label": "Font Auswählen",
+      "default": "poppins_n4"
+    },
+    {
+      "type": "text",
+      "id": "header_text",
+      "label": "Header Text",
+      "default": "Sternify vs. Standard",
+      "placeholder": "Text für Header"
+    },
+    {
+      "type": "range",
+      "id": "header_size",
+      "label": "Header Text Größe",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "default": 52
+    },
+    {
+      "type": "header",
+      "content": "Spalten Einstellungen"
+    },
+    {
+      "type": "text",
+      "id": "column_1_text",
+      "label": "Spalte 1 Text",
+      "default": "Sternify Hairstyler 2.0",
+      "placeholder": "Spalte 1 Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_1_image",
+      "label": "Logo (Optional)",
+      "info": "Hier empfehlen wir ein transparentes Logo zu verwenden."
+    },
+    {
+      "type": "text",
+      "id": "column_2_text",
+      "label": "Spalte 2 Text",
+      "default": "Original Hairstyler",
+      "placeholder": "Spalte 2 Text"
+    },
+    {
+      "type": "text",
+      "id": "column_3_text",
+      "label": "Spalte 3 Text",
+      "default": "Standard Hairstyler",
+      "placeholder": "Spalte 3 Text",
+      "info": "Diese Einstellung ist nur bei 3 Spalten verfügbar"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Reihe",
+      "type": "Reihe",
+      "settings": [
+        {
+          "type": "text",
+          "id": "reihe_text",
+          "label": "Header",
+          "default": "Feature 1",
+          "placeholder": "Text eingeben"
+        },
+        {
+          "type": "select",
+          "id": "compare_1",
+          "label": "Vergleich 1",
+          "options": [
+            {
+              "value": "check",
+              "label": "Häkchen"
+            },
+            {
+              "value": "cross",
+              "label": "Kreuz"
+            }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "select",
+          "id": "compare_2",
+          "label": "Vergleich 2",
+          "options": [
+            {
+              "value": "check",
+              "label": "Häkchen"
+            },
+            {
+              "value": "cross",
+              "label": "Kreuz"
+            }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "select",
+          "id": "compare_3",
+          "label": "Vergleich 3",
+          "options": [
+            {
+              "value": "check",
+              "label": "Häkchen"
+            },
+            {
+              "value": "cross",
+              "label": "Kreuz"
+            }
+          ],
+          "default": "cross",
+          "info": "Hinweis: Diese Einstellung ist nur bei 3 Spalten verfügbar"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "💫: Table",
+      "blocks": [
+        {
+          "type": "Reihe"
+        },
+        {
+          "type": "Reihe"
+        },
+        {
+          "type": "Reihe"
+        },
+        {
+          "type": "Reihe"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
