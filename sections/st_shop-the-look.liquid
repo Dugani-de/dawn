@@ -260,9 +260,8 @@
   /*-_- -_- -_- Popup -_- -_- -_-*/
   .st_Insta-Popup {
     position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) scale(0);
+    bottom: 0;
+    top: 0;
     max-width: 120rem;
     width: 100%;
     max-height: 70rem;
@@ -271,14 +270,12 @@
     display: flex;
     flex-direction: column;
     align-content: flex-start;
-    opacity: 0;
+    opacity: 1;
     z-index: 100;
     transition: transform 0.2s ease-in-out;
   }
 
   .st_Show_PopUp .st_Insta-Popup {
-    transform: translate(-50%, -50%) scale(1);
-    pointer-events: all;
     opacity: 1;
     transition: transform 0.2s ease-in-out;
   }
@@ -380,7 +377,6 @@
     gap: 40px;
     max-height: 100%;
     min-height: 0;
-    flex: 1;
   }
 
   .st_Insta-Popup-Carousel {
@@ -793,12 +789,11 @@
     }
 
     .st_Insta-Popup {
-      position: absolute;
-      transform: translate(-50%, -0%) scale(0);
-      top: 0%;
+      position: fixed;
+      top: 0;
+      bottom: 0;
       border-radius: 0;
-      padding: 29px 28px;
-      pointer-events: none;
+      padding: 0px;
       filter: none;
     }
 
@@ -828,7 +823,6 @@
       height: unset;
       aspect-ratio: 1;
       border-radius: 10px;
-      overflow: hidden;
     }
 
     .st_Insta-Popup-Carousel-Btn {
@@ -874,7 +868,6 @@
     }
 
     .st_Show_PopUp .st_Insta-Popup {
-      transform: translate(-50%, -0%) scale(1);
       height: unset;
       padding: 0px;
     }
@@ -986,12 +979,11 @@
     }
 
     .st_Insta-Popup {
-      position: absolute;
-      transform: translate(-50%, -0%) scale(0);
-      top: 0%;
+      position: fixed;
       border-radius: 0;
-      pointer-events: none;
+      padding: 0px;
       filter: none;
+      max-height: unset;
     }
 
     .st_Insta-Popup-TopBar {
@@ -1032,6 +1024,7 @@
       width: 100%;
       height: 100%;
       gap: 20px;
+      overflow-y: scroll;
     }
 
     .st_Insta-Popup-Shop-Icon {
@@ -1042,7 +1035,7 @@
       --gap: 17px;
       height: max-content;
       padding-right: 0;
-      overflow: visible;
+      overflow: scroll;
     }
 
     .st_Insta-Popup-Shop-Gallery-Box {
@@ -1217,152 +1210,153 @@
         </div>
       </div>
     </div>
-    <div class="st_Insta-Popup-BackBlur"></div>
-    <div class="st_Insta-Popup">
-      <div class="st_Insta-Popup-Content-Wrapper">
-        <div class="st_Insta-Popup-TopBar">
-          <div class="st_Insta-Popup-Close-Btn st_Btn">
+  </div>
+</div>
+
+<div class="st_Insta-Popup-BackBlur"></div>
+<div class="st_Insta-Popup">
+  <div class="st_Insta-Popup-Content-Wrapper">
+    <div class="st_Insta-Popup-TopBar">
+      <div class="st_Insta-Popup-Close-Btn st_Btn">
+        <img
+          class="st_Insta-Popup-Close-Img"
+          src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Close-Icon.svg?v=1718056593"
+        >
+      </div>
+      <div class="st_Insta-Popup-TopBar-Left">
+        <div class="st_Insta-Popup-TopBar-Avatar-Container">
+          <img
+            class="st_Insta-Popup-TopBar-Avatar"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Frame_165.png?v=1718056325"
+          >
+        </div>
+        <div class="st_Insta-Popup-TopBar-NameID">
+          <div class="st_Insta-Popup-TopBar-Name">
+            <div class="st_Insta-Popup-TopBar-Name-Text">Sternify</div>
             <img
-              class="st_Insta-Popup-Close-Img"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Close-Icon.svg?v=1718056593"
+              class="st_Insta-Popup-TopBar-Name-Check"
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_BlueTick.svg?v=1718056593"
             >
           </div>
-          <div class="st_Insta-Popup-TopBar-Left">
-            <div class="st_Insta-Popup-TopBar-Avatar-Container">
-              <img
-                class="st_Insta-Popup-TopBar-Avatar"
-                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Frame_165.png?v=1718056325"
-              >
-            </div>
-            <div class="st_Insta-Popup-TopBar-NameID">
-              <div class="st_Insta-Popup-TopBar-Name">
-                <div class="st_Insta-Popup-TopBar-Name-Text">Sternify</div>
-                <img
-                  class="st_Insta-Popup-TopBar-Name-Check"
-                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_BlueTick.svg?v=1718056593"
-                >
-              </div>
-              <div class="st_Insta-Popup-TopBar-ID-Badge">Sommer Release 2024</div>
-            </div>
-          </div>
-          <!--
-            <div class="st_Insta-Popup-Title">Pants Collection</div>
-            <div class="st_Insta-Popup-Text">Collection ansehen</div>
-          -->
+          <div class="st_Insta-Popup-TopBar-ID-Badge">Sommer Release 2024</div>
         </div>
-        <div class="st_Insta-Popup-Container">
-          <div class="st_Insta-Popup-Carousel">
-            <!-- Slider main container -->
+      </div>
+      <!--
+        <div class="st_Insta-Popup-Title">Pants Collection</div>
+        <div class="st_Insta-Popup-Text">Collection ansehen</div>
+      -->
+    </div>
+    <div class="st_Insta-Popup-Container">
+      <div class="st_Insta-Popup-Carousel">
+        <!-- Slider main container -->
 
-            <div class="swiper">
-              <!-- Additional required wrapper -->
-              <div class="swiper-wrapper">
-                <!-- Slides -->
-                <div class="swiper-slide">
-                  <img
-                    class="st_Insta-Popup-Carousel-Test"
-                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-nu5CNTmO0h0-unsplash.jpg?v=1718055716"
-                  >
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    class="st_Insta-Popup-Carousel-Test"
-                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-rqj6HrzSlmU-unsplash.jpg?v=1718057453"
-                  >
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    class="st_Insta-Popup-Carousel-Test"
-                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-FipmLJsL_xE-unsplash.jpg?v=1718057453"
-                  >
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    class="st_Insta-Popup-Carousel-Test"
-                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-uDfmJ8tijCY-unsplash.jpg?v=1718057453"
-                  >
-                </div>
-              </div>
-
-              <div class="swiper-button-prev-sternify">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="#000000"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                      d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
-                  </path>
-                </svg>
-              </div>
-              <div class="swiper-button-next-sternify">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="#000000"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                      d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
-                  </path>
-                </svg>
-              </div>
+        <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <img
+                class="st_Insta-Popup-Carousel-Test"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-nu5CNTmO0h0-unsplash.jpg?v=1718055716"
+              >
+            </div>
+            <div class="swiper-slide">
+              <img
+                class="st_Insta-Popup-Carousel-Test"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-rqj6HrzSlmU-unsplash.jpg?v=1718057453"
+              >
+            </div>
+            <div class="swiper-slide">
+              <img
+                class="st_Insta-Popup-Carousel-Test"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-FipmLJsL_xE-unsplash.jpg?v=1718057453"
+              >
+            </div>
+            <div class="swiper-slide">
+              <img
+                class="st_Insta-Popup-Carousel-Test"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-uDfmJ8tijCY-unsplash.jpg?v=1718057453"
+              >
             </div>
           </div>
-          <div class="st_Insta-Popup-Shop">
-            <div class="st_Insta-Popup-Shop-Top">
+
+          <div class="swiper-button-prev-sternify">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="#000000"
+              viewBox="0 0 256 256"
+            >
+              <path
+                  d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
+              </path>
+            </svg>
+          </div>
+          <div class="swiper-button-next-sternify">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="#000000"
+              viewBox="0 0 256 256"
+            >
+              <path
+                  d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
+              </path>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="st_Insta-Popup-Shop">
+        <div class="st_Insta-Popup-Shop-Top">
+          <img
+            class="st_Insta-Popup-Shop-Icon"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Cart-Icon.svg?v=1718056592"
+          >
+          <div class="st_Insta-Popup-Shop-Title">Shop The Look:</div>
+        </div>
+        <div class="st_Insta-Popup-Shop-Gallery">
+          <div class="st_Insta-Popup-Shop-Gallery-Box">
+            <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
               <img
-                class="st_Insta-Popup-Shop-Icon"
-                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Cart-Icon.svg?v=1718056592"
+                class="st_Insta-Popup-Shop-Gallery-Image"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/unisex-denim-jacket-black-denim-front-63756428bb9a0.png?v=1718057215"
               >
-              <div class="st_Insta-Popup-Shop-Title">Shop The Look:</div>
             </div>
-            <div class="st_Insta-Popup-Shop-Gallery">
-              <div class="st_Insta-Popup-Shop-Gallery-Box">
-                <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
-                  <img
-                    class="st_Insta-Popup-Shop-Gallery-Image"
-                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/unisex-denim-jacket-black-denim-front-63756428bb9a0.png?v=1718057215"
-                  >
-                </div>
-                <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
-                <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
-                <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
-                  <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
-                  <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
-                </div>
-              </div>
-              <div class="st_Insta-Popup-Shop-Gallery-Box">
-                <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
-                  <img
-                    class="st_Insta-Popup-Shop-Gallery-Image"
-                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Hcc5bc7463ca540e183a688510874af7cv.png?v=1718057215"
-                  >
-                </div>
-                <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
-                <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
-                <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
-                  <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
-                  <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
-                </div>
-              </div>
-              <div class="st_Insta-Popup-Shop-Gallery-Box">
-                <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
-                  <img
-                    class="st_Insta-Popup-Shop-Gallery-Image"
-                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/H21528480064e41d1a20f87d4629e20be2.png?v=1718057214"
-                  >
-                </div>
-                <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
-                <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
-                <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
-                  <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
-                  <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
-                </div>
-              </div>
+            <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
+            <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
+            <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
+              <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
+              <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
+            </div>
+          </div>
+          <div class="st_Insta-Popup-Shop-Gallery-Box">
+            <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
+              <img
+                class="st_Insta-Popup-Shop-Gallery-Image"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Hcc5bc7463ca540e183a688510874af7cv.png?v=1718057215"
+              >
+            </div>
+            <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
+            <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
+            <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
+              <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
+              <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
+            </div>
+          </div>
+          <div class="st_Insta-Popup-Shop-Gallery-Box">
+            <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
+              <img
+                class="st_Insta-Popup-Shop-Gallery-Image"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/H21528480064e41d1a20f87d4629e20be2.png?v=1718057214"
+              >
+            </div>
+            <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
+            <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
+            <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
+              <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
+              <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
             </div>
           </div>
         </div>
