@@ -11,13 +11,18 @@
   ---------------------------------------------------------
 {% endcomment %}
 
-<script
-  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/verifier.js?v=1717092340"
-  data-section-id="{{ section.id }}"
-  defer
-></script>
+{% comment %}
+  <script
+    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/verifier.js?v=1717092340"
+    data-section-id="{{ section.id }}"
+    defer
+  ></script>
+{% endcomment %}
+<script src="{{'verifier.js' | asset_url }}"></script>
 
 <div class="st_not-found"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
 {%- assign font_picker = section.settings.font_picker -%}
 {% style %}
