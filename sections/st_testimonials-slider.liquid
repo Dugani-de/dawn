@@ -487,10 +487,10 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@8.4.7/swiper-bundle.min.js"></script>
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.7/swiper-bundle.min.js"></script> {% endcomment %}
 
 <script>
-  function swiperInit() {
+  {% comment %} function swiperInit() {
     const swiper = new Swiper('.st_testimonial-wrapper .swiper-container', {
       {% comment %} spaceBetween: 20, {% endcomment %}
       centeredSlides: true,
@@ -517,7 +517,8 @@
     swiperInit();
   });
 
-  swiperInit();
+  document.addEventListener('')
+  swiperInit(); {% endcomment %}
 </script>
 
 {% schema %}
