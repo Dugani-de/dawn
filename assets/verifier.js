@@ -1,32 +1,29 @@
-console.log(window.st_ScriptTag);
-if (!window.st_ScriptTag) {
-  console.log('sternify scriptTag not found');
-  function getCurrentScript() {
-    if (document.currentScript) {
-      return document.currentScript;
-    } else {
-      // Fallback for older browsers
-      var scripts = document.getElementsByTagName('script');
-      return scripts[scripts.length - 1];
-    }
+function getCurrentScript() {
+  if (document.currentScript) {
+    return document.currentScript;
+  } else {
+    // Fallback for older browsers
+    var scripts = document.getElementsByTagName('script');
+    return scripts[scripts.length - 1];
   }
+}
 
-  // Get the current script element
-  var currentScript = getCurrentScript();
+// Get the current script element
+var currentScript = getCurrentScript();
 
-  // Retrieve the data-section-id attribute
-  var sectionId = currentScript.getAttribute('data-section-id');
+// Retrieve the data-section-id attribute
+var sectionId = currentScript.getAttribute('data-section-id');
 
-  console.log("hello from external", sectionId); // This should output: test
+console.log("hello from external", sectionId); // This should output: test
 
-  function check_section() {
-    if ('sternify' in window) {
-      console.log('Variable exists.');
-    } else {
-      console.log('Variable doesnt exists.');
-      document.querySelector(`[class*='st_check-section']`).remove();
-      if (Shopify.designMode) {
-        document.querySelector('.st_not-found').innerHTML = `<style>
+function check_section() {
+  if ('sternify' in window) {
+    console.log('Variable exists.');
+  } else {
+    console.log('Variable doesnt exists.');
+    document.querySelector(`[class*='st_check-section']`).remove();
+    if (Shopify.designMode) {
+      document.querySelector('.st_not-found').innerHTML = `<style>
               .st_not-found-wrapper {
                 display: none;
                 max-width: 130rem;
@@ -122,16 +119,15 @@ if (!window.st_ScriptTag) {
                 </div>
               </div>
             </div>`;
-      }
     }
   }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    check_section();
-  });
-
-  document.addEventListener('shopify:section:load', function () {
-    console.log('shopify:section:load');
-    check_section();
-  });
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  check_section();
+});
+
+document.addEventListener('shopify:section:load', function () {
+  console.log('shopify:section:load');
+  check_section();
+});
