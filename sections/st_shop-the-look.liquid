@@ -1140,230 +1140,224 @@
       <div class="st_Insta-TopBar">
         <div class="st_Insta-TopBar-Left">
           <div class="st_Insta-TopBar-Avatar-Container">
-            <img
-              class="st_Insta-TopBar-Avatar"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Frame_165.png?v=1718056325"
-            >
+            {% if section.settings.instagram_logo %}
+              <img
+                class="st_Insta-TopBar-Avatar"
+                src="{{ section.settings.instagram_logo | img_url: '100x'}}"
+              >
+            {% else %}
+              <img
+                class="st_Insta-TopBar-Avatar"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Frame_165.png?v=1718056325"
+              >
+            {% endif %}
           </div>
           <div class="st_Insta-TopBar-NameID">
             <div class="st_Insta-TopBar-Name">
-              <div class="st_Insta-TopBar-Name-Text">Sternify</div>
+              <div class="st_Insta-TopBar-Name-Text">{{ section.settings.instagram_name }}</div>
               <img
                 class="st_Insta-TopBar-Name-Check"
                 src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_BlueTick.svg?v=1718056593"
               >
             </div>
-            <div class="st_Insta-TopBar-ID">@sternify</div>
+            <div class="st_Insta-TopBar-ID">{{ section.settings.instagram_username }}</div>
           </div>
         </div>
         <div class="st_Insta-TopBar-Right">
-          <div class="st_Insta-TopBar-Title">Insipre yourself</div>
-          <div class="st_Insta-TopBar-Text">Shop The Look</div>
+          <div class="st_Insta-TopBar-Title">{{ section.settings.title_right }}</div>
+          <div class="st_Insta-TopBar-Text">{{ section.settings.subtitle_right }}</div>
         </div>
       </div>
+
       <div class="st_Insta-Gallery">
-        <div class="st_Insta-Gallery-Box">
-          <img
-            class="st_Insta-Gallery-Image"
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/antoine-transon-HjTUwhcSNMY-unsplash.jpg?v=1718055716"
-          >
-        </div>
-        <div class="st_Insta-Gallery-Box">
-          <img
-            class="st_Insta-Gallery-Image"
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/josiah-kemp-bAm1LHXe5aE-unsplash.jpg?v=1718055716"
-          >
-        </div>
-        <div class="st_Insta-Gallery-Box">
-          <img
-            class="st_Insta-Gallery-Image"
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/dave-goudreau-0uByin_DDOQ-unsplash.jpg?v=1718055716"
-          >
-        </div>
-        <div class="st_Insta-Gallery-Box">
-          <img
-            class="st_Insta-Gallery-Image"
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/1millidollars-q6GUaEa29b8-unsplash.jpg?v=1718055716"
-          >
-        </div>
-        <div class="st_Insta-Gallery-Box">
-          <img
-            class="st_Insta-Gallery-Image"
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-2UTk-Nip5aM-unsplash.jpg?v=1718055716"
-          >
-        </div>
-        <div class="st_Insta-Gallery-Box">
-          <img
-            class="st_Insta-Gallery-Image"
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-nu5CNTmO0h0-unsplash.jpg?v=1718055716"
-          >
-        </div>
-        <div class="st_Insta-Gallery-Box">
-          <img
-            class="st_Insta-Gallery-Image"
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-QW9FrzPj70U-unsplash.jpg?v=1718055715"
-          >
-        </div>
-        <div class="st_Insta-Gallery-Box">
-          <img
-            class="st_Insta-Gallery-Image"
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/ron-mcclenny-a6eyiM5FTew-unsplash_1.jpg?v=1718056128"
-          >
-        </div>
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {%- when 'image' -%}
+              <div class="st_Insta-Gallery-Box">
+                {{ block.settings.main_image | image_url: width: 300 | image_tag: class: 'st_Insta-Gallery-Image' }}
+              </div>
+          {% endcase %}
+        {% endfor %}
+        {% comment %}
+          <div class="st_Insta-Gallery-Box">
+            <img
+              class="st_Insta-Gallery-Image"
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/antoine-transon-HjTUwhcSNMY-unsplash.jpg?v=1718055716"
+            >
+          </div>
+          <div class="st_Insta-Gallery-Box">
+            <img
+              class="st_Insta-Gallery-Image"
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/josiah-kemp-bAm1LHXe5aE-unsplash.jpg?v=1718055716"
+            >
+          </div>
+          <div class="st_Insta-Gallery-Box">
+            <img
+              class="st_Insta-Gallery-Image"
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/dave-goudreau-0uByin_DDOQ-unsplash.jpg?v=1718055716"
+            >
+          </div>
+          <div class="st_Insta-Gallery-Box">
+            <img
+              class="st_Insta-Gallery-Image"
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/1millidollars-q6GUaEa29b8-unsplash.jpg?v=1718055716"
+            >
+          </div>
+          <div class="st_Insta-Gallery-Box">
+            <img
+              class="st_Insta-Gallery-Image"
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-2UTk-Nip5aM-unsplash.jpg?v=1718055716"
+            >
+          </div>
+          <div class="st_Insta-Gallery-Box">
+            <img
+              class="st_Insta-Gallery-Image"
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-nu5CNTmO0h0-unsplash.jpg?v=1718055716"
+            >
+          </div>
+          <div class="st_Insta-Gallery-Box">
+            <img
+              class="st_Insta-Gallery-Image"
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-QW9FrzPj70U-unsplash.jpg?v=1718055715"
+            >
+          </div>
+          <div class="st_Insta-Gallery-Box">
+            <img
+              class="st_Insta-Gallery-Image"
+              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/ron-mcclenny-a6eyiM5FTew-unsplash_1.jpg?v=1718056128"
+            >
+          </div>
+        {% endcomment %}
       </div>
     </div>
   </div>
   <div class="st_Insta-Popup-BackBlur"></div>
-  <div class="st_Insta-Popup">
-    <div class="st_Insta-Popup-Content-Wrapper">
-      <div class="st_Insta-Popup-TopBar">
-        <div class="st_Insta-Popup-Close-Btn st_Btn">
-          <img
-            class="st_Insta-Popup-Close-Img"
-            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Close-Icon.svg?v=1718056593"
-          >
-        </div>
-        <div class="st_Insta-Popup-TopBar-Left">
-          <div class="st_Insta-Popup-TopBar-Avatar-Container">
-            <img
-              class="st_Insta-Popup-TopBar-Avatar"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Frame_165.png?v=1718056325"
-            >
-          </div>
-          <div class="st_Insta-Popup-TopBar-NameID">
-            <div class="st_Insta-Popup-TopBar-Name">
-              <div class="st_Insta-Popup-TopBar-Name-Text">Sternify</div>
-              <img
-                class="st_Insta-Popup-TopBar-Name-Check"
-                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_BlueTick.svg?v=1718056593"
-              >
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {%- when 'image' -%}
+        <div class="st_Insta-Popup">
+          <div class="st_Insta-Popup-Content-Wrapper">
+            <div class="st_Insta-Popup-TopBar">
+              <div class="st_Insta-Popup-Close-Btn st_Btn">
+                <img
+                  class="st_Insta-Popup-Close-Img"
+                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Close-Icon.svg?v=1718056593"
+                >
+              </div>
+              <div class="st_Insta-Popup-TopBar-Left">
+                <div class="st_Insta-Popup-TopBar-Avatar-Container">
+                  {% if section.settings.instagram_logo %}
+                    <img
+                      class="st_Insta-TopBar-Avatar"
+                      src="{{ section.settings.instagram_logo | img_url: '100x'}}"
+                    >
+                  {% else %}
+                    <img
+                      class="st_Insta-TopBar-Avatar"
+                      src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Frame_165.png?v=1718056325"
+                    >
+                  {% endif %}
+                </div>
+                <div class="st_Insta-Popup-TopBar-NameID">
+                  <div class="st_Insta-Popup-TopBar-Name">
+                    <div class="st_Insta-Popup-TopBar-Name-Text">{{ section.settings.instagram_name }}</div>
+                    <img
+                      class="st_Insta-Popup-TopBar-Name-Check"
+                      src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_BlueTick.svg?v=1718056593"
+                    >
+                  </div>
+                  <div class="st_Insta-Popup-TopBar-ID-Badge">{{ block.settings.collection_name }}</div>
+                </div>
+              </div>
             </div>
-            <div class="st_Insta-Popup-TopBar-ID-Badge">Sommer Release 2024</div>
-          </div>
-        </div>
-        <!--
-          <div class="st_Insta-Popup-Title">Pants Collection</div>
-          <div class="st_Insta-Popup-Text">Collection ansehen</div>
-        -->
-      </div>
-      <div class="st_Insta-Popup-Container">
-        <div class="st_Insta-Popup-Carousel">
-          <!-- Slider main container -->
+            <div class="st_Insta-Popup-Container">
+              <div class="st_Insta-Popup-Carousel">
+                <!-- Slider main container -->
 
-          <div class="swiper">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-              <!-- Slides -->
-              <div class="swiper-slide">
-                <img
-                  class="st_Insta-Popup-Carousel-Test"
-                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-nu5CNTmO0h0-unsplash.jpg?v=1718055716"
-                >
-              </div>
-              <div class="swiper-slide">
-                <img
-                  class="st_Insta-Popup-Carousel-Test"
-                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-rqj6HrzSlmU-unsplash.jpg?v=1718057453"
-                >
-              </div>
-              <div class="swiper-slide">
-                <img
-                  class="st_Insta-Popup-Carousel-Test"
-                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-FipmLJsL_xE-unsplash.jpg?v=1718057453"
-                >
-              </div>
-              <div class="swiper-slide">
-                <img
-                  class="st_Insta-Popup-Carousel-Test"
-                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-uDfmJ8tijCY-unsplash.jpg?v=1718057453"
-                >
-              </div>
-            </div>
+                <div class="swiper">
+                  <!-- Additional required wrapper -->
+                  <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                      <img
+                        class="st_Insta-Popup-Carousel-Test"
+                        src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-nu5CNTmO0h0-unsplash.jpg?v=1718055716"
+                      >
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        class="st_Insta-Popup-Carousel-Test"
+                        src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-rqj6HrzSlmU-unsplash.jpg?v=1718057453"
+                      >
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        class="st_Insta-Popup-Carousel-Test"
+                        src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-FipmLJsL_xE-unsplash.jpg?v=1718057453"
+                      >
+                    </div>
+                  </div>
 
-            <div class="swiper-button-prev-sternify">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                fill="#000000"
-                viewBox="0 0 256 256"
-              >
-                <path
-                    d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
-                </path>
-              </svg>
-            </div>
-            <div class="swiper-button-next-sternify">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                fill="#000000"
-                viewBox="0 0 256 256"
-              >
-                <path
-                    d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
-                </path>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="st_Insta-Popup-Shop">
-          <div class="st_Insta-Popup-Shop-Top">
-            <img
-              class="st_Insta-Popup-Shop-Icon"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Cart-Icon.svg?v=1718056592"
-            >
-            <div class="st_Insta-Popup-Shop-Title">Shop The Look:</div>
-          </div>
-          <div class="st_Insta-Popup-Shop-Gallery">
-            <div class="st_Insta-Popup-Shop-Gallery-Box">
-              <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
-                <img
-                  class="st_Insta-Popup-Shop-Gallery-Image"
-                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/unisex-denim-jacket-black-denim-front-63756428bb9a0.png?v=1718057215"
-                >
+                  <div class="swiper-button-prev-sternify">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      fill="#000000"
+                      viewBox="0 0 256 256"
+                    >
+                      <path
+                          d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
+                      </path>
+                    </svg>
+                  </div>
+                  <div class="swiper-button-next-sternify">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      fill="#000000"
+                      viewBox="0 0 256 256"
+                    >
+                      <path
+                          d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
+                      </path>
+                    </svg>
+                  </div>
+                </div>
               </div>
-              <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
-              <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
-              <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
-                <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
-                <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
-              </div>
-            </div>
-            <div class="st_Insta-Popup-Shop-Gallery-Box">
-              <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
-                <img
-                  class="st_Insta-Popup-Shop-Gallery-Image"
-                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Hcc5bc7463ca540e183a688510874af7cv.png?v=1718057215"
-                >
-              </div>
-              <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
-              <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
-              <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
-                <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
-                <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
-              </div>
-            </div>
-            <div class="st_Insta-Popup-Shop-Gallery-Box">
-              <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
-                <img
-                  class="st_Insta-Popup-Shop-Gallery-Image"
-                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/H21528480064e41d1a20f87d4629e20be2.png?v=1718057214"
-                >
-              </div>
-              <div class="st_Insta-Popup-Shop-Gallery-Title">Sternify Hat - 3XL Size</div>
-              <div class="st_Insta-Popup-Shop-Gallery-Text">Sternify Hat - 3XL Size</div>
-              <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
-                <div class="st_Insta-Popup-Shop-Gallery-PriceOff">€70,00</div>
-                <div class="st_Insta-Popup-Shop-Gallery-Price">€55,00</div>
+              <div class="st_Insta-Popup-Shop">
+                <div class="st_Insta-Popup-Shop-Top">
+                  <img
+                    class="st_Insta-Popup-Shop-Icon"
+                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Cart-Icon.svg?v=1718056592"
+                  >
+                  <div class="st_Insta-Popup-Shop-Title">{{ block.settings.linked_products_title }}</div>
+                </div>
+                <div class="st_Insta-Popup-Shop-Gallery">
+                  {% for product in block.settings.linked_products %}
+                    <div class="st_Insta-Popup-Shop-Gallery-Box">
+                      <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
+                        <img
+                          class="st_Insta-Popup-Shop-Gallery-Image"
+                          src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/unisex-denim-jacket-black-denim-front-63756428bb9a0.png?v=1718057215"
+                        >
+                      </div>
+                      <div class="st_Insta-Popup-Shop-Gallery-Title">{{ product.title }}</div>
+                      <div class="st_Insta-Popup-Shop-Gallery-Text">{{ product.type }}</div>
+                      <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
+                        <div class="st_Insta-Popup-Shop-Gallery-PriceOff">{{ product.compare_at_price }}</div>
+                        <div class="st_Insta-Popup-Shop-Gallery-Price">{{ product.price }}</div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+    {% endcase %}
+  {% endfor %}
 </div>
 
 {% schema %}
@@ -1373,192 +1367,111 @@
   "tag": "section",
   "settings": [
     {
-      "type": "select",
-      "id": "columns_number",
-      "label": "Anzahl der Spalten",
-      "options": [
-        {
-          "value": "2",
-          "label": "2 Spalten"
-        },
-        {
-          "value": "3",
-          "label": "3 Spalten"
-        }
-      ],
-      "default": "3",
-      "info": "Anzahl der Spalten auswählen"
-    },
-    {
-      "type": "header",
-      "content": "Abstände"
-    },
-    {
-      "type": "range",
-      "id": "margin_top",
-      "label": "Abstand nach oben",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "margin_bottom",
-      "label": "Abstand nach unten",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Farben Einstellungen"
-    },
-    {
-      "type": "color",
-      "id": "highlighted_color",
-      "label": "Highlighted Farbe",
-      "default": "#000000"
-    },
-    {
-      "type": "header",
-      "content": "Allgemeine Einstellungen"
-    },
-    {
-      "type": "font_picker",
-      "id": "font_picker",
-      "label": "Font Auswählen",
-      "default": "poppins_n4"
+      "type": "text",
+      "id": "instagram_name",
+      "label": "Instagram Name",
+      "default": "Sternify",
+      "placeholder": "Instagram Name"
     },
     {
       "type": "text",
-      "id": "header_text",
-      "label": "Header Text",
-      "default": "Sternify vs. Standard",
-      "placeholder": "Text für Header"
-    },
-    {
-      "type": "range",
-      "id": "header_size",
-      "label": "Header Text Größe",
-      "min": 10,
-      "max": 60,
-      "step": 1,
-      "default": 52
-    },
-    {
-      "type": "header",
-      "content": "Spalten Einstellungen"
-    },
-    {
-      "type": "text",
-      "id": "column_1_text",
-      "label": "Spalte 1 Text",
-      "default": "Sternify Hairstyler 2.0",
-      "placeholder": "Spalte 1 Text"
+      "id": "instagram_username",
+      "label": "Instagram Username",
+      "default": "@sternify"
     },
     {
       "type": "image_picker",
-      "id": "column_1_image",
-      "label": "Logo (Optional)",
-      "info": "Hier empfehlen wir ein transparentes Logo zu verwenden."
+      "id": "instagram_logo",
+      "label": "Instagram Logo"
     },
     {
       "type": "text",
-      "id": "column_2_text",
-      "label": "Spalte 2 Text",
-      "default": "Original Hairstyler",
-      "placeholder": "Spalte 2 Text"
+      "id": "title_right",
+      "label": "Title Right",
+      "default": "Inspire Yourself"
     },
     {
       "type": "text",
-      "id": "column_3_text",
-      "label": "Spalte 3 Text",
-      "default": "Standard Hairstyler",
-      "placeholder": "Spalte 3 Text",
-      "info": "Diese Einstellung ist nur bei 3 Spalten verfügbar"
+      "id": "subtitle_right",
+      "label": "Subtitle Right",
+      "default": "Shop The Look"
     }
   ],
   "blocks": [
     {
-      "name": "Reihe",
-      "type": "Reihe",
+      "name": "Image",
+      "type": "image",
       "settings": [
         {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image"
+        },
+        {
           "type": "text",
-          "id": "reihe_text",
-          "label": "Header",
-          "default": "Feature 1",
-          "placeholder": "Text eingeben"
+          "id": "collection_name",
+          "label": "Collection Name",
+          "default": "Sommer Release 2024"
         },
         {
-          "type": "select",
-          "id": "compare_1",
-          "label": "Vergleich 1",
-          "options": [
-            {
-              "value": "check",
-              "label": "Häkchen"
-            },
-            {
-              "value": "cross",
-              "label": "Kreuz"
-            }
-          ],
-          "default": "check"
+          "type": "product_list",
+          "id": "linked_products",
+          "label": "Linked Products",
+          "limit": 10
         },
         {
-          "type": "select",
-          "id": "compare_2",
-          "label": "Vergleich 2",
-          "options": [
-            {
-              "value": "check",
-              "label": "Häkchen"
-            },
-            {
-              "value": "cross",
-              "label": "Kreuz"
-            }
-          ],
-          "default": "check"
+          "type": "image_picker",
+          "id": "slider_image_1",
+          "label": "Slider Image 1"
         },
         {
-          "type": "select",
-          "id": "compare_3",
-          "label": "Vergleich 3",
-          "options": [
-            {
-              "value": "check",
-              "label": "Häkchen"
-            },
-            {
-              "value": "cross",
-              "label": "Kreuz"
-            }
-          ],
-          "default": "cross",
-          "info": "Hinweis: Diese Einstellung ist nur bei 3 Spalten verfügbar"
+          "type": "image_picker",
+          "id": "slider_image_2",
+          "label": "Slider Image 2",
+          "info": "optional"
+        },
+        {
+          "type": "image_picker",
+          "id": "slider_image_3",
+          "label": "Slider Image 3",
+          "info": "optional"
+        },
+        {
+          "type": "text",
+          "id": "linked_products_title",
+          "label": "Linked Products Title",
+          "default": "Shop The Look"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "💫: Table",
+      "name": "💫: Shop The Look",
       "blocks": [
         {
-          "type": "Reihe"
+          "type": "image"
         },
         {
-          "type": "Reihe"
+          "type": "image"
         },
         {
-          "type": "Reihe"
+          "type": "image"
         },
         {
-          "type": "Reihe"
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
         }
       ]
     }
