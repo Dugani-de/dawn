@@ -503,7 +503,7 @@
     aspect-ratio: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: flex-start;
     gap: 10px;
   }
@@ -1173,7 +1173,7 @@
         {% for block in section.blocks %}
           {% case block.type %}
             {%- when 'image' -%}
-              <div class="st_Insta-Gallery-Box">
+              <div class="st_Insta-Gallery-Box" data-block-id="{{ block.id }}">
                 {{ block.settings.main_image | image_url: width: 300 | image_tag: class: 'st_Insta-Gallery-Image' }}
               </div>
           {% endcase %}
@@ -1235,7 +1235,7 @@
   {% for block in section.blocks %}
     {% case block.type %}
       {%- when 'image' -%}
-        <div class="st_Insta-Popup">
+        <div class="st_Insta-Popup" data-block-id="{{ block.id }}">
           <div class="st_Insta-Popup-Content-Wrapper">
             <div class="st_Insta-Popup-TopBar">
               <div class="st_Insta-Popup-Close-Btn st_Btn">
@@ -1340,14 +1340,14 @@
                       <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
                         <img
                           class="st_Insta-Popup-Shop-Gallery-Image"
-                          src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/unisex-denim-jacket-black-denim-front-63756428bb9a0.png?v=1718057215"
+                          src="{{ product.featured_image | img_url: '100x' }}"
                         >
                       </div>
                       <div class="st_Insta-Popup-Shop-Gallery-Title">{{ product.title }}</div>
                       <div class="st_Insta-Popup-Shop-Gallery-Text">{{ product.type }}</div>
                       <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
-                        <div class="st_Insta-Popup-Shop-Gallery-PriceOff">{{ product.compare_at_price }}</div>
-                        <div class="st_Insta-Popup-Shop-Gallery-Price">{{ product.price }}</div>
+                        <div class="st_Insta-Popup-Shop-Gallery-PriceOff">{{ product.compare_at_price | money }}</div>
+                        <div class="st_Insta-Popup-Shop-Gallery-Price">{{ product.price | money }}</div>
                       </div>
                     </div>
                   {% endfor %}
