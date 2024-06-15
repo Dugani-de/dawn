@@ -1,4 +1,4 @@
-{% comment %} Version: 1.2.2 {% endcomment %}
+{% comment %} Version: 1.3.2 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -22,8 +22,7 @@
   });
 </script>
 
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
 <style>
   *:focus-visible {
@@ -35,12 +34,13 @@
     margin-bottom: {{ section.settings.margin_bottom }}px;
   }
 
-  swiper-container {
-    width: 100%;
-    padding: 0px 20px;
+  .circle_menue .swiper-wrapper {
+    width: 100% !important;
+    max-width: fit-content !important;
+    margin: 0px auto;
   }
 
-  swiper-slide {
+  .circle_menue .swiper-slide {
     max-width: {{ section.settings.bild_size }}px;
     text-align: center;
     font-size: 18px;
@@ -48,14 +48,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: {{ section.settings.space_between }}px;
   }
 
-  swiper-slide {
-  }
-
-  .swiper-autoheight .swiper-wrapper {
+  {% comment %} .swiper-autoheight .swiper-wrapper {
     align-items: baseline !important;
-  }
+  } {% endcomment %}
 
   .circle_menue_item_image {
     padding: 4px;
@@ -86,15 +84,8 @@
     max-width: 1000px;
     margin: 0px auto;
     display: flex;
-    items-align: center;
     justify-content: center;
     padding-left: 10px;
-  }
-
-  .mySwiper {
-    width: 100% !important;
-    max-width: fit-content !important;
-    margin: 0px auto;
   }
 
   .circle_menue_item_text {
@@ -133,56 +124,38 @@
 </style>
 
 <div class="st_wrapper circle_menue st_check-section--{{ section.id }}">
-  <swiper-container
-    class="mySwiper"
-    init="false"
-  >
-    {%- for block in section.blocks -%}
-      {%- case block.type -%}
-        {%- when 'slide' -%}
-          {%- assign bild = block.settings.bild -%}
-          <swiper-slide>
-            <a href="{{ block.settings.bild_link }}" class="circle_menue_item">
-              <div class="circle_menue_item_image">
-                {%- if bild -%}
-                  <img src="{{ bild | image_url: width: "200" }}">
-                {% else %}
-                  {{ 'product-1' | placeholder_svg_tag }}
-                {%- endif -%}
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'slide' -%}
+            {%- assign bild = block.settings.bild -%}
+            <div class="swiper-slide">
+              <a href="{{ block.settings.bild_link }}" class="circle_menue_item">
+                <div class="circle_menue_item_image">
+                  {%- if bild -%}
+                    <img src="{{ bild | image_url: width: "200" }}">
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  {%- endif -%}
 
-                {%- if block.settings.badge_text.size > 0 -%}
-                  <div class="circle_menue_item_badge">
-                    {{ block.settings.badge_text }}
-                  </div>
-                {%- endif -%}
-              </div>
-              <div class="circle_menue_item_text">{{ block.settings.bild_text }}</div>
-            </a>
-          </swiper-slide>
-      {%- endcase -%}
-    {%- endfor -%}
-  </swiper-container>
+                  {%- if block.settings.badge_text.size > 0 -%}
+                    <div class="circle_menue_item_badge">
+                      {{ block.settings.badge_text }}
+                    </div>
+                  {%- endif -%}
+                </div>
+                <div class="circle_menue_item_text">{{ block.settings.bild_text }}</div>
+              </a>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-
-<script>
-  function swiperInit() {
-    const swiperEl = document.querySelector('swiper-container');
-    Object.assign(swiperEl, {
-      slidesPerView: 'auto',
-      spaceBetween: {{ section.settings.space_between }},
-      autoHeight: true,
-    });
-    swiperEl.initialize();
-  }
-
-  document.addEventListener('shopify:section:load', function () {
-    swiperInit();
-  });
-
-  swiperInit();
-</script>
+<script></script>
 
 {% schema %}
 {

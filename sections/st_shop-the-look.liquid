@@ -21,19 +21,22 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-{%- assign font_picker = section.settings.font_picker -%}
-{% style %}
-  {{ font_picker | font_face }}
-  .st_stl-wrapper * {
-    font-family: "{{ font_picker.family }}", {{ font_picker.fallback_families }};
-  }
-{% endstyle %}
-
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+  {%- assign main_font = section.settings.font_settings -%}
+  {%- assign main_font_bolder = section.settings.font_settings | font_modify: 'weight', 'bolder' -%}
+  {{ main_font | font_face }}
+  {{ main_font_bolder | font_face }}
+
+  .st_stl-wrapper * {
+    font-family: "{{ main_font.family }}", {{ main_font.fallback_families }};
+  }
 
   .st_stl-wrapper div:empty {
     display: unset;
+  }
+
+  .body-noscroll-class {
+    overflow: hidden;
   }
 
   /*-_- -_- -_- Page Padding -_- -_- -_-*/
@@ -64,16 +67,6 @@
     .Page-Padding {
       padding-inline: 0px;
     }
-  }
-
-  /*-_- -_- -_- Body -_- -_- -_-*/
-  body {
-    background-image: linear-gradient(45deg, hsl(0, 0%, 80%) 25%, transparent 25%),
-      linear-gradient(-45deg, hsl(0, 0%, 80%) 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, hsl(0, 0%, 80%) 75%),
-      linear-gradient(-45deg, transparent 75%, hsl(0, 0%, 80%) 75%);
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-    background-size: 20px 20px;
   }
 
   /*-_- -_- -_- Desktop -_- -_- -_-*/
@@ -134,6 +127,7 @@
     height: 100%;
     border-radius: 100vh;
     object-fit: cover;
+    background-color: white;
   }
 
   .st_Insta-TopBar-Name {
@@ -154,8 +148,8 @@
   .st_Insta-TopBar-Name-Text {
     position: relative;
     color: hsl(0, 0%, 0%);
-    font-family: Poppins;
-    font-weight: 600;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
+    font-weight: {{ main_font_bolder.weight }} !important;
     font-style: normal;
     font-size: 27.779px;
     line-height: 100%;
@@ -168,11 +162,11 @@
   .st_Insta-TopBar-ID {
     position: relative;
     color: hsl(0, 0%, 0%);
-    font-family: Poppins;
-    font-weight: 300;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
     font-style: normal;
-    font-size: 19.609px;
+    font-size: 18px;
     line-height: 100%;
+    margin-top: 5px;
   }
 
   .st_Insta-TopBar-Right {
@@ -186,8 +180,8 @@
   .st_Insta-TopBar-Title {
     position: relative;
     color: hsl(0, 0%, 0%);
-    font-family: Poppins;
-    font-weight: 600;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
+    font-weight: {{ main_font_bolder.weight }} !important;
     font-style: normal;
     font-size: 28px;
     line-height: 100%;
@@ -196,8 +190,7 @@
   .st_Insta-TopBar-Text {
     position: relative;
     color: hsl(0, 0%, 0%);
-    font-family: Poppins;
-    font-weight: 300;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
     font-style: normal;
     font-size: 28px;
     line-height: 100%;
@@ -236,15 +229,15 @@
     content: '';
     position: absolute;
     transform: translate(-100%, 0%);
-    height: 30px;
+    height: 20px;
     aspect-ratio: 1;
     left: calc(100% - var(--Padding));
     top: var(--Padding);
-    background: url(../img/st_Insta-Box-Icon.svg);
+    background: url('https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Box-Icon.svg?v=1718056593');
     object-fit: contain;
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 30px;
+    background-size: 20px;
   }
 
   .st_Insta-Gallery-Image {
@@ -275,14 +268,14 @@
     align-content: flex-start;
     opacity: 0;
     z-index: 99999;
-    transition: transform 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
     pointer-events: none;
   }
 
   .st_Insta-Popup.st_Show_PopUp {
     opacity: 1;
     pointer-events: all;
-    transition: transform 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
   }
 
   .st_Insta-Popup-Content-Wrapper {
@@ -290,7 +283,7 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
-    padding: 50px 30px;
+    padding: 35px 30px;
     filter: drop-shadow(0px 3.727px 50.317px rgba(0, 0, 0, 0.4));
     background: hsl(0, 0%, 100%);
     border-radius: 20px;
@@ -305,11 +298,12 @@
     top: 50%;
     pointer-events: none;
     opacity: 0;
+    z-index: 998;
   }
 
   .st_Insta-Popup-BackBlur.st_Show_PopUp {
     pointer-events: all;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     opacity: 1;
   }
 
@@ -340,26 +334,27 @@
 
   .st_Insta-Popup-Close-Btn {
     position: absolute;
-    transform: translate(-100%, -50%);
-    height: 20px;
-    left: 100%;
-    top: 0%;
-    z-index: 10;
+    height: 45px;
+    right: 15px;
+    width: 45px;
+    display: flex;
+    top: 15px;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
   }
 
   .st_Insta-Popup-Close-Img {
-    position: relative;
+    width: 100%;
     height: 100%;
-    aspect-ratio: 1;
-    object-fit: contain;
-    max-width: unset !important;
+    padding: 15px;
   }
 
   .st_Insta-Popup-Title {
     position: relative;
     color: hsl(0, 0%, 0%);
-    font-family: Poppins;
-    font-weight: 600;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
+    font-weight: {{ main_font_bolder.weight }} !important;
     font-style: normal;
     font-size: 30px;
     line-height: 100%;
@@ -369,8 +364,7 @@
   .st_Insta-Popup-Text {
     position: relative;
     color: hsl(0, 0%, 0%);
-    font-family: Poppins;
-    font-weight: 300;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
     font-style: normal;
     font-size: 20px;
     line-height: 100%;
@@ -452,12 +446,14 @@
 
   .st_Insta-Popup-Shop {
     position: relative;
-    height: 100%;
+    height: calc(100% + 40px);
     display: flex;
     flex-direction: column;
     align-content: flex-start;
     justify-content: flex-start;
     gap: 20px;
+    width: 100%;
+    margin-top: -40px;
   }
 
   .st_Insta-Popup-Shop-Top {
@@ -476,8 +472,8 @@
   .st_Insta-Popup-Shop-Title {
     position: relative;
     color: hsl(0, 0%, 0%);
-    font-family: Poppins;
-    font-weight: 600;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
+    font-weight: {{ main_font_bolder.weight }} !important;
     font-style: normal;
     font-size: 20px;
     line-height: 100%;
@@ -485,7 +481,7 @@
 
   .st_Insta-Popup-Shop-Gallery {
     --Padding: 0px;
-    --gap: 25px;
+    --gap: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -494,6 +490,7 @@
     gap: var(--gap);
     padding-right: 10px;
     overflow: auto;
+    height: 100%;
   }
 
   .st_Insta-Popup-Shop-Gallery-Box {
@@ -503,9 +500,11 @@
     aspect-ratio: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 10px;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    padding: 10px;
   }
 
   .st_Insta-Popup-Shop-Gallery-Image-Continaer {
@@ -530,34 +529,42 @@
   .st_Insta-Popup-Shop-Gallery-Title {
     position: relative;
     color: hsl(0, 0%, 0%);
-    font-family: Poppins;
-    font-weight: 600;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
+    font-weight: {{ main_font_bolder.weight }} !important;
     font-style: normal;
-    font-size: 15.942px;
-    line-height: 100%;
+    font-size: 16px;
   }
 
   .st_Insta-Popup-Shop-Gallery-Text {
     position: relative;
     color: hsl(0, 0%, 0%);
-    font-family: Poppins;
-    font-weight: 400;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
+    font-weight: {{ main_font_bolder.weight }} !important;
     font-style: normal;
     font-size: 14.945px;
     line-height: 100%;
+  }
+
+  .st_Insta-Popup-Shop-Gallery-Price-Box-Wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 
   .st_Insta-Popup-Shop-Gallery-Price-Box {
     position: relative;
     display: flex;
     gap: 10px;
+    margin-top: 3px;
   }
 
   .st_Insta-Popup-Shop-Gallery-PriceOff {
     position: relative;
     color: hsl(0, 0%, 62%);
-    font-family: Poppins;
-    font-weight: 400;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
     font-style: normal;
     font-size: 14.945px;
     line-height: 100%;
@@ -567,8 +574,7 @@
   .st_Insta-Popup-Shop-Gallery-Price {
     position: relative;
     color: hsl(0, 0%, 0%);
-    font-family: Poppins;
-    font-weight: 400;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
     font-style: normal;
     font-size: 14.945px;
     line-height: 100%;
@@ -618,8 +624,8 @@
   .st_Insta-Popup-TopBar-Name-Text {
     position: relative;
     color: hsl(0, 0%, 0%);
-    font-family: Poppins;
-    font-weight: 600;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
+    font-weight: {{ main_font_bolder.weight }} !important;
     font-style: normal;
     font-size: 27.779px;
     line-height: 100%;
@@ -633,7 +639,7 @@
     background-color: rgb(241, 241, 241);
     margin-top: 10px;
     padding: 5px 12px;
-    font-family: Poppins;
+    font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
     color: rgb(27, 27, 27);
     font-weight: 500;
     border-radius: 5px;
@@ -659,18 +665,14 @@
   .st_Insta-Popup-Carousel .swiper-button-next-sternify,
   .st_Insta-Popup-Carousel .swiper-button-prev-sternify {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 30px;
     top: var(--swiper-navigation-top-offset, 50%);
-    border: 1px solid hsla(0, 0%, 13%, 0.09019607843137255);
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: -20px;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
-    background-color: #ffffff9e;
     z-index: 10;
   }
 
@@ -727,18 +729,43 @@
     border-radius: 10px;
   }
 
+  .st_Insta-Popup-Shop-Gallery-Title-Price-Wrapper {
+    display: flex;
+    gap: 3px;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .st_Insta-Popup-Shop-Gallery-See-Product {
+    display: flex;
+    font-size: 10px;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
   /*-_- -_- -_- Media Queries -_- -_- -_-*/
   /*-_- -_- -_- labtop -_- -_- -_-*/
   @media (max-width: 1024px) {
+    .st_Insta-Popup-Shop-Gallery-Title {
+      font-size: 13px;
+    }
     .st_Insta {
       position: relative;
+    }
+    .st_Insta-Popup-Shop-Gallery-Price {
+      font-size: 11px;
+    }
+    .st_Insta-Popup-Shop-Gallery-PriceOff {
+      font-size: 11px;
     }
   }
 
   /*-_- -_- -_- Tablet -_- -_- -_-*/
   @media (max-width: 768px) {
     .st_Insta-Popup-Content-Wrapper {
-      padding: 10px 20px;
+      padding: 0px 15px;
     }
 
     .st_Insta {
@@ -784,9 +811,9 @@
     }
 
     .st_Insta-Gallery-Box::after {
-      --Padding: 5px;
-      height: 11px;
-      background-size: 11px;
+      --Padding: 10px;
+      height: 20px;
+      background-size: 20px;
     }
 
     .st_Insta-Popup-BackBlur {
@@ -847,6 +874,7 @@
       width: 100%;
       height: 100%;
       gap: 20px;
+      margin-top: 0px;
     }
 
     .st_Insta-Popup-Shop-Icon {
@@ -856,7 +884,7 @@
     .st_Insta-Popup-Shop-Gallery {
       --gap: 17px;
       height: max-content;
-      padding-right: 0;
+      padding-block: 10px;
       overflow: visible;
     }
 
@@ -878,12 +906,6 @@
     }
 
     .st_Insta-Popup-Close-Btn {
-      --s: 18px 24px 7px;
-      transform: translate(-50%, -0%);
-      height: 18px;
-      left: calc(100% - 24px);
-      top: 18px;
-      z-index: 10;
     }
 
     .st_Insta-Popup-Title {
@@ -916,6 +938,7 @@
 
     .st_Insta-Popup-Content-Wrapper {
       padding-bottom: 20px;
+      border-radius: 0px;
     }
   }
 
@@ -974,9 +997,9 @@
     }
 
     .st_Insta-Gallery-Box::after {
-      --Padding: 5px;
-      height: 11px;
-      background-size: 11px;
+      --Padding: 10px;
+      height: 20px;
+      background-size: 20px;
     }
 
     .st_Insta-Popup-BackBlur {
@@ -1010,6 +1033,7 @@
       justify-content: flex-start;
       align-items: flex-start;
       gap: 15px;
+      overflow: scroll;
     }
 
     .st_Insta-Popup-Carousel-Btn {
@@ -1028,8 +1052,7 @@
     .st_Insta-Popup-Shop {
       width: 100%;
       height: 100%;
-      gap: 20px;
-      overflow-y: scroll;
+      gap: 0px;
     }
 
     .st_Insta-Popup-Shop-Icon {
@@ -1040,7 +1063,6 @@
       --gap: 17px;
       height: max-content;
       padding-right: 0;
-      overflow: scroll;
     }
 
     .st_Insta-Popup-Shop-Gallery-Box {
@@ -1061,12 +1083,6 @@
     }
 
     .st_Insta-Popup-Close-Btn {
-      --s: 18px 24px 7px;
-      transform: translate(-20%, -0%);
-      height: 11px;
-      left: calc(100% - 24px);
-      top: 18px;
-      z-index: 10;
     }
 
     .st_Insta-Popup-Title {
@@ -1112,20 +1128,13 @@
 
     .st_Insta-Popup-Carousel .swiper-button-next-sternify,
     .st_Insta-Popup-Carousel .swiper-button-prev-sternify {
-      width: 40px;
-      height: 40px;
+      width: 30px;
     }
 
     .st_Insta-Popup-Content-Wrapper {
       gap: 0px;
-    }
-
-    .st_Insta-Popup-Shop-Gallery-Price-Box {
-      margin-top: 3px;
-    }
-
-    .st_Insta-Popup-Content-Wrapper {
-      padding-bottom: 20px;
+      border-radius: 0px;
+      padding-bottom: 0px;
     }
 
     .st_Insta-TopBar-Name-Check {
@@ -1134,7 +1143,7 @@
   }
 </style>
 
-<div class="st_wrappers st_stl-wrapper st_check-section--{{ section.id }}">
+<div class="st_wrapper st_stl-wrapper st_check-section--{{ section.id }}">
   <div class="st_Insta">
     <div class="Page-Padding">
       <div class="st_Insta-TopBar">
@@ -1155,10 +1164,12 @@
           <div class="st_Insta-TopBar-NameID">
             <div class="st_Insta-TopBar-Name">
               <div class="st_Insta-TopBar-Name-Text">{{ section.settings.instagram_name }}</div>
-              <img
-                class="st_Insta-TopBar-Name-Check"
-                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_BlueTick.svg?v=1718056593"
-              >
+              {% if section.settings.verified_icon %}
+                <img
+                  class="st_Insta-TopBar-Name-Check"
+                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_BlueTick.svg?v=1718056593"
+                >
+              {% endif %}
             </div>
             <div class="st_Insta-TopBar-ID">{{ section.settings.instagram_username }}</div>
           </div>
@@ -1170,64 +1181,80 @@
       </div>
 
       <div class="st_Insta-Gallery">
-        {% for block in section.blocks %}
-          {% case block.type %}
-            {%- when 'image' -%}
-              <div class="st_Insta-Gallery-Box" data-block-id="{{ block.id }}">
-                {{ block.settings.main_image | image_url: width: 300 | image_tag: class: 'st_Insta-Gallery-Image' }}
-              </div>
-          {% endcase %}
-        {% endfor %}
-        {% comment %}
-          <div class="st_Insta-Gallery-Box">
-            <img
-              class="st_Insta-Gallery-Image"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/antoine-transon-HjTUwhcSNMY-unsplash.jpg?v=1718055716"
-            >
+        {% assign gallary_blocks_count = section.blocks | size %}
+        {% if gallary_blocks_count > 0 %}
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {%- when 'image' -%}
+                {% if block.settings.main_image %}
+                  <div class="st_Insta-Gallery-Box" data-block-id="{{ block.id }}">
+                    {{ block.settings.main_image | image_url: width: 300 | image_tag: class: 'st_Insta-Gallery-Image' }}
+                  </div>
+                {% else %}
+                  <div class="st_Insta-Gallery-Box" data-block-id="{{ block.id }}">
+                    {{ 'collection-3' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+            {% endcase %}
+          {% endfor %}
+        {% else %}
+          <div
+            class="st_Insta-Gallery-Box"
+            data-block-id="{{ block.id }}"
+            style="border: 1px solid #e6e6e6; border-radius: 10px;"
+          >
+            {{ 'collection-1' | placeholder_svg_tag }}
           </div>
-          <div class="st_Insta-Gallery-Box">
-            <img
-              class="st_Insta-Gallery-Image"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/josiah-kemp-bAm1LHXe5aE-unsplash.jpg?v=1718055716"
-            >
+          <div
+            class="st_Insta-Gallery-Box"
+            data-block-id="{{ block.id }}"
+            style="border: 1px solid #e6e6e6; border-radius: 10px;"
+          >
+            {{ 'collection-2' | placeholder_svg_tag }}
           </div>
-          <div class="st_Insta-Gallery-Box">
-            <img
-              class="st_Insta-Gallery-Image"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/dave-goudreau-0uByin_DDOQ-unsplash.jpg?v=1718055716"
-            >
+          <div
+            class="st_Insta-Gallery-Box"
+            data-block-id="{{ block.id }}"
+            style="border: 1px solid #e6e6e6; border-radius: 10px;"
+          >
+            {{ 'collection-3' | placeholder_svg_tag }}
           </div>
-          <div class="st_Insta-Gallery-Box">
-            <img
-              class="st_Insta-Gallery-Image"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/1millidollars-q6GUaEa29b8-unsplash.jpg?v=1718055716"
-            >
+          <div
+            class="st_Insta-Gallery-Box"
+            data-block-id="{{ block.id }}"
+            style="border: 1px solid #e6e6e6; border-radius: 10px;"
+          >
+            {{ 'collection-4' | placeholder_svg_tag }}
           </div>
-          <div class="st_Insta-Gallery-Box">
-            <img
-              class="st_Insta-Gallery-Image"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-2UTk-Nip5aM-unsplash.jpg?v=1718055716"
-            >
+          <div
+            class="st_Insta-Gallery-Box"
+            data-block-id="{{ block.id }}"
+            style="border: 1px solid #e6e6e6; border-radius: 10px;"
+          >
+            {{ 'collection-5' | placeholder_svg_tag }}
           </div>
-          <div class="st_Insta-Gallery-Box">
-            <img
-              class="st_Insta-Gallery-Image"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-nu5CNTmO0h0-unsplash.jpg?v=1718055716"
-            >
+          <div
+            class="st_Insta-Gallery-Box"
+            data-block-id="{{ block.id }}"
+            style="border: 1px solid #e6e6e6; border-radius: 10px;"
+          >
+            {{ 'collection-6' | placeholder_svg_tag }}
           </div>
-          <div class="st_Insta-Gallery-Box">
-            <img
-              class="st_Insta-Gallery-Image"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-QW9FrzPj70U-unsplash.jpg?v=1718055715"
-            >
+          <div
+            class="st_Insta-Gallery-Box"
+            data-block-id="{{ block.id }}"
+            style="border: 1px solid #e6e6e6; border-radius: 10px;"
+          >
+            {{ 'collection-1' | placeholder_svg_tag }}
           </div>
-          <div class="st_Insta-Gallery-Box">
-            <img
-              class="st_Insta-Gallery-Image"
-              src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/ron-mcclenny-a6eyiM5FTew-unsplash_1.jpg?v=1718056128"
-            >
+          <div
+            class="st_Insta-Gallery-Box"
+            data-block-id="{{ block.id }}"
+            style="border: 1px solid #e6e6e6; border-radius: 10px;"
+          >
+            {{ 'collection-2' | placeholder_svg_tag }}
           </div>
-        {% endcomment %}
+        {% endif %}
       </div>
     </div>
   </div>
@@ -1237,13 +1264,13 @@
       {%- when 'image' -%}
         <div class="st_Insta-Popup" data-block-id="{{ block.id }}">
           <div class="st_Insta-Popup-Content-Wrapper">
+            <div class="st_Insta-Popup-Close-Btn st_Btn">
+              <img
+                class="st_Insta-Popup-Close-Img"
+                src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Close-Icon.svg?v=1718056593"
+              >
+            </div>
             <div class="st_Insta-Popup-TopBar">
-              <div class="st_Insta-Popup-Close-Btn st_Btn">
-                <img
-                  class="st_Insta-Popup-Close-Img"
-                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_Insta-Close-Icon.svg?v=1718056593"
-                >
-              </div>
               <div class="st_Insta-Popup-TopBar-Left">
                 <div class="st_Insta-Popup-TopBar-Avatar-Container">
                   {% if section.settings.instagram_logo %}
@@ -1261,10 +1288,12 @@
                 <div class="st_Insta-Popup-TopBar-NameID">
                   <div class="st_Insta-Popup-TopBar-Name">
                     <div class="st_Insta-Popup-TopBar-Name-Text">{{ section.settings.instagram_name }}</div>
-                    <img
-                      class="st_Insta-Popup-TopBar-Name-Check"
-                      src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_BlueTick.svg?v=1718056593"
-                    >
+                    {% if section.settings.verified_icon %}
+                      <img
+                        class="st_Insta-Popup-TopBar-Name-Check"
+                        src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/st_BlueTick.svg?v=1718056593"
+                      >
+                    {% endif %}
                   </div>
                   <div class="st_Insta-Popup-TopBar-ID-Badge">{{ block.settings.collection_name }}</div>
                 </div>
@@ -1278,51 +1307,49 @@
                   <!-- Additional required wrapper -->
                   <div class="swiper-wrapper">
                     <!-- Slides -->
-                    <div class="swiper-slide">
-                      <img
-                        class="st_Insta-Popup-Carousel-Test"
-                        src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-nu5CNTmO0h0-unsplash.jpg?v=1718055716"
-                      >
-                    </div>
-                    <div class="swiper-slide">
-                      <img
-                        class="st_Insta-Popup-Carousel-Test"
-                        src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/stow-kelly-rqj6HrzSlmU-unsplash.jpg?v=1718057453"
-                      >
-                    </div>
-                    <div class="swiper-slide">
-                      <img
-                        class="st_Insta-Popup-Carousel-Test"
-                        src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/mike-von-FipmLJsL_xE-unsplash.jpg?v=1718057453"
-                      >
-                    </div>
+                    {% if block.settings.main_image %}
+                      <div class="swiper-slide">
+                        <img
+                          class="st_Insta-Popup-Carousel-Test"
+                          src="{{ block.settings.main_image | img_url: '500x'}}"
+                          loading="lazy"
+                        >
+                      </div>
+                    {% endif %}
+                    {% if block.settings.slider_image_1 %}
+                      <div class="swiper-slide">
+                        <img
+                          class="st_Insta-Popup-Carousel-Test"
+                          src="{{  block.settings.slider_image_1 | img_url: '500x'}}"
+                          loading="lazy"
+                        >
+                      </div>
+                    {% endif %}
+                    {% if block.settings.slider_image_2 %}
+                      <div class="swiper-slide">
+                        <img
+                          class="st_Insta-Popup-Carousel-Test"
+                          src="{{  block.settings.slider_image_2 | img_url: '500x'}}"
+                          loading="lazy"
+                        >
+                      </div>
+                    {% endif %}
+                    {% if block.settings.slider_image_3 %}
+                      <div class="swiper-slide">
+                        <img
+                          class="st_Insta-Popup-Carousel-Test"
+                          src="{{  block.settings.slider_image_3 | img_url: '500x'}}"
+                          loading="lazy"
+                        >
+                      </div>
+                    {% endif %}
                   </div>
 
                   <div class="swiper-button-prev-sternify">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      fill="#000000"
-                      viewBox="0 0 256 256"
-                    >
-                      <path
-                          d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
-                      </path>
-                    </svg>
+                    <img src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Subtract.svg?v=1718473277">
                   </div>
                   <div class="swiper-button-next-sternify">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      fill="#000000"
-                      viewBox="0 0 256 256"
-                    >
-                      <path
-                          d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
-                      </path>
-                    </svg>
+                    <img src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/Subtract.svg?v=1718473277">
                   </div>
                 </div>
               </div>
@@ -1335,22 +1362,92 @@
                   <div class="st_Insta-Popup-Shop-Title">{{ block.settings.linked_products_title }}</div>
                 </div>
                 <div class="st_Insta-Popup-Shop-Gallery">
-                  {% for product in block.settings.linked_products %}
+                  {% assign linked_products_size = block.settings.linked_products.count %}
+                  {% if linked_products_size > 0 %}
+                    {% for product in block.settings.linked_products %}
+                      <a href="{{ product.url }}" target="_blank" class="st_Insta-Popup-Shop-Gallery-Box">
+                        <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
+                          <img
+                            class="st_Insta-Popup-Shop-Gallery-Image"
+                            src="{{ product.featured_image | img_url: '500x' }}"
+                          >
+                        </div>
+                        <div class="st_Insta-Popup-Shop-Gallery-Title-Price-Wrapper">
+                          <div class="st_Insta-Popup-Shop-Gallery-Title">{{ product.title }}</div>
+                          <div class="st_Insta-Popup-Shop-Gallery-Text">{{ product.type }}</div>
+                          <div class="st_Insta-Popup-Shop-Gallery-Price-Box-Wrapper">
+                            <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
+                              {% if product.compare_at_price %}
+                                <div class="st_Insta-Popup-Shop-Gallery-PriceOff">
+                                  {{ product.compare_at_price | money }}
+                                </div>
+                              {% endif %}
+                              <div class="st_Insta-Popup-Shop-Gallery-Price">{{ product.price | money }}</div>
+                            </div>
+                            <div
+                              class="st_Insta-Popup-Shop-Gallery-See-Product"
+                            >
+                              ansehen
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="32"
+                                height="32"
+                                fill="#000000"
+                                viewBox="0 0 256 256"
+                                style="
+                                  max-width: 20px;
+                                  height: 15px;
+                                "
+                              >
+                                <path d="M218.83,130.83l-72,72a4,4,0,0,1-5.66-5.66L206.34,132H40a4,4,0,0,1,0-8H206.34L141.17,58.83a4,4,0,0,1,5.66-5.66l72,72A4,4,0,0,1,218.83,130.83Z"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    {% endfor %}
+                  {% else %}
                     <div class="st_Insta-Popup-Shop-Gallery-Box">
                       <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
-                        <img
-                          class="st_Insta-Popup-Shop-Gallery-Image"
-                          src="{{ product.featured_image | img_url: '100x' }}"
-                        >
+                        {{ 'product-1' | placeholder_svg_tag }}
                       </div>
-                      <div class="st_Insta-Popup-Shop-Gallery-Title">{{ product.title }}</div>
-                      <div class="st_Insta-Popup-Shop-Gallery-Text">{{ product.type }}</div>
+                      <div class="st_Insta-Popup-Shop-Gallery-Title">Beispiel Product 1</div>
                       <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
-                        <div class="st_Insta-Popup-Shop-Gallery-PriceOff">{{ product.compare_at_price | money }}</div>
-                        <div class="st_Insta-Popup-Shop-Gallery-Price">{{ product.price | money }}</div>
+                        <div class="st_Insta-Popup-Shop-Gallery-PriceOff">120.00€</div>
+                        <div class="st_Insta-Popup-Shop-Gallery-Price">80.00€</div>
                       </div>
                     </div>
-                  {% endfor %}
+                    <div class="st_Insta-Popup-Shop-Gallery-Box">
+                      <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
+                        {{ 'product-2' | placeholder_svg_tag }}
+                      </div>
+                      <div class="st_Insta-Popup-Shop-Gallery-Title">Beispiel Product 2</div>
+                      <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
+                        <div class="st_Insta-Popup-Shop-Gallery-PriceOff">120.00€</div>
+                        <div class="st_Insta-Popup-Shop-Gallery-Price">80.00€</div>
+                      </div>
+                    </div>
+                    <div class="st_Insta-Popup-Shop-Gallery-Box">
+                      <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
+                        {{ 'product-3' | placeholder_svg_tag }}
+                      </div>
+                      <div class="st_Insta-Popup-Shop-Gallery-Title">Beispiel Product 3</div>
+                      <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
+                        <div class="st_Insta-Popup-Shop-Gallery-PriceOff">120.00€</div>
+                        <div class="st_Insta-Popup-Shop-Gallery-Price">80.00€</div>
+                      </div>
+                    </div>
+                    <div class="st_Insta-Popup-Shop-Gallery-Box">
+                      <div class="st_Insta-Popup-Shop-Gallery-Image-Continaer">
+                        {{ 'product-4' | placeholder_svg_tag }}
+                      </div>
+                      <div class="st_Insta-Popup-Shop-Gallery-Title">Beispiel Product 4</div>
+                      <div class="st_Insta-Popup-Shop-Gallery-Price-Box">
+                        <div class="st_Insta-Popup-Shop-Gallery-PriceOff">120.00€</div>
+                        <div class="st_Insta-Popup-Shop-Gallery-Price">80.00€</div>
+                      </div>
+                    </div>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -1367,11 +1464,32 @@
   "tag": "section",
   "settings": [
     {
+      "type": "header",
+      "content": "⚠️ Wichtig ⚠️",
+      "info": "Bitte beachte dass Sternify [App Einbettung](https://google.com) aktiviert sind."
+    },
+    {
+      "type": "header",
+      "content": "Allgemeine Einstellungen"
+    },
+    {
+      "type": "font_picker",
+      "id": "font_settings",
+      "label": "Font",
+      "default": "poppins_n4"
+    },
+    {
       "type": "text",
       "id": "instagram_name",
       "label": "Instagram Name",
       "default": "Sternify",
       "placeholder": "Instagram Name"
+    },
+    {
+      "type": "checkbox",
+      "id": "verified_icon",
+      "label": "Verifiziert Icon",
+      "default": true
     },
     {
       "type": "text",
@@ -1405,35 +1523,51 @@
         {
           "type": "image_picker",
           "id": "main_image",
-          "label": "Main Image"
+          "label": "Hauptbild",
+          "info": "Wähle das Bild aus, das als Vorschaubild in deiner Galerie angezeigt wird."
+        },
+        {
+          "type": "header",
+          "content": "⏹️ Popup Einstellungen"
         },
         {
           "type": "text",
           "id": "collection_name",
-          "label": "Collection Name",
-          "default": "Sommer Release 2024"
+          "label": "Custom Badge",
+          "default": "Sommer Release 2024",
+          "info": "Füge ein spezielles Badge für deine Kollektion hinzu."
+        },
+        {
+          "type": "header",
+          "content": "🛍️ Verlinke die Produkte"
         },
         {
           "type": "product_list",
           "id": "linked_products",
-          "label": "Linked Products",
+          "label": "Shop The Look Produkte",
+          "info": "Wähle bis zu 10 Produkte für die Anzeige im Popup deiner Galerie",
           "limit": 10
+        },
+        {
+          "type": "header",
+          "content": "🖼️ Inspirations Slider",
+          "info": "Füge bis zu 3 inspirierende Bilder hinzu, die zu den zuvor ausgewählten Produkten passen"
         },
         {
           "type": "image_picker",
           "id": "slider_image_1",
-          "label": "Slider Image 1"
+          "label": "Slider Bild 1"
         },
         {
           "type": "image_picker",
           "id": "slider_image_2",
-          "label": "Slider Image 2",
+          "label": "Slider Bild 2",
           "info": "optional"
         },
         {
           "type": "image_picker",
           "id": "slider_image_3",
-          "label": "Slider Image 3",
+          "label": "Slider Bild 3",
           "info": "optional"
         },
         {
@@ -1448,32 +1582,7 @@
   "presets": [
     {
       "name": "💫: Shop The Look",
-      "blocks": [
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        }
-      ]
+      "blocks": []
     }
   ]
 }

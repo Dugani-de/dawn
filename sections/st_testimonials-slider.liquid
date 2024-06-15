@@ -1,4 +1,4 @@
-{% comment %} Version: 2.0.2 {% endcomment %}
+{% comment %} Version: 2.1.2 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -270,6 +270,14 @@
     height: 20px;
   }
 
+  .st_testimonial-header-review .st_testimonial-reviewbox-rating svg {
+    fill: {{ section.settings.star_color_header }}
+  }
+
+  .st_testimonial-reviewbox-footer .st_testimonial-reviewbox-rating svg {
+    fill: {{ section.settings.star_color_box }}
+  }
+
   .st_testimonial-reviewbox * {
     font-family: {{ review_font.family }}, {{ review_font.fallback_families }};
     font-weight: {{ review_font.weight }} !important;
@@ -487,39 +495,6 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@8.4.7/swiper-bundle.min.js"></script>
-
-<script>
-  function swiperInit() {
-    const swiper = new Swiper('.st_testimonial-wrapper .swiper-container', {
-      {% comment %} spaceBetween: 20, {% endcomment %}
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      grabCursor: true,
-      navigation: {
-        nextEl: ".swiper-button-next-sternify",
-        prevEl: ".swiper-button-prev-sternify",
-      },
-      loop: true,
-      autoplay: {
-        delay: 3000,
-      },
-    });
-  }
-
-  document.addEventListener('shopify:section:load', function () {
-    console.log('shopify:section:load');
-    swiperInit();
-  });
-
-  document.addEventListener('shopify:inspector:activate', function () {
-    console.log('shopify:inspector');
-    swiperInit();
-  });
-
-  swiperInit();
-</script>
-
 {% schema %}
 {
   "name": "💫: Testimonial Slider",
@@ -554,7 +529,7 @@
     {
       "type": "color",
       "id": "section_backround_color",
-      "label": "Box Text",
+      "label": "Hintergrundfarbe",
       "info": "Diese Einstellung wird nur angewendet, wenn du den Stil 'Individuell' ausgewählt hast.",
       "default": "#EFEFEF"
     },
@@ -626,9 +601,15 @@
     },
     {
       "type": "color",
-      "id": "star_color",
-      "label": "Sterne Farben",
-      "default": "#000000"
+      "id": "star_color_header",
+      "label": "Sterne Header",
+      "default": "#fdd663"
+    },
+    {
+      "type": "color",
+      "id": "star_color_box",
+      "label": "Sterne Box",
+      "default": "#1B1B1B"
     },
     {
       "type": "header",
