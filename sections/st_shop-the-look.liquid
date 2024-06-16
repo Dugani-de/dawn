@@ -39,6 +39,11 @@
     overflow: hidden;
   }
 
+  .st_stl-wrapper{
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+
   /*-_- -_- -_- Page Padding -_- -_- -_-*/
   .st_stl-wrapper .Page-Padding {
     position: relative;
@@ -117,7 +122,7 @@
     left: 50%;
     top: 50%;
     border-radius: 100vh;
-    background: linear-gradient(to bottom, hsl(47, 94%, 59%), hsl(335, 85%, 55%), hsl(260, 69%, 50%));
+    background: {{ section.settings.profile_border_gradient }};
     z-index: -1;
   }
 
@@ -147,7 +152,7 @@
 
   .st_Insta-TopBar-Name-Text {
     position: relative;
-    color: hsl(0, 0%, 0%);
+    color: {{ section.settings.insta_name_color }};
     font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
     font-weight: {{ main_font_bolder.weight }} !important;
     font-style: normal;
@@ -161,7 +166,7 @@
 
   .st_Insta-TopBar-ID {
     position: relative;
-    color: hsl(0, 0%, 0%);
+    color: {{ section.settings.insta_username_color }};
     font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
     font-style: normal;
     font-size: 18px;
@@ -179,7 +184,7 @@
 
   .st_Insta-TopBar-Title {
     position: relative;
-    color: hsl(0, 0%, 0%);
+    color: {{ section.settings.right_title_color }};
     font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
     font-weight: {{ main_font_bolder.weight }} !important;
     font-style: normal;
@@ -189,7 +194,7 @@
 
   .st_Insta-TopBar-Text {
     position: relative;
-    color: hsl(0, 0%, 0%);
+    color: {{ section.settings.right_subtitle_color }};
     font-family: {{ main_font.family }}, {{ main_font.fallback_families }};
     font-style: normal;
     font-size: 28px;
@@ -1315,6 +1320,8 @@
                           loading="lazy"
                         >
                       </div>
+                    {% else %}
+                      {{ 'product-3' | placeholder_svg_tag }}
                     {% endif %}
                     {% if block.settings.slider_image_1 %}
                       <div class="swiper-slide">
@@ -1466,7 +1473,25 @@
     {
       "type": "header",
       "content": "⚠️ Wichtig ⚠️",
-      "info": "Bitte beachte dass Sternify [App Einbettung](https://google.com) aktiviert sind."
+      "info": "Bitte beachte dass Sternify [App Einbettung](https://www.sternify.com/app-extentions) aktiviert sind."
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Abstand nach oben",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Abstand nach unten",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "default": 0
     },
     {
       "type": "header",
@@ -1505,14 +1530,48 @@
     {
       "type": "text",
       "id": "title_right",
-      "label": "Title Right",
+      "label": "Title Rechts",
       "default": "Inspire Yourself"
     },
     {
       "type": "text",
       "id": "subtitle_right",
-      "label": "Subtitle Right",
+      "label": "Subtitle Rechts",
       "default": "Shop The Look"
+    },
+    {
+      "type": "header",
+      "content": "Farben Einstellungen 🎨"
+    },
+    {
+      "type": "color",
+      "id": "insta_name_color",
+      "label": "Name Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "insta_username_color",
+      "label": "Username Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "right_title_color",
+      "label": "Titel Farbe (Rechts)",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "right_subtitle_color",
+      "label": "Sub-Titel Farbe (Rechts)",
+      "default": "#000000"
+    },
+    {
+      "type": "color_background",
+      "id": "profile_border_gradient",
+      "label": "Avatar Rand Farbe",
+      "default": "linear-gradient(to bottom, #f9ce34, #ee2b7c)"
     }
   ],
   "blocks": [
