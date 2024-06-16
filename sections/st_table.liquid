@@ -1,4 +1,4 @@
-{% comment %} Version: 1.2.2 {% endcomment %}
+{% comment %} Version: 1.3.2 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -75,13 +75,11 @@
     align-items: stretch;
   }
   .st_Table-Box {
-    --Back-Color: hsl(0, 0%, 100%);
-    --Main-Color: hsl(0deg 0% 0%);
-    --Border-Color: transparent;
-    --Border-Color-Active: hsl(80, 4%, 84%);
-    --Border-Size: 2px;
+    --Back-Color: {{ section.settings.table_color }};
+    --Border-Color: {{ section.settings.border_color }};
+    --Border-Size: {{ section.settings.border_thickness }}px;
     --Border-Style: solid;
-    --Border-Radius: 10px;
+    --Border-Radius: {{ section.settings.border_radius }}px;
     --Padding: 20px;
     position: relative;
     display: flex;
@@ -89,7 +87,6 @@
     align-items: center;
     padding: var(--Padding);
     background: var(--Back-Color);
-    color: var(--Main-Color);
     font-family: Poppins;
     font-weight: 600;
     font-style: normal;
@@ -134,21 +131,17 @@
     opacity: 0;
   }
   .st_Table-Row:nth-child(1) .st_Table-Box:nth-child(2) {
-    --Main-Color: hsl(0, 0%, 100%);
     --Back-Color: {{ section.settings.highlighted_color }};
   }
   .st_Table-Row:nth-child(1) .st_Table-Box:nth-child(3) {
-    --Main-Color: hsl(0deg 0% 0%);
     --Back-Color: transparent;
   }
   .st_Table-Row:nth-child(1) .st_Table-Box:nth-child(4) {
-    --Main-Color: hsl(0deg 0% 0%);
     --Back-Color: transparent;
   }
 
   /*._. Active-Column ._.*/
   .st_Table-Row .st_Table-Box:nth-child(2) {
-    --Main-Color: hsl(0, 0%, 100%);
     --Back-Color: {{ section.settings.highlighted_color }};
     padding-top: calc(var(--Padding) + 1px);
     margin-top: -1px;
@@ -169,8 +162,8 @@
     top: calc(100% - 1px);
     background: inherit;
 
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: var(--Border-Radius);
+    border-bottom-right-radius: var(--Border-Radius);
   }
   @keyframes Active-Column-Animation {
     100% {
@@ -185,17 +178,17 @@
 
   /*._. Border-Color ._.*/
   .st_Table-Row .st_Table-Box {
-    border-left: var(--Border-Style) var(--Border-Size) var(--Border-Color-Active);
-    border-top: var(--Border-Style) var(--Border-Size) var(--Border-Color-Active);
+    border-left: var(--Border-Style) var(--Border-Size) var(--Border-Color);
+    border-top: var(--Border-Style) var(--Border-Size) var(--Border-Color);
   }
   .st_Table-Row:last-child .st_Table-Box {
-    border-bottom: var(--Border-Style) var(--Border-Size) var(--Border-Color-Active);
+    border-bottom: var(--Border-Style) var(--Border-Size) var(--Border-Color);
   }
   .st_Table-Row .st_Table-Box:nth-child(3) {
     border-left: none;
   }
   .st_Table-Row .st_Table-Box:last-child {
-    border-right: var(--Border-Style) var(--Border-Size) var(--Border-Color-Active);
+    border-right: var(--Border-Style) var(--Border-Size) var(--Border-Color);
   }
   .st_Table-Row .st_Table-Box:nth-child(2) {
     border: none !important;
@@ -221,6 +214,27 @@
   }
   .st_Table-Row:last-child .st_Table-Box:last-child {
     border-bottom-right-radius: var(--Border-Radius);
+  }
+
+  /*._. Colors ._.*/
+  .st_Table-Row:first-child .st_Table-Box:nth-child(2) .st_Table-Title {
+    color: {{ section.settings.highlighted_text_color }};
+  }
+
+  .st_Table-Row:nth-child(1) .st_Table-Box:nth-child(n+3) .st_Table-Title {
+    color: {{ section.settings.others_text_color }};
+  }
+
+  .st_Table-Row:nth-child(n+2) .st_Table-Box:nth-child(1) {
+    color: {{  section.settings.benefit_color }}
+  }
+
+  .st_Table-Row:nth-child(n+2) .st_Table-Box:nth-child(2) svg * {
+    fill: {{  section.settings.highlighted_icon_color }}
+  }
+
+  .st_Table-Row:nth-child(n+2) .st_Table-Box:nth-child(n+3) svg * {
+    fill: {{  section.settings.others_icon_color }}
   }
 
   /*-_- -_- -_- Tablet -_- -_- -_-*/
@@ -292,10 +306,10 @@
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path d="M16 0C7.163 0 0 7.163 0 16C0 24.837 7.163 32 16 32C24.836 32 32 24.836 32 16C32 7.163 24.836 0 16 0ZM16 30C8.268 30 2 23.732 2 16C2 8.268 8.268 2 16 2C23.732 2 30 8.268 30 16C30 23.732 23.732 30 16 30Z"
-                      fill="var(--Main-Color)" />
+                       />
                   <path
                       d="M23.3 10.393L13.012 20.589L8.731 16.393C8.337 16.002 7.697 16.002 7.303 16.393C6.908 16.784 6.908 17.417 7.303 17.807L12.302 22.706C12.712 23.067 13.325 23.107 13.73 22.706L24.729 11.807C25.123 11.417 25.123 10.783 24.729 10.393C24.334 10.003 23.695 10.003 23.3 10.393Z"
-                      fill="var(--Main-Color)" />
+                       />
                 </svg>
               {% else %}
                 <svg
@@ -306,7 +320,7 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path fill="var(--Main-Color)"
+                  <path
                       d="M8.70703 7.29297L7.29297 8.70703L14.5859 16L7.29297 23.293L8.70703 24.707L16 17.4141L23.293 24.707L24.707 23.293L17.4141 16L24.707 8.70703L23.293 7.29297L16 14.5859L8.70703 7.29297Z" />
                 </svg>
               {% endif %}
@@ -322,10 +336,10 @@
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path d="M16 0C7.163 0 0 7.163 0 16C0 24.837 7.163 32 16 32C24.836 32 32 24.836 32 16C32 7.163 24.836 0 16 0ZM16 30C8.268 30 2 23.732 2 16C2 8.268 8.268 2 16 2C23.732 2 30 8.268 30 16C30 23.732 23.732 30 16 30Z"
-                      fill="var(--Main-Color)" />
+                      />
                   <path
                       d="M23.3 10.393L13.012 20.589L8.731 16.393C8.337 16.002 7.697 16.002 7.303 16.393C6.908 16.784 6.908 17.417 7.303 17.807L12.302 22.706C12.712 23.067 13.325 23.107 13.73 22.706L24.729 11.807C25.123 11.417 25.123 10.783 24.729 10.393C24.334 10.003 23.695 10.003 23.3 10.393Z"
-                      fill="var(--Main-Color)" />
+                      />
                 </svg>
               {% else %}
                 <svg
@@ -336,7 +350,7 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path fill="var(--Main-Color)"
+                  <path
                       d="M8.70703 7.29297L7.29297 8.70703L14.5859 16L7.29297 23.293L8.70703 24.707L16 17.4141L23.293 24.707L24.707 23.293L17.4141 16L24.707 8.70703L23.293 7.29297L16 14.5859L8.70703 7.29297Z" />
                 </svg>
               {% endif %}
@@ -353,10 +367,10 @@
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path d="M16 0C7.163 0 0 7.163 0 16C0 24.837 7.163 32 16 32C24.836 32 32 24.836 32 16C32 7.163 24.836 0 16 0ZM16 30C8.268 30 2 23.732 2 16C2 8.268 8.268 2 16 2C23.732 2 30 8.268 30 16C30 23.732 23.732 30 16 30Z"
-                        fill="var(--Main-Color)" />
+                      />
                     <path
                         d="M23.3 10.393L13.012 20.589L8.731 16.393C8.337 16.002 7.697 16.002 7.303 16.393C6.908 16.784 6.908 17.417 7.303 17.807L12.302 22.706C12.712 23.067 13.325 23.107 13.73 22.706L24.729 11.807C25.123 11.417 25.123 10.783 24.729 10.393C24.334 10.003 23.695 10.003 23.3 10.393Z"
-                        fill="var(--Main-Color)" />
+                      />
                   </svg>
                 {% else %}
                   <svg
@@ -426,16 +440,6 @@
     },
     {
       "type": "header",
-      "content": "Farben Einstellungen"
-    },
-    {
-      "type": "color",
-      "id": "highlighted_color",
-      "label": "Highlighted Farbe",
-      "default": "#000000"
-    },
-    {
-      "type": "header",
       "content": "Allgemeine Einstellungen"
     },
     {
@@ -462,7 +466,7 @@
     },
     {
       "type": "header",
-      "content": "Spalten Einstellungen"
+      "content": "Spalten Einstellungen "
     },
     {
       "type": "text",
@@ -491,6 +495,76 @@
       "default": "Standard Hairstyler",
       "placeholder": "Spalte 3 Text",
       "info": "Diese Einstellung ist nur bei 3 Spalten verfügbar"
+    },
+    {
+      "type": "header",
+      "content": "Farben Einstellungen 🎨"
+    },
+    {
+      "type": "color",
+      "id": "highlighted_color",
+      "label": "Highlighted Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "highlighted_text_color",
+      "label": "Highlighted Text Farbe",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "highlighted_icon_color",
+      "label": "Highlighted - Icon Farbe",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "others_text_color",
+      "label": "Andere - Text Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "others_icon_color",
+      "label": "Andere - Icon Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "benefit_color",
+      "label": "Vorteile Text Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "table_color",
+      "label": "Tabellen Farbe",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Farbe",
+      "default": "#D7D8D5"
+    },
+    {
+      "type": "range",
+      "id": "border_thickness",
+      "label": "Border Dicke",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Ecken Rundung",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 10
     }
   ],
   "blocks": [

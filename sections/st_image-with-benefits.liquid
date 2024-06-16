@@ -1,0 +1,605 @@
+{% comment %} Version: 1.0.0 {% endcomment %}
+
+{% comment %}
+  ---------------------------------------------------------
+  Copyright © 2024 Sternify. All rights reserved.
+  Any unauthorized reproduction, alteration, or distribution
+  of this code, in part or in whole, is expressly forbidden.
+  Violators will be subject to legal prosecution to the maximum
+  extent permitted by law. For permissions or inquiries,
+  please contact us in our discord server: https://discord.gg/NHHCEPhsG8
+  ---------------------------------------------------------
+{% endcomment %}
+
+<script
+  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/verifier.js?v=1717092340"
+  data-section-id="{{ section.id }}"
+  defer
+></script>
+
+<div class="st_not-found"></div>
+
+<style>
+  {%- assign main_font = section.settings.font_settings -%}
+  {%- assign main_font_bolder = section.settings.font_settings | font_modify: 'weight', 'bolder' -%}
+  {{ main_font | font_face }}
+  {{ main_font_bolder | font_face }}
+
+  .st_imwb-wrapper * {
+    font-family: "{{ main_font.family }}", {{ main_font.fallback_families }};
+  }
+
+  .st_stl-wrapper div:empty {
+    display: unset;
+  }
+
+
+  /*-_- -_- -_- Desktop -_- -_- -_- */
+  .st_ImageInfo {
+  	--Horizontal-Gap: 40px;
+  	position: relative;
+  	display: flex;
+  	flex-direction: row;
+  	flex-wrap: wrap;
+  	justify-content: space-between;
+  	align-items: center;
+  	gap: 40px var(--Horizontal-Gap);
+  	padding-block: 48px;
+    max-width: 140rem;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .st_ImageInfo-TopTitle {
+  	position: relative;
+  	width: 100%;
+  	color: hsl(0, 0%, 0%);
+  	font-family: Lobster;
+  	font-weight: 400;
+  	font-style: normal;
+  	font-size: 70px;
+  	line-height: normal;
+  	text-align: center;
+  }
+  .st_ImageInfo-Side {
+  	position: relative;
+  	width: 20%;
+  	display: flex;
+  	flex-direction: column;
+  	justify-content: flex-start;
+  	align-items: center;
+  	gap: 80px;
+  }
+  .st_ImageInfo-Left {
+  	position: relative;
+
+  }
+  .st_ImageInfo-Box {
+  	position: relative;
+  	display: flex;
+  	flex-direction: column;
+  	justify-content: center;
+  	align-items: center;
+  	gap: 15px;
+  }
+  .st_ImageInfo-Box-Icon {
+  	position: relative;
+  	width: 50px;
+  	height: 50px;
+  	object-fit: contain;
+  }
+  .st_ImageInfo-Box-Title {
+  	position: relative;
+  	color: hsl(0, 0%, 0%);
+  	font-family: Inter;
+  	font-weight: 600;
+  	font-style: normal;
+  	font-size: 30px;
+  	line-height: normal;
+    text-align: center;
+  }
+  .st_ImageInfo-Box-Text, .st_ImageInfo-Box-Text * {
+  	position: relative;
+  	color: hsl(0, 0%, 0%);
+  	font-family: Inter;
+  	font-weight: 400;
+  	font-style: normal;
+  	font-size: 20px;
+  	line-height: normal !important;
+  	text-align: center;
+  }
+  .st_ImageInfo-Center {
+  	position: relative;
+  	width: calc(60% - (var(--Horizontal-Gap) * 2));
+  }
+  .st_ImageInfo-Image {
+  	position: relative;
+  	width: 100%;
+  }
+  .st_ImageInfo-Right {
+  	position: relative;
+
+  }
+
+  /*-_- -_- -_- labtop -_- -_- -_-*/
+  @media (max-width: 1080px) {
+  	.st_ImageInfo {
+  		--Horizontal-Gap: 80px;
+  		position: relative;
+  		display: flex;
+  		flex-direction: row;
+  		flex-wrap: wrap;
+  		justify-content: space-between;
+  		align-items: center;
+  		gap: 40px var(--Horizontal-Gap);
+  		padding-block: 63px;
+  	}
+  	.st_ImageInfo-TopTitle {
+  		position: relative;
+  		width: 100%;
+  		color: hsl(0, 0%, 0%);
+  		font-family: Lobster;
+  		font-weight: 400;
+  		font-style: normal;
+  		font-size: 70px;
+  		font-size: 62.531px;
+  		line-height: normal;
+  		text-align: center;
+
+  		order: 1;
+  	}
+  	.st_ImageInfo-Side {
+  		position: relative;
+  		width: calc((100% - var(--Horizontal-Gap)) / 2);
+  		display: flex;
+  		flex-direction: column;
+  		justify-content: flex-start;
+  		align-items: center;
+  		gap: 90px;
+  	}
+  	.st_ImageInfo-Left {
+  		position: relative;
+
+  		order: 3;
+
+  	}
+  	.st_ImageInfo-Box {
+  		position: relative;
+  		display: flex;
+  		flex-direction: column;
+  		justify-content: center;
+  		align-items: center;
+  		gap: 17px;
+  	}
+  	.st_ImageInfo-Box-Icon {
+  		position: relative;
+  		width: 57px;
+  		height: 57px;
+  		object-fit: contain;
+  	}
+  	.st_ImageInfo-Box-Title {
+  		position: relative;
+  		color: hsl(0, 0%, 0%);
+  		font-family: Inter;
+  		font-weight: 600;
+  		font-style: normal;
+  		font-size: 35px;
+  		line-height: normal;
+  	}
+  	.st_ImageInfo-Box-Text {
+  		position: relative;
+  		color: hsl(0, 0%, 0%);
+  		font-family: Inter;
+  		font-weight: 400;
+  		font-style: normal;
+  		font-size: 24px;
+  		line-height: normal;
+  		text-align: center;
+  	}
+  	.st_ImageInfo-Center {
+  		position: relative;
+  		width: 100%;
+
+  		order: 2;
+  	}
+  	.st_ImageInfo-Image {
+  		position: relative;
+  		width: 100%;
+  	}
+  	.st_ImageInfo-Right {
+  		position: relative;
+
+  		order: 4;
+  	}
+  }
+
+  /*-_- -_- -_- Tablet -_- -_- -_-*/
+  @media (max-width: 728px) {
+  	.st_ImageInfo {
+  		--Horizontal-Gap: 35px;
+  		position: relative;
+  		display: flex;
+  		flex-direction: row;
+  		flex-wrap: wrap;
+  		justify-content: space-between;
+  		align-items: center;
+  		gap: 75px var(--Horizontal-Gap);
+  		padding-block: 35px;
+  	}
+  	.st_ImageInfo-TopTitle {
+  		position: relative;
+  		width: 100%;
+  		color: hsl(0, 0%, 0%);
+  		font-family: Lobster;
+  		font-weight: 400;
+  		font-style: normal;
+  		font-size: 70px;
+  		font-size: 62.531px;
+  		line-height: normal;
+  		text-align: center;
+
+  		order: 1;
+  	}
+  	.st_ImageInfo-Side {
+  		position: relative;
+  		width: calc((100% - var(--Horizontal-Gap)) / 2);
+  		display: flex;
+  		flex-direction: column;
+  		justify-content: flex-start;
+  		align-items: center;
+  		gap: 90px;
+  	}
+  	.st_ImageInfo-Left {
+  		position: relative;
+
+  		order: 3;
+
+  	}
+  	.st_ImageInfo-Box {
+  		position: relative;
+  		display: flex;
+  		flex-direction: column;
+  		justify-content: center;
+  		align-items: center;
+  		gap: 17px;
+  	}
+  	.st_ImageInfo-Box-Icon {
+  		position: relative;
+  		width: 50px;
+  		height: 50px;
+  		object-fit: contain;
+  	}
+  	.st_ImageInfo-Box-Title {
+  		position: relative;
+  		color: hsl(0, 0%, 0%);
+  		font-family: Inter;
+  		font-weight: 600;
+  		font-style: normal;
+  		font-size: 28px;
+  		line-height: normal;
+  	}
+  	.st_ImageInfo-Box-Text {
+  		position: relative;
+  		color: hsl(0, 0%, 0%);
+  		font-family: Inter;
+  		font-weight: 400;
+  		font-style: normal;
+  		font-size: 18px;
+  		line-height: normal;
+  		text-align: center;
+  	}
+  	.st_ImageInfo-Center {
+  		position: relative;
+  		width: 100%;
+
+  		order: 2;
+  	}
+  	.st_ImageInfo-Image {
+  		position: relative;
+  		width: 100%;
+  	}
+  	.st_ImageInfo-Right {
+  		position: relative;
+
+  		order: 4;
+  	}
+  }
+
+  /*-_- -_- -_- Mobile -_- -_- -_-*/
+  @media (max-width: 480px) {
+
+  	.st_ImageInfo {
+  		--Horizontal-Gap: 30px;
+  		position: relative;
+  		display: flex;
+  		flex-direction: row;
+  		flex-wrap: wrap;
+  		justify-content: space-between;
+  		align-items: center;
+  		gap: 49px var(--Horizontal-Gap);
+  		padding-block: 28px;
+  	}
+  	.st_ImageInfo-TopTitle {
+  		position: relative;
+  		width: 100%;
+  		color: hsl(0, 0%, 0%);
+  		font-family: Lobster;
+  		font-weight: 400;
+  		font-style: normal;
+  		font-size: 70px;
+  		font-size: 44.079px;
+  		line-height: normal;
+  		text-align: center;
+
+  		order: 1;
+  	}
+  	.st_ImageInfo-Side {
+  		position: relative;
+  		width: calc((100% - var(--Horizontal-Gap)) / 2);
+  		display: flex;
+  		flex-direction: column;
+  		justify-content: flex-start;
+  		align-items: center;
+  		gap: 50px;
+  	}
+  	.st_ImageInfo-Left {
+  		position: relative;
+
+  		order: 3;
+
+  	}
+  	.st_ImageInfo-Box {
+  		position: relative;
+  		display: flex;
+  		flex-direction: column;
+  		align-content: flex-start;
+  		justify-content: center;
+  		align-items: flex-start;
+  		gap: 30px;
+  	}
+  	.st_ImageInfo-Box-Icon {
+  		position: relative;
+  		width: 25px;
+  		height: 25px;
+  		object-fit: contain;
+  	}
+  	.st_ImageInfo-Box-Title {
+  		position: relative;
+  		color: hsl(0, 0%, 0%);
+  		font-family: Inter;
+  		font-weight: 600;
+  		font-style: normal;
+  		font-size: 18px;
+  		line-height: normal;
+  		text-align: left;
+  	}
+  	.st_ImageInfo-Box-Text {
+  		position: relative;
+  		color: hsl(0, 0%, 0%);
+  		font-family: Inter;
+  		font-weight: 400;
+  		font-style: normal;
+  		font-size: 14px;
+  		line-height: normal;
+  		text-align: left;
+  	}
+  	.st_ImageInfo-Center {
+  		position: relative;
+  		width: 100%;
+
+  		order: 2;
+  	}
+  	.st_ImageInfo-Image {
+  		position: relative;
+  		width: 100%;
+  	}
+  	.st_ImageInfo-Right {
+  		position: relative;
+
+  		order: 4;
+  	}
+  }
+</style>
+
+{% assign benefit_blocks_count = section.blocks.size %}
+{% assign benefit_blocks_left = section.blocks | slice: 0, 3 %}
+{% assign benefit_blocks_right = section.blocks | slice: 3, 6 %}
+
+{{ benefit_blocks_count }}
+
+<div class="st_wrapper st_imwb-wrapper st_check-section--{{ section.id }}">
+  <div class="st_ImageInfo">
+    <div class="st_ImageInfo-TopTitle">Warum Sternify?</div>
+    {% if benefit_blocks_count > 0 %}
+      <div class="st_ImageInfo-Side st_ImageInfo-Left">
+        {% for benefit_block in benefit_blocks_left %}
+          <div class="st_ImageInfo-Box">
+            {% if benefit_block %}
+              {% if benefit_block.settings.benefit_icon %}
+                <img
+                  class="st_ImageInfo-Box-Icon"
+                  src="{{ benefit_block.settings.benefit_icon | img_url: '100x100' }}"
+                >
+              {% else %}
+                <img
+                  class="st_ImageInfo-Box-Icon"
+                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/wind.svg?v=1718547931"
+                >
+              {% endif %}
+              <div class="st_ImageInfo-Box-Title">{{ benefit_block.settings.benefit_title }}</div>
+              <div class="st_ImageInfo-Box-Text">
+                {{ benefit_block.settings.benefit_text }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="st_ImageInfo-Center">
+        <img
+          class="st_ImageInfo-Image"
+          src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/example_product_cropped.png?v=1718548170"
+        >
+      </div>
+      <div class="st_ImageInfo-Side st_ImageInfo-Right">
+        {% for benefit_block in benefit_blocks_right %}
+          <div class="st_ImageInfo-Box">
+            {% if benefit_block %}
+              {% if benefit_block.settings.benefit_icon %}
+                <img
+                  class="st_ImageInfo-Box-Icon"
+                  src="{{ benefit_block.settings.benefit_icon | img_url: '100x100' }}"
+                >
+              {% else %}
+                <img
+                  class="st_ImageInfo-Box-Icon"
+                  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/wind.svg?v=1718547931"
+                >
+              {% endif %}
+              <div class="st_ImageInfo-Box-Title">{{ benefit_block.settings.benefit_title }}</div>
+              <div class="st_ImageInfo-Box-Text">
+                {{ benefit_block.settings.benefit_text }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="st_ImageInfo-Side st_ImageInfo-Left">
+        <div class="st_ImageInfo-Box">
+          <img
+            class="st_ImageInfo-Box-Icon"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/wind.svg?v=1718547931"
+          >
+          <div class="st_ImageInfo-Box-Title">Reiches Aroma</div>
+          <div class="st_ImageInfo-Box-Text">
+            Genieße das reiche Aroma und den tiefen Geschmack unserer frisch gerösteten Kaffeebohnen. Perfekt, um deinen
+            Tag richtig zu beginnen.
+          </div>
+        </div>
+        <div class="st_ImageInfo-Box">
+          <img
+            class="st_ImageInfo-Box-Icon"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/tree.svg?v=1718547931"
+          >
+          <div class="st_ImageInfo-Box-Title">Nachhaltig Bezogen</div>
+          <div class="st_ImageInfo-Box-Text">
+            Unsere Bohnen stammen aus nachhaltigem Anbau von den besten Kaffeeplantagen der Welt und garantieren
+            Qualität und ethische Praktiken.
+          </div>
+        </div>
+        <div class="st_ImageInfo-Box">
+          <img
+            class="st_ImageInfo-Box-Icon"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/coffee-bean.svg?v=1718547931"
+          >
+          <div class="st_ImageInfo-Box-Title">Fachmännisch Geröstet</div>
+          <div class="st_ImageInfo-Box-Text">
+            Jede Charge wird fachmännisch geröstet, um die einzigartigen Aromen und Eigenschaften jeder Bohne
+            hervorzuheben.
+          </div>
+        </div>
+      </div>
+      <div class="st_ImageInfo-Center">
+        <img
+          class="st_ImageInfo-Image"
+          src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/example_product_cropped.png?v=1718548170"
+        >
+      </div>
+      <div class="st_ImageInfo-Side st_ImageInfo-Right">
+        <div class="st_ImageInfo-Box">
+          <img
+            class="st_ImageInfo-Box-Icon"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/flower-lotus.svg?v=1718547931"
+          >
+          <div class="st_ImageInfo-Box-Title">Frische Garantiert</div>
+          <div class="st_ImageInfo-Box-Text">
+            Wir garantieren die Frische unseres Kaffees und bieten ein erstklassiges Erlebnis in jeder Tasse.
+          </div>
+        </div>
+        <div class="st_ImageInfo-Box">
+          <img
+            class="st_ImageInfo-Box-Icon"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/coffee.svg?v=1718547931"
+          >
+          <div class="st_ImageInfo-Box-Title">Vielseitiges Brühen</div>
+          <div class="st_ImageInfo-Box-Text">
+            Egal, ob du Espresso, Filterkaffee oder French Press bevorzugst, unsere Kaffeebohnen eignen sich perfekt für
+            alle Brühmethoden.
+          </div>
+        </div>
+        <div class="st_ImageInfo-Box">
+          <img
+            class="st_ImageInfo-Box-Icon"
+            src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/sparkle.svg?v=1718547931"
+          >
+          <div class="st_ImageInfo-Box-Title">Köstlicher Geschmack</div>
+          <div class="st_ImageInfo-Box-Text">
+            Erlebe mit jedem Schluck einen köstlichen Geschmack, der für Kaffeeliebhaber auf der ganzen Welt zur
+            Perfektion gebracht wurde.
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "💫: Image with Benefits",
+  "class": "section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "⚠️ Wichtig ⚠️",
+      "info": "Bitte beachte dass Sternify [App Einbettung](https://google.com) aktiviert sind."
+    },
+    {
+      "type": "header",
+      "content": "Allgemeine Einstellungen"
+    },
+    {
+      "type": "font_picker",
+      "id": "font_settings",
+      "label": "Font",
+      "default": "poppins_n4"
+    },
+    {
+      "type": "text",
+      "id": "headline_text",
+      "label": "Headline",
+      "default": "Warum Sternify?"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Benefit",
+      "type": "benefit",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "benefit_icon",
+          "label": "Benefit Icon/ Bild"
+        },
+        {
+          "type": "text",
+          "id": "benefit_title",
+          "label": "Benefit Titel",
+          "default": "Holy Geschmack"
+        },
+        {
+          "type": "richtext",
+          "id": "benefit_text",
+          "label": "Benefit Text",
+          "default": "<p>No more toothpaste explosions in your bag. Just throw a few Bits in your pack and you’re good to go</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "💫: Image with Benefits",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}
