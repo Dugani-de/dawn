@@ -1,4 +1,4 @@
-{% comment %} Version: 1.0.0 {% endcomment %}
+{% comment %} Version: 1.0.1 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -79,6 +79,7 @@
   	gap: 80px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
   .st_ImageInfo-Left {
   	position: relative;
@@ -322,8 +323,6 @@
 </style>
 
 {% assign benefit_blocks_count = section.blocks.size %}
-{% assign benefit_blocks_left = section.blocks | slice: 0, 3 %}
-{% assign benefit_blocks_right = section.blocks | slice: 3, 6 %}
 
 <div class="st_wrapper st_imwb-wrapper st_check-section--{{ section.id }}">
   <div class="st_ImageInfo">
@@ -331,26 +330,28 @@
     {% if benefit_blocks_count > 0 %}
       <div class="st_ImageInfo-benefits-wrapper">
         <div class="st_ImageInfo-Side st_ImageInfo-Left">
-          {% for benefit_block in benefit_blocks_left %}
-            <div class="st_ImageInfo-Box">
-              {% if benefit_block %}
-                {% if benefit_block.settings.benefit_icon %}
-                  <img
-                    class="st_ImageInfo-Box-Icon"
-                    src="{{ benefit_block.settings.benefit_icon | img_url: '100x100' }}"
-                  >
-                {% else %}
-                  <img
-                    class="st_ImageInfo-Box-Icon"
-                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/wind.svg?v=1718547931"
-                  >
+          {% for benefit_block in section.blocks %}
+            {% if forloop.index0 == 0 or forloop.index0 == 2 or forloop.index0 == 4 %}
+              <div class="st_ImageInfo-Box">
+                {% if benefit_block %}
+                  {% if benefit_block.settings.benefit_icon %}
+                    <img
+                      class="st_ImageInfo-Box-Icon"
+                      src="{{ benefit_block.settings.benefit_icon | img_url: '100x100' }}"
+                    >
+                  {% else %}
+                    <img
+                      class="st_ImageInfo-Box-Icon"
+                      src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/wind.svg?v=1718547931"
+                    >
+                  {% endif %}
+                  <div class="st_ImageInfo-Box-Title">{{ benefit_block.settings.benefit_title }}</div>
+                  <div class="st_ImageInfo-Box-Text">
+                    {{ benefit_block.settings.benefit_text }}
+                  </div>
                 {% endif %}
-                <div class="st_ImageInfo-Box-Title">{{ benefit_block.settings.benefit_title }}</div>
-                <div class="st_ImageInfo-Box-Text">
-                  {{ benefit_block.settings.benefit_text }}
-                </div>
-              {% endif %}
-            </div>
+              </div>
+            {% endif %}
           {% endfor %}
         </div>
         <div class="st_ImageInfo-Center">
@@ -364,26 +365,28 @@
           {% endif %}
         </div>
         <div class="st_ImageInfo-Side st_ImageInfo-Right">
-          {% for benefit_block in benefit_blocks_right %}
-            <div class="st_ImageInfo-Box">
-              {% if benefit_block %}
-                {% if benefit_block.settings.benefit_icon %}
-                  <img
-                    class="st_ImageInfo-Box-Icon"
-                    src="{{ benefit_block.settings.benefit_icon | img_url: '100x100' }}"
-                  >
-                {% else %}
-                  <img
-                    class="st_ImageInfo-Box-Icon"
-                    src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/wind.svg?v=1718547931"
-                  >
+          {% for benefit_block in section.blocks %}
+            {% if forloop.index0 == 1 or forloop.index0 == 3 or forloop.index0 == 5 %}
+              <div class="st_ImageInfo-Box">
+                {% if benefit_block %}
+                  {% if benefit_block.settings.benefit_icon %}
+                    <img
+                      class="st_ImageInfo-Box-Icon"
+                      src="{{ benefit_block.settings.benefit_icon | img_url: '100x100' }}"
+                    >
+                  {% else %}
+                    <img
+                      class="st_ImageInfo-Box-Icon"
+                      src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/wind.svg?v=1718547931"
+                    >
+                  {% endif %}
+                  <div class="st_ImageInfo-Box-Title">{{ benefit_block.settings.benefit_title }}</div>
+                  <div class="st_ImageInfo-Box-Text">
+                    {{ benefit_block.settings.benefit_text }}
+                  </div>
                 {% endif %}
-                <div class="st_ImageInfo-Box-Title">{{ benefit_block.settings.benefit_title }}</div>
-                <div class="st_ImageInfo-Box-Text">
-                  {{ benefit_block.settings.benefit_text }}
-                </div>
-              {% endif %}
-            </div>
+              </div>
+            {% endif %}
           {% endfor %}
         </div>
       </div>
