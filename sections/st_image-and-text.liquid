@@ -1,4 +1,4 @@
-{% comment %} Version: 2.0.1 {% endcomment %}
+{% comment %} Version: 2.0.2 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -96,7 +96,7 @@
     width: 140px;
     height: 140px;
     border-radius: 50%;
-    border: 3px solid #fff;
+    border: {{section.settings.border_thickness}}px solid {{ section.settings.border_color }};
     object-fit: cover;
   }
 
@@ -388,6 +388,21 @@
       "id": "box_text",
       "label": "Vorteil Box Text",
       "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Farbe",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "border_thickness",
+      "label": "Border Dicke",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "default": 3
     },
     {
       "type": "header",
