@@ -1,4 +1,4 @@
-{% comment %} Version: 2.0.2 {% endcomment %}
+{% comment %} Version: 2.0.3 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -39,7 +39,7 @@
     gap: 200px;
     margin-top: {{ section.settings.margin_top }}px;
     margin-bottom: {{ section.settings.margin_bottom }}px;
-    padding-inline: 50px;
+    padding-inline: 0px;
     flex-direction: {% if section.settings.bild_position == 'rechts' %}row{% else %}row-reverse{% endif %};
     height: fit-content;
   }
@@ -333,7 +333,7 @@
       "min": 100,
       "max": 200,
       "step": 10,
-      "default": 140
+      "default": 130
     },
     {
       "type": "range",
