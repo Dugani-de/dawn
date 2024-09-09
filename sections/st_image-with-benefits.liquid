@@ -1,4 +1,4 @@
-{% comment %} Version: 1.0.1 {% endcomment %}
+{% comment %} Version: 1.0.2 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -52,7 +52,7 @@
   	align-items: center;
   	gap: 40px var(--Horizontal-Gap);
   	padding-block: 48px;
-    max-width: 140rem;
+    max-width: {{section.settings.max_block_width}}rem;
     margin: 0 auto;
     padding: 20px;
   }
@@ -520,6 +520,15 @@
       "id": "headline_text",
       "label": "Headline",
       "default": "Warum Sternify?"
+    },
+    {
+      "type": "range",
+      "id": "max_block_width",
+      "min": 110,
+      "max": 180,
+      "step": 10,
+      "default": 140,
+      "label": "Maximale Breite - nur für Desktop"
     },
     {
       "type": "header",
