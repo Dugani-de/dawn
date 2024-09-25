@@ -1,4 +1,4 @@
-{% comment %} Version: 2.0.4 {% endcomment %}
+{% comment %} Version: 2.0.5 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -147,7 +147,7 @@
     }
     .st_img-text-wrapper--{{ section.id }} {
       flex-direction: column-reverse;
-      gap: 60px;
+      gap: {%  if section.settings.show_zoomed_image %} 60px {% else %} 15px {% endif %};
       padding-inline: 0px;
     }
     .st_img-text-text--{{ section.id }} {
