@@ -1,4 +1,4 @@
-{% comment %} Version: 2.0.3 {% endcomment %}
+{% comment %} Version: 2.0.4 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -224,13 +224,18 @@
         <img style="width:100%" src="https://placehold.co/600x400">
       {% endif %}
 
-      {% if section.settings.gezoomtes_bild %}
-        <img
-          class="st_img-text-image-floating--{{ section.id }}"
-          src="{{ section.settings.gezoomtes_bild | image_url: width: "400" }}"
-        >
-      {% else %}
-        <img class="st_img-text-image-floating--{{ section.id }}" src="https://placehold.co/400x400">
+      {% if section.settings.show_zoomed_image %}
+        {% if section.settings.gezoomtes_bild %}
+          <img
+            class="st_img-text-image-floating--{{ section.id }}"
+            src="{{ section.settings.gezoomtes_bild | image_url: width: "400" }}"
+          >
+        {% else %}
+          <img
+            class="st_img-text-image-floating--{{ section.id }}"
+            src="https://placehold.co/400x400"
+          >
+        {% endif %}
       {% endif %}
     </div>
   </div>
@@ -269,9 +274,19 @@
       "label": "Bild"
     },
     {
+      "type": "header",
+      "content": "Zoomed Image Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_zoomed_image",
+      "label": "Show Zoomed Image",
+      "default": true
+    },
+    {
       "type": "image_picker",
       "id": "gezoomtes_bild",
-      "label": "Gezoomtes Bild"
+      "label": "Zoomed Image"
     },
     {
       "type": "text",
