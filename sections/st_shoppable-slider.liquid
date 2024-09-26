@@ -609,6 +609,21 @@
           const video = currentSlide.querySelector('video');
           const iconPause = currentSlide.querySelector('#iconPause');
           const iconPlay = currentSlide.querySelector('#iconPlay');
+
+          // Check if any other slide is currently being played
+          allSlides.forEach((otherSlide) => {
+            if (otherSlide !== currentSlide) {
+              const otherVideo = otherSlide.querySelector('video');
+              const otherIconPause = otherSlide.querySelector('#iconPause');
+              const otherIconPlay = otherSlide.querySelector('#iconPlay');
+              if (otherVideo && !otherVideo.paused) {
+                otherVideo.pause();
+                otherIconPause.style.display = 'none';
+                otherIconPlay.style.display = 'block';
+              }
+            }
+          });
+
           if (video.paused) {
             //set video volume
             video.volume = 0.4;
