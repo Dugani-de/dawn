@@ -289,7 +289,7 @@
     .st_ugc-section .swiper {
       padding-top: 20px;
       padding-bottom: 20px;
-      zoom
+      zoom: 0.8;
     }
 
     .st_ugc-section-slider-description-text-user-name{
@@ -542,115 +542,6 @@
   </div>
 </div>
 
-{% if request.visual_preview_mode %}
-  <!-- This will only render in the theme editor visual preview -->
-  <h1>Visual Preview Mode</h1>
-{% endif %}
-
-<script>
-  function st_init_shoppable_slider() {
-    var swiper = new Swiper('.st_ugc-section-swiper', {
-      effect: 'coverflow',
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      spaceBetween: 30,
-      threshold: 10,
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 100,
-        modifier: 1.5,
-        slideShadows: true,
-      },
-      loop: true,
-      breakpoints: {
-        750: {
-          spaceBetween: 50,
-        },
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-
-      on: {
-        slideChange: function () {
-          console.log('slideChange');
-          stopAllVideos();
-        },
-      },
-    });
-
-    function stopAllVideos() {
-      document.querySelectorAll('video').forEach((video) => {
-        video.pause();
-      });
-
-      // Reset play/pause icons
-      document.querySelectorAll('#iconPause').forEach((icon) => (icon.style.display = 'none'));
-      document.querySelectorAll('#iconPlay').forEach((icon) => (icon.style.display = 'block'));
-    }
-
-    // Add click event listener to slides to play the video when the slide is clicked
-    const allSlides = document.querySelectorAll('.swiper-slide');
-
-    allSlides.forEach((slide) => {
-      slide.addEventListener('click', (event) => {
-        const currentSlide = event.target.closest('.swiper-slide');
-
-        if (
-          currentSlide.classList.contains('swiper-slide-active') ||
-          currentSlide.classList.contains('swiper-slide-next') ||
-          currentSlide.classList.contains('swiper-slide-prev')
-        ) {
-          const video = currentSlide.querySelector('video');
-          const iconPause = currentSlide.querySelector('#iconPause');
-          const iconPlay = currentSlide.querySelector('#iconPlay');
-
-          // Check if any other slide is currently being played
-          allSlides.forEach((otherSlide) => {
-            if (otherSlide !== currentSlide) {
-              const otherVideo = otherSlide.querySelector('video');
-              const otherIconPause = otherSlide.querySelector('#iconPause');
-              const otherIconPlay = otherSlide.querySelector('#iconPlay');
-              if (otherVideo && !otherVideo.paused) {
-                otherVideo.pause();
-                otherIconPause.style.display = 'none';
-                otherIconPlay.style.display = 'block';
-              }
-            }
-          });
-
-          if (video.paused) {
-            //set video volume
-            video.volume = 0.4;
-            video.play();
-            iconPause.style.display = 'block';
-            iconPlay.style.display = 'none';
-          } else {
-            video.pause();
-            iconPause.style.display = 'none';
-            iconPlay.style.display = 'block';
-          }
-
-          // Reset video and icons when the video ends
-          video.addEventListener('ended', function () {
-            video.currentTime = 0;
-            iconPlay.style.display = 'block';
-            iconPause.style.display = 'none';
-          });
-        }
-      });
-    });
-  }
-
-  document.addEventListener('shopify:section:load', st_init_shoppable_slider);
-  document.addEventListener('DOMContentLoaded', st_init_shoppable_slider);
-</script>
-
 {% schema %}
 {
   "name": "💫: Shoppable Slider",
@@ -684,30 +575,6 @@
     },
     {
       "type": "font_picker",
-      "id": "subtitle_font",
-      "label": "Untertitel-Schriftart",
-      "default": "poppins_n3"
-    },
-    {
-      "type": "range",
-      "id": "subtitle_fontsize_desktop",
-      "label": "Untertitel-Schriftgröße (Desktop)",
-      "min": 10,
-      "max": 30,
-      "step": 1,
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "subtitle_fontsize_mobile",
-      "label": "Untertitel-Schriftgröße (Mobile)",
-      "min": 10,
-      "max": 30,
-      "step": 1,
-      "default": 16
-    },
-    {
-      "type": "font_picker",
       "id": "title_font",
       "label": "Titel-Schriftart",
       "default": "poppins_n6"
@@ -729,6 +596,30 @@
       "max": 50,
       "step": 1,
       "default": 32
+    },
+    {
+      "type": "font_picker",
+      "id": "subtitle_font",
+      "label": "Untertitel-Schriftart",
+      "default": "poppins_n3"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_fontsize_desktop",
+      "label": "Untertitel-Schriftgröße (Desktop)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "subtitle_fontsize_mobile",
+      "label": "Untertitel-Schriftgröße (Mobile)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 16
     },
     {
       "type": "font_picker",
