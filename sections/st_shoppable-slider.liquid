@@ -601,7 +601,11 @@
       slide.addEventListener('click', (event) => {
         const currentSlide = event.target.closest('.swiper-slide');
 
-        if (currentSlide.classList.contains('swiper-slide-active')) {
+        if (
+          currentSlide.classList.contains('swiper-slide-active') ||
+          currentSlide.classList.contains('swiper-slide-next') ||
+          currentSlide.classList.contains('swiper-slide-prev')
+        ) {
           const video = currentSlide.querySelector('video');
           const iconPause = currentSlide.querySelector('#iconPause');
           const iconPlay = currentSlide.querySelector('#iconPlay');
