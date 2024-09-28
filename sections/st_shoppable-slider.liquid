@@ -1,4 +1,4 @@
-{% comment %} Version: 1.0.0 {% endcomment %}
+{% comment %} Version: 1.0.2 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -36,12 +36,12 @@
   .st_ugc-section {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    padding-block: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 160rem;
+    max-width: 1650px;
     margin: 0 auto;
   }
 
@@ -105,7 +105,7 @@
     opacity: 1 !important;
   }
 
-  .swiper-slide-active,
+  .st_ugc-section .swiper-slide-active,
   .st_ugc-section .swiper-slide-prev,
   .st_ugc-section .swiper-slide-next {
     opacity: 1 !important;
@@ -275,7 +275,7 @@
   }
 
   @media (max-width: 750px) {
-    .swiper-slide{
+    .st_ugc-section .swiper-slide{
       width: 288px;
       height: 512px;
     }
