@@ -1,0 +1,800 @@
+{% assign subtitle_font = section.settings.subtitle_font %}
+{% assign title_font = section.settings.title_font %}
+{% assign text_font = section.settings.text_font %}
+{% assign max_width = section.settings.max_width %}
+{% assign max_height = section.settings.max_height | default: 400 %}
+
+<script
+  src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/verifier.js?v=1717092340"
+  data-section-id="{{ section.id }}"
+></script>
+
+<div class="st_not-found"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8.4.7/swiper-bundle.min.css">
+
+<style>
+  {{ subtitle_font | font_face }}
+  {{ title_font | font_face }}
+  {{ text_font | font_face }}
+
+  .st-product-benefit-tabs-section div:empty {
+    display: flex;
+  }
+
+  .st-product-benefit-tabs-section {
+    position: relative;
+    width: 100%;
+    min-height: fit-content;
+    max-width: {{ max_width }}px;
+    margin: {{ section.settings.margin_top }}px auto {{ section.settings.margin_bottom }}px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline: 20px;
+  }
+
+  .st-product-benefit-tabs-section-heading {
+    margin-bottom: 20px;
+  }
+
+  .st-product-benefit-tabs-section-heading * {
+    font-size: {{ section.settings.title_fontsize_desktop }}px;
+    font-family: {{ title_font.family }}, {{ title_font.fallback_families }};
+    font-weight: {{ title_font.weight }};
+    line-height: 1.2;
+    color: {{ section.settings.title_color }};
+  }
+
+  .st-product-benefit-tabs-section .swiper {
+    width: 80%;
+    height: 100%;
+    max-width: {{ max_width }}px;
+  }
+
+  .st-product-benefit-tabs-section .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7%;
+  }
+
+  .st-product-benefit-tabs-section-text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 45%;
+    max-width: 45%;
+  }
+
+  .st-product-benefit-tabs-section-text-content-subheading {
+    font-size: {{ section.settings.subtitle_fontsize_desktop }}px;
+    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
+    font-weight: {{ subtitle_font.weight }};
+    line-height: 1.2;
+    margin-bottom: 5px;
+    color: {{ section.settings.subtitle_color }};
+  }
+
+  .st-product-benefit-tabs-section-text-content-description {
+    font-size: {{ section.settings.text_fontsize }}px;
+    font-family: {{ text_font.family }}, {{ text_font.fallback_families }};
+    font-weight: {{ text_font.weight }};
+    color: {{ section.settings.description_color }} !important;
+  }
+
+  .st-product-benefit-tabs-section-image-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: {{max_height}}px;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .st-product-benefit-tabs-section-image-content img {
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .st-product-benefit-tabs-section .swiper-button-next,
+  .st-product-benefit-tabs-section .swiper-button-prev {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: 58%;
+    z-index: 1;
+    background-color: {{ section.settings.nav_button_background }};
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  }
+
+  .st-product-benefit-tabs-section .swiper-button-next::after,
+  .st-product-benefit-tabs-section .swiper-button-prev::after {
+    font-size: 15px;
+    font-weight: bolder;
+    color: {{ section.settings.nav_button_arrow }};
+  }
+
+  .swiper-pagination {
+    bottom: unset !important;
+    margin-bottom: 35px !important;
+    position: relative;
+    text-align: center;
+    transform: translate3d(0, 0, 0);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    height: fit-content;
+    width: fit-content !important;
+    background-color: {{ section.settings.tab_background }};
+    border-radius: 10px;
+    margin-inline: 20px;
+  }
+
+  .swiper-pagination-bullet {
+    margin: 0px !important;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 10px 20px;
+    height: 50px;
+    text-align: center;
+    font-size: 15px;
+    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
+    font-weight: {{ subtitle_font.weight }};
+    color: {{ section.settings.tab_text }};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    opacity: 1;
+    background-color: {{ section.settings.tab_background }};
+    transition: scale 0.5s ease-in-out;
+  }
+
+  .swiper-pagination-bullet:hover {
+    scale: 1.05;
+  }
+
+  .swiper-pagination-bullet img {
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    object-fit: contain;
+    position: relative;
+    border-radius: 5px;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: {{ section.settings.active_tab_background }};
+    border: {{ section.settings.active_tab_border_thickness }}px solid {{ section.settings.active_tab_border }};
+  }
+
+  .swiper-pagination-bullet-active h1 {
+    color: {{ section.settings.active_tab_text }};
+  }
+
+  .st-product-benefit-tabs-section .swiper-button-next {
+    right: 5%;
+  }
+
+  .st-product-benefit-tabs-section .swiper-button-prev {
+    left: 5%;
+  }
+
+  .st-product-benefit-tabs-section-dropdown {
+    position: relative;
+    display: none;
+    padding-bottom: 20px;
+    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
+    font-weight: {{ subtitle_font.weight }};
+  }
+
+  .st-product-benefit-tabs-section-dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background-color: transparent;
+  }
+
+  .st-product-benefit-tabs-section-dropdown button {
+    min-width: 180px;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: {{ section.settings.tab_text }};
+    background-color: {{ section.settings.tab_background }};
+    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
+    font-weight: {{ subtitle_font.weight }};
+    cursor: pointer;
+  }
+
+  .st-product-benefit-tabs-section-dropdown-button img {
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    object-fit: contain;
+    position: relative;
+    border-radius: 5px;
+  }
+
+  .st-product-benefit-tabs-section-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: {{ section.settings.tab_background }};
+    transform: translate(-50%, 0);
+    top: 80%;
+    left: 50%;
+    min-width: 100%;
+    z-index: 2 !important;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
+    font-weight: {{ subtitle_font.weight }};
+  }
+
+  .st-product-benefit-tabs-section-dropdown-content div {
+    color: {{ section.settings.tab_text }};
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: max-content;
+  }
+
+  .st-product-benefit-tabs-section-dropdown-content div img {
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    object-fit: contain;
+    position: relative;
+  }
+
+  .st-product-benefit-tabs-section-dropdown-content div.active {
+    color: {{ section.settings.active_tab_text }};
+    background-color: {{ section.settings.active_tab_background }};
+    font-weight: bold;
+    border: {{ section.settings.active_tab_border_thickness }}px solid {{ section.settings.active_tab_border }};
+    border-radius: 10px;
+  }
+
+  .st-product-benefit-tabs-section-text-content-icon {
+    width: 50px;
+    height: 50px;
+    min-height: 50px;
+    min-width: 50px;
+    border-radius: 5px;
+    overflow: hidden;
+    object-fit: contain;
+    position: relative;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 1024px) {
+    .st-product-benefit-tabs-section .swiper-button-next,
+    .st-product-benefit-tabs-section.swiper-button-prev {
+      top: 45%;
+    }
+
+    .st-product-benefit-tabs-section .swiper-pagination {
+      display: none;
+    }
+
+    .st-product-benefit-tabs-section-dropdown {
+      display: inline-block;
+    }
+
+    .st-product-benefit-tabs-section .swiper-slide {
+      gap: 20px;
+      flex-direction: column-reverse;
+      align-items: stretch;
+    }
+
+    .st-product-benefit-tabs-section-text-content {
+      max-width: 100%;
+      align-items: {% if section.settings.text_alignment == "center" %}center{% elsif section.settings.text_alignment == "left" %}flex-start{% else %}flex-end{% endif %};
+      text-align: {{ section.settings.text_alignment }};
+    }
+
+    .st-product-benefit-tabs-section-heading * {
+      font-size: {{ section.settings.title_fontsize_mobile | plus: 10 }}px;
+      text-align: center;
+    }
+
+    .st-product-benefit-tabs-section-image-content {
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .st-product-benefit-tabs-section .swiper {
+      width: 100%;
+    }
+
+    .st-product-benefit-tabs-section-text-content-description {
+      text-align: {{ section.settings.text_alignment }};
+    }
+
+    .st-product-benefit-tabs-section-text-content-subheading {
+      text-align: {{ section.settings.text_alignment }};
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .st-product-benefit-tabs-section .swiper-button-next,
+    .st-product-benefit-tabs-section .swiper-button-prev {
+      top: 35%;
+    }
+
+    .st-product-benefit-tabs-section-heading * {
+      font-size: {{ section.settings.title_fontsize_mobile }}px;
+      text-align: center;
+    }
+
+    .st-product-benefit-tabs-section-image-content {
+      width: 100%;
+    }
+
+    .st-product-benefit-tabs-section-text-content-subheading {
+      font-size: {{ section.settings.subtitle_fontsize_mobile }}px;
+    }
+  }
+</style>
+
+<script type="application/json" id="product-benefit-tabs-data">
+  {
+    "icons": [{% for block in section.blocks %}{% if block.settings.slider_icon %}"{{ block.settings.slider_icon | image_url: width: 100 }}"{% else %}"https://cdn.shopify.com/s/files/1/0799/5880/2740/files/perfume_1.svg?v=1728075130"{% endif %}{% unless forloop.last %},{% endunless %}{% endfor %}],
+    "menu": [{% for block in section.blocks %}"{{ block.settings.icon_title }}"{% unless forloop.last %},{% endunless %}{% endfor %}],
+    "showIcons": {{ section.settings.show_icons | json }}
+  }
+</script>
+
+<div class="st_wrapper st_check-section--{{ section.id }}">
+  <section class="st-product-benefit-tabs-section">
+    <div class="st-product-benefit-tabs-section-heading">
+      <h1>{{ section.settings.title }}</h1>
+    </div>
+
+    <div class="swiper-pagination"></div>
+    <div class="st-product-benefit-tabs-section-dropdown">
+      <button class="st-product-benefit-tabs-section-dropdown-button">Soft as a cloud</button>
+      <div id="myDropdown" class="st-product-benefit-tabs-section-dropdown-content"></div>
+    </div>
+
+    <div class="swiper st-product-benefit-tabs-section-swiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide">
+            <div class="st-product-benefit-tabs-section-text-content">
+              {% if section.settings.show_icons %}
+                <div class="st-product-benefit-tabs-section-text-content-icon">
+                  {% if block.settings.slider_icon %}
+                    <img src="{{ block.settings.slider_icon | image_url: width: 100 }}">
+                  {% else %}
+                    <img src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/perfume_1.svg?v=1728075130">
+                  {% endif %}
+                </div>
+              {% endif %}
+              <h2 class="st-product-benefit-tabs-section-text-content-subheading">
+                {{ block.settings.slider_subtitle }}
+              </h2>
+              <h3 class="st-product-benefit-tabs-section-text-content-description">
+                {{ block.settings.slider_description }}
+              </h3>
+            </div>
+            <div class="st-product-benefit-tabs-section-image-content">
+              {% if block.settings.slider_image %}
+                <img src="{{ block.settings.slider_image | image_url: width: 800 }}">
+              {% else %}
+                <img src="https://cdn.shopify.com/s/files/1/0799/5880/2740/files/placeholder_1920x1080_6e9610d7-ed6c-4956-9a78-a861864db570.png?v=1728076384">
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  function stProductBenefitTabsInit() {
+    var data = JSON.parse(document.getElementById('product-benefit-tabs-data').textContent);
+    var icons = data.icons;
+    var menu = data.menu;
+    var showIcons = data.showIcons;
+
+    var swiper = new Swiper('.st-product-benefit-tabs-section-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      autoHeight: true,
+      loop: true,
+      grabCursor: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        renderBullet: function (index, className) {
+          return (
+            '<span class="' +
+            className +
+            '">' +
+            (showIcons ? '<img src="' + icons[index] + '">' : '') +
+            '<h1>' +
+            menu[index] +
+            '</h1></span>'
+          );
+        },
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      touchRatio: 1.5,
+    });
+
+    var dropdown = document.querySelector('.st-product-benefit-tabs-section-dropdown');
+    var dropdownButton = document.querySelector('.st-product-benefit-tabs-section-dropdown-button');
+    var dropdownContent = document.getElementById('myDropdown');
+    var isDropdownOpen = false;
+
+    function setActiveOption(index) {
+      dropdownButton.innerHTML = (showIcons ? '<img src="' + icons[index] + '">' : '') + ' ' + menu[index];
+      dropdownButton.classList.add('active');
+
+      dropdownContent.querySelectorAll('div').forEach(function (el, i) {
+        if (i === index) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+    }
+
+    menu.forEach(function (item, index) {
+      var div = document.createElement('div');
+      div.innerHTML = (showIcons ? '<img src="' + icons[index] + '">' : '') + ' ' + item;
+      if (index === 0) {
+        div.classList.add('active');
+      }
+
+      div.addEventListener('click', function (event) {
+        event.stopPropagation();
+        swiper.slideToLoop(index);
+        setActiveOption(index);
+        hideDropdown();
+      });
+
+      dropdownContent.appendChild(div);
+    });
+
+    // Pre-select the first option for both desktop and mobile
+    setActiveOption(0);
+
+    function showDropdown() {
+      dropdownContent.style.display = 'block';
+      isDropdownOpen = true;
+    }
+
+    function hideDropdown() {
+      dropdownContent.style.display = 'none';
+      isDropdownOpen = false;
+    }
+
+    function toggleDropdown(event) {
+      event.stopPropagation();
+      if (isDropdownOpen) {
+        hideDropdown();
+      } else {
+        showDropdown();
+      }
+    }
+
+    dropdownButton.addEventListener('click', toggleDropdown);
+
+    document.addEventListener('click', function (event) {
+      if (!dropdown.contains(event.target)) {
+        hideDropdown();
+      }
+    });
+
+    if (window.matchMedia('(hover: hover)').matches) {
+      dropdown.addEventListener('mouseenter', showDropdown);
+      dropdown.addEventListener('mouseleave', hideDropdown);
+    }
+
+    swiper.on('slideChange', function () {
+      var activeIndex = swiper.realIndex;
+      setActiveOption(activeIndex);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', stProductBenefitTabsInit);
+  document.addEventListener('shopify:section:load', stProductBenefitTabsInit);
+</script>
+
+{% schema %}
+{
+  "name": "💫: Product Benefit Tabs",
+  "class": "sternify-section",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "header",
+      "content": "⚠️ Wichtig ⚠️",
+      "info": "Bitte beachte dass Sternify [App Einbettung](https://www.sternify.com/app-extentions) aktiviert sind."
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Abstand nach oben",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Abstand nach unten",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Titel und Untertitel"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum Width",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "default": 1600,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "it's what's inside that counts"
+    },
+    {
+      "type": "header",
+      "content": "Schriftart-Einstellungen"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Titel-Schriftart",
+      "default": "poppins_n6"
+    },
+    {
+      "type": "range",
+      "id": "title_fontsize_desktop",
+      "label": "Titel-Schriftgröße (Desktop)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "title_fontsize_mobile",
+      "label": "Titel-Schriftgröße (Mobile)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "default": 24
+    },
+    {
+      "type": "font_picker",
+      "id": "subtitle_font",
+      "label": "Untertitel-Schriftart",
+      "default": "poppins_n6"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_fontsize_desktop",
+      "label": "Untertitel-Schriftgröße (Desktop)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "subtitle_fontsize_mobile",
+      "label": "Untertitel-Schriftgröße (Mobile)",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "default": 25
+    },
+    {
+      "type": "font_picker",
+      "id": "text_font",
+      "label": "Beschreibungs-Text Schriftart",
+      "default": "poppins_n4"
+    },
+    {
+      "type": "range",
+      "id": "text_fontsize",
+      "label": "Beschreibungs-Text Schriftgröße",
+      "min": 10,
+      "max": 25,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Beschreibungs-Text Ausrichtung (Mobile)",
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Icon Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icons",
+      "label": "Show Icons",
+      "default": true,
+      "info": "Enable or disable icons in tabs and dropdown"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#351416"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#351416"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Text Color",
+      "default": "#080808"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_background",
+      "label": "Navigation Button Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_arrow",
+      "label": "Navigation Button Arrow Color",
+      "default": "#191919"
+    },
+    {
+      "type": "color",
+      "id": "tab_background",
+      "label": "Tab/Dropdown Background Color",
+      "default": "#FEFCF7"
+    },
+    {
+      "type": "color",
+      "id": "tab_text",
+      "label": "Tab/Dropdown Text Color",
+      "default": "#161616"
+    },
+    {
+      "type": "color",
+      "id": "active_tab_background",
+      "label": "Active Tab/Dropdown Background Color",
+      "default": "#FFFCF9"
+    },
+    {
+      "type": "color",
+      "id": "active_tab_text",
+      "label": "Active Tab/Dropdown Text Color",
+      "default": "#131313"
+    },
+    {
+      "type": "color",
+      "id": "active_tab_border",
+      "label": "Active Tab Border Color",
+      "default": "#C8B258"
+    },
+    {
+      "type": "range",
+      "id": "active_tab_border_thickness",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Active Tab Border Thickness",
+      "default": 1
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Benefit Tab",
+      "type": "benefit_tab",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slider_image",
+          "label": "Slider Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "slider_icon",
+          "label": "Slider Icon",
+          "info": "Wird angezeigt wenn 'Icons anzeigen' in Product Benefit Tabs aktiviert ist."
+        },
+        {
+          "type": "text",
+          "id": "icon_title",
+          "label": "Icon Title",
+          "default": "Morning Breeze"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "slider_subtitle",
+          "label": "Slider Subtitle",
+          "default": "Der Duft des Morgens."
+        },
+        {
+          "type": "richtext",
+          "id": "slider_description",
+          "label": "Slider Description",
+          "default": "<p>Ein erfrischender Duft, der die Leichtigkeit des Morgens einfängt. Noten von taufrischen Blumen und saftigem Gras bringen das Gefühl eines sonnigen Frühlingsmorgens zum Leben, perfekt, um den Tag mit einer klaren und belebenden Frische zu beginnen.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "💫: Product Benefit Tabs",
+      "blocks": [
+        {
+          "type": "benefit_tab"
+        },
+        {
+          "type": "benefit_tab"
+        },
+        {
+          "type": "benefit_tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
