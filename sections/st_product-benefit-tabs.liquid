@@ -83,6 +83,13 @@
     color: {{ section.settings.description_color }} !important;
   }
 
+  .st-product-benefit-tabs-section-text-content-description p {
+    font-size: {{ section.settings.text_fontsize }}px;
+    font-family: {{ text_font.family }}, {{ text_font.fallback_families }};
+    font-weight: {{ text_font.weight }};
+    color: {{ section.settings.description_color }} !important;
+  }
+
   .st-product-benefit-tabs-section-image-content {
     display: flex;
     align-items: center;
@@ -91,14 +98,16 @@
     border-radius: 15px;
     overflow: hidden;
     width: 100%;
+    height: {{max_height}}px;
   }
 
   .st-product-benefit-tabs-section-image-content img {
     border-radius: 15px;
     width: auto;
-    height: auto;
+    height: min-content;
     max-width: 100%;
     max-height: 100%;
+    object-fit: contain;
   }
 
   .st-product-benefit-tabs-section .swiper-button-next,
@@ -145,8 +154,9 @@
     height: 50px;
     text-align: center;
     font-size: 15px;
-    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
-    font-weight: {{ subtitle_font.weight }};
+    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }};
+    font-weight: {{ section.settings.tab_font.weight }};
+    font-size: {{ section.settings.tab_fontsize }}px;
     color: {{ section.settings.tab_text }};
     display: flex;
     justify-content: center;
@@ -155,6 +165,12 @@
     opacity: 1;
     background-color: {{ section.settings.tab_background }};
     transition: scale 0.5s ease-in-out;
+  }
+
+  .swiper-pagination-bullet h1 {
+    font-size: {{ section.settings.tab_fontsize }}px;
+    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }};
+    font-weight: {{ section.settings.tab_font.weight }};
   }
 
   .swiper-pagination-bullet:hover {
@@ -192,8 +208,8 @@
     position: relative;
     display: none;
     padding-bottom: 20px;
-    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
-    font-weight: {{ subtitle_font.weight }};
+    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }};
+    font-weight: {{ section.settings.tab_font.weight }};
   }
 
   .st-product-benefit-tabs-section-dropdown::after {
@@ -218,8 +234,9 @@
     font-size: 14px;
     color: {{ section.settings.tab_text }};
     background-color: {{ section.settings.tab_background }};
-    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
-    font-weight: {{ subtitle_font.weight }};
+    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }};
+    font-weight: {{ section.settings.tab_font.weight }};
+    font-size: {{ section.settings.tab_fontsize }}px;
     cursor: pointer;
   }
 
@@ -245,8 +262,15 @@
     border-radius: 10px;
     font-size: 14px;
     cursor: pointer;
-    font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
-    font-weight: {{ subtitle_font.weight }};
+    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }};
+    font-weight: {{ section.settings.tab_font.weight }};
+    font-size: {{ section.settings.tab_fontsize }}px;
+  }
+
+  .st-product-benefit-tabs-section-dropdown-content * {
+    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }};
+    font-weight: {{ section.settings.tab_font.weight }};
+    font-size: {{ section.settings.tab_fontsize }}px;
   }
 
   .st-product-benefit-tabs-section-dropdown-content div {
@@ -352,6 +376,8 @@
 
     .st-product-benefit-tabs-section-image-content {
       width: 100%;
+      max-height: unset;
+      height: 100%;
     }
 
     .st-product-benefit-tabs-section-text-content-subheading {
@@ -417,119 +443,7 @@
   </section>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
 <script>
-  function stProductBenefitTabsInit() {
-    var data = JSON.parse(document.getElementById('product-benefit-tabs-data').textContent);
-    var icons = data.icons;
-    var menu = data.menu;
-    var showIcons = data.showIcons;
-
-    var swiper = new Swiper('.st-product-benefit-tabs-section-swiper', {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      autoHeight: true,
-      loop: true,
-      grabCursor: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        renderBullet: function (index, className) {
-          return (
-            '<span class="' +
-            className +
-            '">' +
-            (showIcons ? '<img src="' + icons[index] + '">' : '') +
-            '<h1>' +
-            menu[index] +
-            '</h1></span>'
-          );
-        },
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      touchRatio: 1.5,
-    });
-
-    var dropdown = document.querySelector('.st-product-benefit-tabs-section-dropdown');
-    var dropdownButton = document.querySelector('.st-product-benefit-tabs-section-dropdown-button');
-    var dropdownContent = document.getElementById('myDropdown');
-    var isDropdownOpen = false;
-
-    function setActiveOption(index) {
-      dropdownButton.innerHTML = (showIcons ? '<img src="' + icons[index] + '">' : '') + ' ' + menu[index];
-      dropdownButton.classList.add('active');
-
-      dropdownContent.querySelectorAll('div').forEach(function (el, i) {
-        if (i === index) {
-          el.classList.add('active');
-        } else {
-          el.classList.remove('active');
-        }
-      });
-    }
-
-    menu.forEach(function (item, index) {
-      var div = document.createElement('div');
-      div.innerHTML = (showIcons ? '<img src="' + icons[index] + '">' : '') + ' ' + item;
-      if (index === 0) {
-        div.classList.add('active');
-      }
-
-      div.addEventListener('click', function (event) {
-        event.stopPropagation();
-        swiper.slideToLoop(index);
-        setActiveOption(index);
-        hideDropdown();
-      });
-
-      dropdownContent.appendChild(div);
-    });
-
-    // Pre-select the first option for both desktop and mobile
-    setActiveOption(0);
-
-    function showDropdown() {
-      dropdownContent.style.display = 'block';
-      isDropdownOpen = true;
-    }
-
-    function hideDropdown() {
-      dropdownContent.style.display = 'none';
-      isDropdownOpen = false;
-    }
-
-    function toggleDropdown(event) {
-      event.stopPropagation();
-      if (isDropdownOpen) {
-        hideDropdown();
-      } else {
-        showDropdown();
-      }
-    }
-
-    dropdownButton.addEventListener('click', toggleDropdown);
-
-    document.addEventListener('click', function (event) {
-      if (!dropdown.contains(event.target)) {
-        hideDropdown();
-      }
-    });
-
-    if (window.matchMedia('(hover: hover)').matches) {
-      dropdown.addEventListener('mouseenter', showDropdown);
-      dropdown.addEventListener('mouseleave', hideDropdown);
-    }
-
-    swiper.on('slideChange', function () {
-      var activeIndex = swiper.realIndex;
-      setActiveOption(activeIndex);
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', stProductBenefitTabsInit);
   document.addEventListener('shopify:section:load', stProductBenefitTabsInit);
 </script>
@@ -564,13 +478,9 @@
       "default": 50
     },
     {
-      "type": "header",
-      "content": "Titel und Untertitel"
-    },
-    {
       "type": "range",
       "id": "max_width",
-      "label": "Maximum Width",
+      "label": "Maximale Breite",
       "min": 800,
       "max": 2000,
       "step": 50,
@@ -600,7 +510,7 @@
       "min": 10,
       "max": 50,
       "step": 1,
-      "default": 34
+      "default": 35
     },
     {
       "type": "range",
@@ -609,18 +519,34 @@
       "min": 10,
       "max": 50,
       "step": 1,
-      "default": 24
+      "default": 30
+    },
+    {
+      "type": "font_picker",
+      "id": "tab_font",
+      "label": "Tab und Dropdown Schriftart",
+      "default": "poppins_n5"
+    },
+    {
+      "type": "range",
+      "id": "tab_fontsize",
+      "label": "Tab und Dropdown Schriftgröße",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 15,
+      "unit": "px"
     },
     {
       "type": "font_picker",
       "id": "subtitle_font",
-      "label": "Untertitel-Schriftart",
+      "label": "Benefit Untertitel-Schriftart",
       "default": "poppins_n6"
     },
     {
       "type": "range",
       "id": "subtitle_fontsize_desktop",
-      "label": "Untertitel-Schriftgröße (Desktop)",
+      "label": "Benefit Untertitel-Schriftgröße (Desktop)",
       "min": 10,
       "max": 50,
       "step": 1,
@@ -629,7 +555,7 @@
     {
       "type": "range",
       "id": "subtitle_fontsize_mobile",
-      "label": "Untertitel-Schriftgröße (Mobile)",
+      "label": "Benefit Untertitel-Schriftgröße (Mobile)",
       "min": 10,
       "max": 40,
       "step": 1,
@@ -669,66 +595,66 @@
     },
     {
       "type": "header",
-      "content": "Color Settings"
+      "content": "Farb-Einstellungen"
     },
     {
       "type": "color",
       "id": "title_color",
-      "label": "Title Color",
+      "label": "Titel Farbe",
       "default": "#351416"
     },
     {
       "type": "color",
       "id": "subtitle_color",
-      "label": "Subtitle Color",
+      "label": "Untertitel Farbe",
       "default": "#351416"
     },
     {
       "type": "color",
       "id": "description_color",
-      "label": "Description Text Color",
+      "label": "Beschreibungs-Text Farbe",
       "default": "#080808"
     },
     {
       "type": "color",
       "id": "nav_button_background",
-      "label": "Navigation Button Background",
+      "label": "Navigation Button Hintergrund",
       "default": "#FFFFFF"
     },
     {
       "type": "color",
       "id": "nav_button_arrow",
-      "label": "Navigation Button Arrow Color",
+      "label": "Navigation Button Pfeil Farbe",
       "default": "#191919"
     },
     {
       "type": "color",
       "id": "tab_background",
-      "label": "Tab/Dropdown Background Color",
+      "label": "Tab/Dropdown Hintergrund",
       "default": "#FEFCF7"
     },
     {
       "type": "color",
       "id": "tab_text",
-      "label": "Tab/Dropdown Text Color",
+      "label": "Tab/Dropdown Text Farbe",
       "default": "#161616"
     },
     {
       "type": "color",
       "id": "active_tab_background",
-      "label": "Active Tab/Dropdown Background Color",
+      "label": "Aktive Tab/Dropdown Hintergrund",
       "default": "#FFFCF9"
     },
     {
       "type": "color",
       "id": "active_tab_text",
-      "label": "Active Tab/Dropdown Text Color",
+      "label": "Aktive Tab/Dropdown Text Farbe",
       "default": "#131313"
     },
     {
       "type": "color",
       "id": "active_tab_border",
-      "label": "Active Tab Border Color",
+      "label": "Aktive Tab Border Farbe",
       "default": "#C8B258"
     },
     {
@@ -738,7 +664,7 @@
       "max": 10,
       "step": 1,
       "unit": "px",
-      "label": "Active Tab Border Thickness",
+      "label": "Aktive Tab Border Dicke",
       "default": 1
     }
   ],
@@ -751,7 +677,7 @@
         {
           "type": "image_picker",
           "id": "slider_image",
-          "label": "Slider Image"
+          "label": "Slider Bild"
         },
         {
           "type": "image_picker",
@@ -762,19 +688,19 @@
         {
           "type": "text",
           "id": "icon_title",
-          "label": "Icon Title",
+          "label": "Icon Titel",
           "default": "Morning Breeze"
         },
         {
           "type": "inline_richtext",
           "id": "slider_subtitle",
-          "label": "Slider Subtitle",
+          "label": "Slider Untertitel",
           "default": "Der Duft des Morgens."
         },
         {
           "type": "richtext",
           "id": "slider_description",
-          "label": "Slider Description",
+          "label": "Slider Beschreibung",
           "default": "<p>Ein erfrischender Duft, der die Leichtigkeit des Morgens einfängt. Noten von taufrischen Blumen und saftigem Gras bringen das Gefühl eines sonnigen Frühlingsmorgens zum Leben, perfekt, um den Tag mit einer klaren und belebenden Frische zu beginnen.</p>"
         }
       ]
