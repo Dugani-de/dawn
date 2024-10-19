@@ -1,4 +1,4 @@
-{% comment %} Version: 2.0.5 {% endcomment %}
+{% comment %} Version: 2.0.6 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -63,6 +63,7 @@
     font-size: {{ section.settings.title_fontsize }}px;
     font-family: {{ title_font.family }}, {{ title_font.fallback_families }};
     font-weight: {{ title_font.weight }};
+    color: {{ section.settings.titel_color }};
   }
 
   .st_img-text-text-title--{{ section.id }} h3 {
@@ -71,6 +72,7 @@
     font-size: {{ section.settings.subtitle_fontsize }}px;
     font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
     font-weight: {{ subtitle_font.weight }};
+    color: {{ section.settings.subtitel_color }};
   }
 
   .st_img-text-image--{{ section.id }} {
@@ -102,8 +104,8 @@
 
   .st_img-text-image-usp-box--{{ section.id }} {
     padding: 20px;
-    border-width: 2px;
-    border-color: #d3d8d6;
+    border-width: {{ section.settings.box_border_width }}px;
+  border-color: {{ section.settings.box_border_color }};
     border-style: dotted;
     background: {{ section.settings.box_hintergrund }};
   }
@@ -124,6 +126,10 @@
     align-items: center;
     width: 20px;
     height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
   }
 
   .st_img-text-image-usp-item-text--{{ section.id }} p{
@@ -388,8 +394,14 @@
     },
     {
       "type": "color",
-      "id": "titel_farbe",
+      "id": "titel_color",
       "label": "Titel Farbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitel_color",
+      "label": "Sub Titel Farbe",
       "default": "#000000"
     },
     {
@@ -406,14 +418,30 @@
     },
     {
       "type": "color",
+      "id": "box_border_color",
+      "label": "Vorteil Box Rahmenfarbe",
+      "default": "#d3d8d6"
+    },
+    {
+      "type": "range",
+      "id": "box_border_width",
+      "label": "Vorteil Box Rahmenbreite",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 2,
+      "unit": "px"
+    },
+    {
+      "type": "color",
       "id": "border_color",
-      "label": "Border Farbe",
+      "label": "Border Farbe (Gezoomtes Bild)",
       "default": "#FFFFFF"
     },
     {
       "type": "range",
       "id": "border_thickness",
-      "label": "Border Dicke",
+      "label": "Border Dicke (Gezoomtes Bild)",
       "min": 0,
       "max": 8,
       "step": 1,
