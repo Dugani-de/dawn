@@ -1,3 +1,16 @@
+{% comment %} Version: 2.0.0 {% endcomment %}
+
+{% comment %}
+  ---------------------------------------------------------
+  Copyright © 2024 Sternify. All rights reserved.
+  Any unauthorized reproduction, alteration, or distribution
+  of this code, in part or in whole, is expressly forbidden.
+  Violators will be subject to legal prosecution to the maximum
+  extent permitted by law. For permissions or inquiries,
+  please contact us in our discord server: https://discord.gg/NHHCEPhsG8
+  ---------------------------------------------------------
+{% endcomment %}
+
 {% assign subtitle_font = section.settings.subtitle_font %}
 {% assign title_font = section.settings.title_font %}
 {% assign text_font = section.settings.text_font %}
@@ -25,7 +38,6 @@
   .st-product-benefit-tabs-section {
     position: relative;
     width: 100%;
-    min-height: fit-content;
     max-width: {{ max_width }}px;
     margin: {{ section.settings.margin_top }}px auto {{ section.settings.margin_bottom }}px;
     display: flex;
@@ -388,8 +400,8 @@
 
 <div
   id="product-benefit-tabs-data"
-  data-icons="[{% for block in section.blocks %}{% if block.settings.slider_icon %}"{{ block.settings.slider_icon | image_url: width: 100 }}"{% else %}"https://cdn.shopify.com/s/files/1/0799/5880/2740/files/perfume_1.svg?v=1728075130"{% endif %}{% unless forloop.last %},{% endunless %}{% endfor %}]"
-  data-menu="[{% for block in section.blocks %}"{{ block.settings.icon_title }}"{% unless forloop.last %},{% endunless %}{% endfor %}]"
+  data-icons="[{% for block in section.blocks %}{% if block.settings.slider_icon %}&quot;{{ block.settings.slider_icon | image_url: width: 100 }}&quot;{% else %}&quot;https://cdn.shopify.com/s/files/1/0799/5880/2740/files/perfume_1.svg?v=1728075130&quot;{% endif %}{% unless forloop.last %},{% endunless %}{% endfor %}]"
+  data-menu="[{% for block in section.blocks %}&quot;{{ block.settings.icon_title }}&quot;{% unless forloop.last %},{% endunless %}{% endfor %}]"
   data-showicons="{{ section.settings.show_icons | json }}"
 ></div>
 
