@@ -1,4 +1,4 @@
-{% comment %} Version: 2.2.0 {% endcomment %}
+{% comment %} Version: 2.2.3 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -116,7 +116,6 @@
   .st-product-benefit-tabs-section-image-content img {
     border-radius: 15px;
     width: auto;
-    height: min-content;
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
@@ -128,6 +127,7 @@
     height: 50px;
     border-radius: 50%;
     position: absolute;
+    text-rendering: auto;
     top: 58%;
     z-index: 1;
     background-color: {{ section.settings.nav_button_background }};
@@ -293,7 +293,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    min-width: max-content;
+    white-space: nowrap;
   }
 
   .st-product-benefit-tabs-section-dropdown-content div img {
