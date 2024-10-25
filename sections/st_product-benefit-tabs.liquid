@@ -1,4 +1,4 @@
-{% comment %} Version: 2.0.0 {% endcomment %}
+{% comment %} Version: 2.1.0 {% endcomment %}
 
 {% comment %}
   ---------------------------------------------------------
@@ -160,68 +160,68 @@
 
   .swiper-pagination-bullet {
     margin: 0px !important;
-    border-radius: 10px;
-    width: fit-content;
-    padding: 10px 20px;
-    height: 50px;
-    text-align: center;
-    font-size: 15px;
-    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }};
-    font-weight: {{ section.settings.tab_font.weight }};
-    font-size: {{ section.settings.tab_fontsize }}px;
-    color: {{ section.settings.tab_text }};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    opacity: 1;
-    background-color: {{ section.settings.tab_background }};
-    transition: scale 0.5s ease-in-out;
+    border-radius: 10px !important;
+    width: fit-content !important ;
+    padding: 10px 20px !important;
+    height: 50px !important;
+    text-align: center !important;
+    font-size: 15px !important;
+    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }} !important;
+    font-weight: {{ section.settings.tab_font.weight }} !important;
+    font-size: {{ section.settings.tab_fontsize }}px !important;
+    color: {{ section.settings.tab_text }} !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    opacity: 1 !important;
+    background-color: {{ section.settings.tab_background }} !important;
+    transition: scale 0.5s ease-in-out !important;
   }
 
   .swiper-pagination-bullet h1 {
-    font-size: {{ section.settings.tab_fontsize }}px;
-    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }};
-    font-weight: {{ section.settings.tab_font.weight }};
+    font-size: {{ section.settings.tab_fontsize }}px !important;
+    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }} !important;
+    font-weight: {{ section.settings.tab_font.weight }} !important;
   }
 
   .swiper-pagination-bullet:hover {
-    scale: 1.05;
+    scale: 1.05 !important;
   }
 
   .swiper-pagination-bullet img {
-    width: 20px;
-    height: 20px;
-    min-height: 20px;
-    min-width: 20px;
-    object-fit: contain;
-    position: relative;
-    border-radius: 5px;
+    width: 20px !important;
+    height: 20px !important;
+    min-height: 20px !important;
+    min-width: 20px !important;
+    object-fit: contain !important;
+    position: relative !important;
+    border-radius: 5px !important;
   }
 
   .swiper-pagination-bullet-active {
-    background-color: {{ section.settings.active_tab_background }};
-    border: {{ section.settings.active_tab_border_thickness }}px solid {{ section.settings.active_tab_border }};
+    background-color: {{ section.settings.active_tab_background }} !important;
+    border: {{ section.settings.active_tab_border_thickness }}px solid {{ section.settings.active_tab_border }} !important;
   }
 
   .swiper-pagination-bullet-active h1 {
-    color: {{ section.settings.active_tab_text }};
+    color: {{ section.settings.active_tab_text }} !important;
   }
 
   .st-product-benefit-tabs-section .swiper-button-next {
-    right: 5%;
+    right: 5% !important;
   }
 
   .st-product-benefit-tabs-section .swiper-button-prev {
-    left: 5%;
+    left: 5% !important;
   }
 
   .st-product-benefit-tabs-section-dropdown {
     position: relative;
     display: none;
     padding-bottom: 20px;
-    font-family: {{ section.settings.tab_font.family }}, {{ section.settings.tab_font.fallback_families }};
-    font-weight: {{ section.settings.tab_font.weight }};
+    font-family: {{ section.settings.tab_font.family }} !important, {{ section.settings.tab_font.fallback_families }} !important;
+    font-weight: {{ section.settings.tab_font.weight }} !important;
   }
 
   .st-product-benefit-tabs-section-dropdown::after {
